@@ -1,0 +1,1160 @@
+{
+  "ticker": "SXRV",
+  "created_at": "2026-08-15T01:18:53.103276",
+  "pending": [
+    {
+      "family": "big_tech",
+      "start": "2017-12-16",
+      "end": "2018-06-13",
+      "page": 1
+    },
+    {
+      "family": "big_tech",
+      "start": "2018-06-14",
+      "end": "2018-12-10",
+      "page": 1
+    },
+    {
+      "family": "big_tech",
+      "start": "2018-12-11",
+      "end": "2019-06-08",
+      "page": 1
+    },
+    {
+      "family": "big_tech",
+      "start": "2019-06-09",
+      "end": "2019-12-05",
+      "page": 1
+    },
+    {
+      "family": "big_tech",
+      "start": "2019-12-06",
+      "end": "2020-06-02",
+      "page": 1
+    },
+    {
+      "family": "big_tech",
+      "start": "2020-06-03",
+      "end": "2020-11-29",
+      "page": 1
+    },
+    {
+      "family": "big_tech",
+      "start": "2020-11-30",
+      "end": "2021-05-28",
+      "page": 1
+    },
+    {
+      "family": "big_tech",
+      "start": "2021-05-29",
+      "end": "2021-11-24",
+      "page": 1
+    },
+    {
+      "family": "big_tech",
+      "start": "2021-11-25",
+      "end": "2022-05-23",
+      "page": 1
+    },
+    {
+      "family": "big_tech",
+      "start": "2022-05-24",
+      "end": "2022-11-19",
+      "page": 1
+    },
+    {
+      "family": "big_tech",
+      "start": "2022-11-20",
+      "end": "2023-05-18",
+      "page": 1
+    },
+    {
+      "family": "big_tech",
+      "start": "2023-05-19",
+      "end": "2023-11-14",
+      "page": 1
+    },
+    {
+      "family": "big_tech",
+      "start": "2023-11-15",
+      "end": "2024-05-12",
+      "page": 1
+    },
+    {
+      "family": "big_tech",
+      "start": "2024-05-13",
+      "end": "2024-11-08",
+      "page": 1
+    },
+    {
+      "family": "big_tech",
+      "start": "2024-11-09",
+      "end": "2025-05-07",
+      "page": 1
+    },
+    {
+      "family": "big_tech",
+      "start": "2025-05-08",
+      "end": "2025-11-03",
+      "page": 1
+    },
+    {
+      "family": "big_tech",
+      "start": "2025-11-04",
+      "end": "2026-05-02",
+      "page": 1
+    },
+    {
+      "family": "big_tech",
+      "start": "2026-05-03",
+      "end": "2026-05-19",
+      "page": 1
+    },
+    {
+      "family": "semis_ai",
+      "start": "2015-01-01",
+      "end": "2015-06-29",
+      "page": 1
+    },
+    {
+      "family": "semis_ai",
+      "start": "2015-06-30",
+      "end": "2015-12-26",
+      "page": 1
+    },
+    {
+      "family": "semis_ai",
+      "start": "2015-12-27",
+      "end": "2016-06-23",
+      "page": 1
+    },
+    {
+      "family": "semis_ai",
+      "start": "2016-06-24",
+      "end": "2016-12-20",
+      "page": 1
+    },
+    {
+      "family": "semis_ai",
+      "start": "2016-12-21",
+      "end": "2017-06-18",
+      "page": 1
+    },
+    {
+      "family": "semis_ai",
+      "start": "2017-06-19",
+      "end": "2017-12-15",
+      "page": 1
+    },
+    {
+      "family": "semis_ai",
+      "start": "2017-12-16",
+      "end": "2018-06-13",
+      "page": 1
+    },
+    {
+      "family": "semis_ai",
+      "start": "2018-06-14",
+      "end": "2018-12-10",
+      "page": 1
+    },
+    {
+      "family": "semis_ai",
+      "start": "2018-12-11",
+      "end": "2019-06-08",
+      "page": 1
+    },
+    {
+      "family": "semis_ai",
+      "start": "2019-06-09",
+      "end": "2019-12-05",
+      "page": 1
+    },
+    {
+      "family": "semis_ai",
+      "start": "2019-12-06",
+      "end": "2020-06-02",
+      "page": 1
+    },
+    {
+      "family": "semis_ai",
+      "start": "2020-06-03",
+      "end": "2020-11-29",
+      "page": 1
+    },
+    {
+      "family": "semis_ai",
+      "start": "2020-11-30",
+      "end": "2021-05-28",
+      "page": 1
+    },
+    {
+      "family": "semis_ai",
+      "start": "2021-05-29",
+      "end": "2021-11-24",
+      "page": 1
+    },
+    {
+      "family": "semis_ai",
+      "start": "2021-11-25",
+      "end": "2022-05-23",
+      "page": 1
+    },
+    {
+      "family": "semis_ai",
+      "start": "2022-05-24",
+      "end": "2022-11-19",
+      "page": 1
+    },
+    {
+      "family": "semis_ai",
+      "start": "2022-11-20",
+      "end": "2023-05-18",
+      "page": 1
+    },
+    {
+      "family": "semis_ai",
+      "start": "2023-05-19",
+      "end": "2023-11-14",
+      "page": 1
+    },
+    {
+      "family": "semis_ai",
+      "start": "2023-11-15",
+      "end": "2024-05-12",
+      "page": 1
+    },
+    {
+      "family": "semis_ai",
+      "start": "2024-05-13",
+      "end": "2024-11-08",
+      "page": 1
+    },
+    {
+      "family": "semis_ai",
+      "start": "2024-11-09",
+      "end": "2025-05-07",
+      "page": 1
+    },
+    {
+      "family": "semis_ai",
+      "start": "2025-05-08",
+      "end": "2025-11-03",
+      "page": 1
+    },
+    {
+      "family": "semis_ai",
+      "start": "2025-11-04",
+      "end": "2026-05-02",
+      "page": 1
+    },
+    {
+      "family": "semis_ai",
+      "start": "2026-05-03",
+      "end": "2026-05-19",
+      "page": 1
+    },
+    {
+      "family": "fed_tech",
+      "start": "2015-01-01",
+      "end": "2015-06-29",
+      "page": 1
+    },
+    {
+      "family": "fed_tech",
+      "start": "2015-06-30",
+      "end": "2015-12-26",
+      "page": 1
+    },
+    {
+      "family": "fed_tech",
+      "start": "2015-12-27",
+      "end": "2016-06-23",
+      "page": 1
+    },
+    {
+      "family": "fed_tech",
+      "start": "2016-06-24",
+      "end": "2016-12-20",
+      "page": 1
+    },
+    {
+      "family": "fed_tech",
+      "start": "2016-12-21",
+      "end": "2017-06-18",
+      "page": 1
+    },
+    {
+      "family": "fed_tech",
+      "start": "2017-06-19",
+      "end": "2017-12-15",
+      "page": 1
+    },
+    {
+      "family": "fed_tech",
+      "start": "2017-12-16",
+      "end": "2018-06-13",
+      "page": 1
+    },
+    {
+      "family": "fed_tech",
+      "start": "2018-06-14",
+      "end": "2018-12-10",
+      "page": 1
+    },
+    {
+      "family": "fed_tech",
+      "start": "2018-12-11",
+      "end": "2019-06-08",
+      "page": 1
+    },
+    {
+      "family": "fed_tech",
+      "start": "2019-06-09",
+      "end": "2019-12-05",
+      "page": 1
+    },
+    {
+      "family": "fed_tech",
+      "start": "2019-12-06",
+      "end": "2020-06-02",
+      "page": 1
+    },
+    {
+      "family": "fed_tech",
+      "start": "2020-06-03",
+      "end": "2020-11-29",
+      "page": 1
+    },
+    {
+      "family": "fed_tech",
+      "start": "2020-11-30",
+      "end": "2021-05-28",
+      "page": 1
+    },
+    {
+      "family": "fed_tech",
+      "start": "2021-05-29",
+      "end": "2021-11-24",
+      "page": 1
+    },
+    {
+      "family": "fed_tech",
+      "start": "2021-11-25",
+      "end": "2022-05-23",
+      "page": 1
+    },
+    {
+      "family": "fed_tech",
+      "start": "2022-05-24",
+      "end": "2022-11-19",
+      "page": 1
+    },
+    {
+      "family": "fed_tech",
+      "start": "2022-11-20",
+      "end": "2023-05-18",
+      "page": 1
+    },
+    {
+      "family": "fed_tech",
+      "start": "2023-05-19",
+      "end": "2023-11-14",
+      "page": 1
+    },
+    {
+      "family": "fed_tech",
+      "start": "2023-11-15",
+      "end": "2024-05-12",
+      "page": 1
+    },
+    {
+      "family": "fed_tech",
+      "start": "2024-05-13",
+      "end": "2024-11-08",
+      "page": 1
+    },
+    {
+      "family": "fed_tech",
+      "start": "2024-11-09",
+      "end": "2025-05-07",
+      "page": 1
+    },
+    {
+      "family": "fed_tech",
+      "start": "2025-05-08",
+      "end": "2025-11-03",
+      "page": 1
+    },
+    {
+      "family": "fed_tech",
+      "start": "2025-11-04",
+      "end": "2026-05-02",
+      "page": 1
+    },
+    {
+      "family": "fed_tech",
+      "start": "2026-05-03",
+      "end": "2026-05-19",
+      "page": 1
+    }
+  ],
+  "completed": [
+    {
+      "family": "nasdaq",
+      "start": "2015-01-01",
+      "end": "2015-06-29",
+      "page": 1
+    },
+    {
+      "family": "nasdaq",
+      "start": "2015-06-30",
+      "end": "2015-12-26",
+      "page": 1
+    },
+    {
+      "family": "nasdaq",
+      "start": "2015-06-30",
+      "end": "2015-12-26",
+      "page": 2
+    },
+    {
+      "family": "nasdaq",
+      "start": "2015-12-27",
+      "end": "2016-06-23",
+      "page": 1
+    },
+    {
+      "family": "nasdaq",
+      "start": "2015-12-27",
+      "end": "2016-06-23",
+      "page": 2
+    },
+    {
+      "family": "nasdaq",
+      "start": "2016-06-24",
+      "end": "2016-12-20",
+      "page": 1
+    },
+    {
+      "family": "nasdaq",
+      "start": "2016-06-24",
+      "end": "2016-12-20",
+      "page": 2
+    },
+    {
+      "family": "nasdaq",
+      "start": "2016-12-21",
+      "end": "2017-06-18",
+      "page": 1
+    },
+    {
+      "family": "nasdaq",
+      "start": "2016-12-21",
+      "end": "2017-06-18",
+      "page": 2
+    },
+    {
+      "family": "nasdaq",
+      "start": "2017-06-19",
+      "end": "2017-12-15",
+      "page": 1
+    },
+    {
+      "family": "nasdaq",
+      "start": "2017-06-19",
+      "end": "2017-12-15",
+      "page": 2
+    },
+    {
+      "family": "nasdaq",
+      "start": "2017-12-16",
+      "end": "2018-06-13",
+      "page": 1
+    },
+    {
+      "family": "nasdaq",
+      "start": "2017-12-16",
+      "end": "2018-06-13",
+      "page": 2
+    },
+    {
+      "family": "nasdaq",
+      "start": "2018-06-14",
+      "end": "2018-12-10",
+      "page": 1
+    },
+    {
+      "family": "nasdaq",
+      "start": "2018-06-14",
+      "end": "2018-12-10",
+      "page": 2
+    },
+    {
+      "family": "nasdaq",
+      "start": "2018-12-11",
+      "end": "2019-06-08",
+      "page": 1
+    },
+    {
+      "family": "nasdaq",
+      "start": "2018-12-11",
+      "end": "2019-06-08",
+      "page": 2
+    },
+    {
+      "family": "nasdaq",
+      "start": "2019-06-09",
+      "end": "2019-12-05",
+      "page": 1
+    },
+    {
+      "family": "nasdaq",
+      "start": "2019-06-09",
+      "end": "2019-12-05",
+      "page": 2
+    },
+    {
+      "family": "nasdaq",
+      "start": "2019-12-06",
+      "end": "2020-06-02",
+      "page": 1
+    },
+    {
+      "family": "nasdaq",
+      "start": "2019-12-06",
+      "end": "2020-06-02",
+      "page": 2
+    },
+    {
+      "family": "nasdaq",
+      "start": "2019-12-06",
+      "end": "2020-06-02",
+      "page": 3
+    },
+    {
+      "family": "nasdaq",
+      "start": "2020-06-03",
+      "end": "2020-11-29",
+      "page": 1
+    },
+    {
+      "family": "nasdaq",
+      "start": "2020-06-03",
+      "end": "2020-11-29",
+      "page": 2
+    },
+    {
+      "family": "nasdaq",
+      "start": "2020-06-03",
+      "end": "2020-11-29",
+      "page": 3
+    },
+    {
+      "family": "nasdaq",
+      "start": "2020-06-03",
+      "end": "2020-11-29",
+      "page": 4
+    },
+    {
+      "family": "nasdaq",
+      "start": "2020-11-30",
+      "end": "2021-05-28",
+      "page": 1
+    },
+    {
+      "family": "nasdaq",
+      "start": "2020-11-30",
+      "end": "2021-05-28",
+      "page": 2
+    },
+    {
+      "family": "nasdaq",
+      "start": "2020-11-30",
+      "end": "2021-05-28",
+      "page": 3
+    },
+    {
+      "family": "nasdaq",
+      "start": "2020-11-30",
+      "end": "2021-05-28",
+      "page": 4
+    },
+    {
+      "family": "nasdaq",
+      "start": "2021-05-29",
+      "end": "2021-11-24",
+      "page": 1
+    },
+    {
+      "family": "nasdaq",
+      "start": "2021-05-29",
+      "end": "2021-11-24",
+      "page": 2
+    },
+    {
+      "family": "nasdaq",
+      "start": "2021-05-29",
+      "end": "2021-11-24",
+      "page": 3
+    },
+    {
+      "family": "nasdaq",
+      "start": "2021-11-25",
+      "end": "2022-05-23",
+      "page": 1
+    },
+    {
+      "family": "nasdaq",
+      "start": "2021-11-25",
+      "end": "2022-05-23",
+      "page": 2
+    },
+    {
+      "family": "nasdaq",
+      "start": "2021-11-25",
+      "end": "2022-05-23",
+      "page": 3
+    },
+    {
+      "family": "nasdaq",
+      "start": "2022-05-24",
+      "end": "2022-11-19",
+      "page": 1
+    },
+    {
+      "family": "nasdaq",
+      "start": "2022-05-24",
+      "end": "2022-11-19",
+      "page": 2
+    },
+    {
+      "family": "nasdaq",
+      "start": "2022-11-20",
+      "end": "2023-05-18",
+      "page": 1
+    },
+    {
+      "family": "nasdaq",
+      "start": "2022-11-20",
+      "end": "2023-05-18",
+      "page": 2
+    },
+    {
+      "family": "nasdaq",
+      "start": "2023-05-19",
+      "end": "2023-11-14",
+      "page": 1
+    },
+    {
+      "family": "nasdaq",
+      "start": "2023-05-19",
+      "end": "2023-11-14",
+      "page": 2
+    },
+    {
+      "family": "nasdaq",
+      "start": "2023-11-15",
+      "end": "2024-05-12",
+      "page": 1
+    },
+    {
+      "family": "nasdaq",
+      "start": "2023-11-15",
+      "end": "2024-05-12",
+      "page": 2
+    },
+    {
+      "family": "nasdaq",
+      "start": "2024-05-13",
+      "end": "2024-11-08",
+      "page": 1
+    },
+    {
+      "family": "nasdaq",
+      "start": "2024-05-13",
+      "end": "2024-11-08",
+      "page": 2
+    },
+    {
+      "family": "nasdaq",
+      "start": "2024-11-09",
+      "end": "2025-05-07",
+      "page": 1
+    },
+    {
+      "family": "nasdaq",
+      "start": "2024-11-09",
+      "end": "2025-05-07",
+      "page": 2
+    },
+    {
+      "family": "nasdaq",
+      "start": "2024-11-09",
+      "end": "2025-05-07",
+      "page": 3
+    },
+    {
+      "family": "nasdaq",
+      "start": "2024-11-09",
+      "end": "2025-05-07",
+      "page": 4
+    },
+    {
+      "family": "nasdaq",
+      "start": "2025-05-08",
+      "end": "2025-11-03",
+      "page": 1
+    },
+    {
+      "family": "nasdaq",
+      "start": "2025-05-08",
+      "end": "2025-11-03",
+      "page": 2
+    },
+    {
+      "family": "nasdaq",
+      "start": "2025-05-08",
+      "end": "2025-11-03",
+      "page": 3
+    },
+    {
+      "family": "nasdaq",
+      "start": "2025-11-04",
+      "end": "2026-05-02",
+      "page": 1
+    },
+    {
+      "family": "nasdaq",
+      "start": "2025-11-04",
+      "end": "2026-05-02",
+      "page": 2
+    },
+    {
+      "family": "nasdaq",
+      "start": "2025-11-04",
+      "end": "2026-05-02",
+      "page": 3
+    },
+    {
+      "family": "nasdaq",
+      "start": "2026-05-03",
+      "end": "2026-05-19",
+      "page": 1
+    },
+    {
+      "family": "big_tech",
+      "start": "2015-01-01",
+      "end": "2015-03-31",
+      "page": 1
+    },
+    {
+      "family": "big_tech",
+      "start": "2015-01-01",
+      "end": "2015-03-31",
+      "page": 2
+    },
+    {
+      "family": "big_tech",
+      "start": "2015-01-01",
+      "end": "2015-03-31",
+      "page": 3
+    },
+    {
+      "family": "big_tech",
+      "start": "2015-01-01",
+      "end": "2015-03-31",
+      "page": 4
+    },
+    {
+      "family": "big_tech",
+      "start": "2015-01-01",
+      "end": "2015-03-31",
+      "page": 5
+    },
+    {
+      "family": "big_tech",
+      "start": "2015-01-01",
+      "end": "2015-03-31",
+      "page": 6
+    },
+    {
+      "family": "big_tech",
+      "start": "2015-01-01",
+      "end": "2015-03-31",
+      "page": 7
+    },
+    {
+      "family": "big_tech",
+      "start": "2015-04-01",
+      "end": "2015-06-29",
+      "page": 1
+    },
+    {
+      "family": "big_tech",
+      "start": "2015-04-01",
+      "end": "2015-06-29",
+      "page": 2
+    },
+    {
+      "family": "big_tech",
+      "start": "2015-04-01",
+      "end": "2015-06-29",
+      "page": 3
+    },
+    {
+      "family": "big_tech",
+      "start": "2015-04-01",
+      "end": "2015-06-29",
+      "page": 4
+    },
+    {
+      "family": "big_tech",
+      "start": "2015-04-01",
+      "end": "2015-06-29",
+      "page": 5
+    },
+    {
+      "family": "big_tech",
+      "start": "2015-04-01",
+      "end": "2015-06-29",
+      "page": 6
+    },
+    {
+      "family": "big_tech",
+      "start": "2015-04-01",
+      "end": "2015-06-29",
+      "page": 7
+    },
+    {
+      "family": "big_tech",
+      "start": "2015-06-30",
+      "end": "2015-09-27",
+      "page": 1
+    },
+    {
+      "family": "big_tech",
+      "start": "2015-06-30",
+      "end": "2015-09-27",
+      "page": 2
+    },
+    {
+      "family": "big_tech",
+      "start": "2015-06-30",
+      "end": "2015-09-27",
+      "page": 3
+    },
+    {
+      "family": "big_tech",
+      "start": "2015-06-30",
+      "end": "2015-09-27",
+      "page": 4
+    },
+    {
+      "family": "big_tech",
+      "start": "2015-06-30",
+      "end": "2015-09-27",
+      "page": 5
+    },
+    {
+      "family": "big_tech",
+      "start": "2015-06-30",
+      "end": "2015-09-27",
+      "page": 6
+    },
+    {
+      "family": "big_tech",
+      "start": "2015-06-30",
+      "end": "2015-09-27",
+      "page": 7
+    },
+    {
+      "family": "big_tech",
+      "start": "2015-09-28",
+      "end": "2015-12-26",
+      "page": 1
+    },
+    {
+      "family": "big_tech",
+      "start": "2015-09-28",
+      "end": "2015-12-26",
+      "page": 2
+    },
+    {
+      "family": "big_tech",
+      "start": "2015-09-28",
+      "end": "2015-12-26",
+      "page": 3
+    },
+    {
+      "family": "big_tech",
+      "start": "2015-09-28",
+      "end": "2015-12-26",
+      "page": 4
+    },
+    {
+      "family": "big_tech",
+      "start": "2015-09-28",
+      "end": "2015-12-26",
+      "page": 5
+    },
+    {
+      "family": "big_tech",
+      "start": "2015-09-28",
+      "end": "2015-12-26",
+      "page": 6
+    },
+    {
+      "family": "big_tech",
+      "start": "2015-12-27",
+      "end": "2016-03-25",
+      "page": 1
+    },
+    {
+      "family": "big_tech",
+      "start": "2015-12-27",
+      "end": "2016-03-25",
+      "page": 2
+    },
+    {
+      "family": "big_tech",
+      "start": "2015-12-27",
+      "end": "2016-03-25",
+      "page": 3
+    },
+    {
+      "family": "big_tech",
+      "start": "2015-12-27",
+      "end": "2016-03-25",
+      "page": 4
+    },
+    {
+      "family": "big_tech",
+      "start": "2015-12-27",
+      "end": "2016-03-25",
+      "page": 5
+    },
+    {
+      "family": "big_tech",
+      "start": "2015-12-27",
+      "end": "2016-03-25",
+      "page": 6
+    },
+    {
+      "family": "big_tech",
+      "start": "2015-12-27",
+      "end": "2016-03-25",
+      "page": 7
+    },
+    {
+      "family": "big_tech",
+      "start": "2015-12-27",
+      "end": "2016-03-25",
+      "page": 8
+    },
+    {
+      "family": "big_tech",
+      "start": "2016-03-26",
+      "end": "2016-06-23",
+      "page": 1
+    },
+    {
+      "family": "big_tech",
+      "start": "2016-03-26",
+      "end": "2016-06-23",
+      "page": 2
+    },
+    {
+      "family": "big_tech",
+      "start": "2016-03-26",
+      "end": "2016-06-23",
+      "page": 3
+    },
+    {
+      "family": "big_tech",
+      "start": "2016-03-26",
+      "end": "2016-06-23",
+      "page": 4
+    },
+    {
+      "family": "big_tech",
+      "start": "2016-03-26",
+      "end": "2016-06-23",
+      "page": 5
+    },
+    {
+      "family": "big_tech",
+      "start": "2016-03-26",
+      "end": "2016-06-23",
+      "page": 6
+    },
+    {
+      "family": "big_tech",
+      "start": "2016-06-24",
+      "end": "2016-09-21",
+      "page": 1
+    },
+    {
+      "family": "big_tech",
+      "start": "2016-06-24",
+      "end": "2016-09-21",
+      "page": 2
+    },
+    {
+      "family": "big_tech",
+      "start": "2016-06-24",
+      "end": "2016-09-21",
+      "page": 3
+    },
+    {
+      "family": "big_tech",
+      "start": "2016-06-24",
+      "end": "2016-09-21",
+      "page": 4
+    },
+    {
+      "family": "big_tech",
+      "start": "2016-06-24",
+      "end": "2016-09-21",
+      "page": 5
+    },
+    {
+      "family": "big_tech",
+      "start": "2016-06-24",
+      "end": "2016-09-21",
+      "page": 6
+    },
+    {
+      "family": "big_tech",
+      "start": "2016-09-22",
+      "end": "2016-12-20",
+      "page": 1
+    },
+    {
+      "family": "big_tech",
+      "start": "2016-09-22",
+      "end": "2016-12-20",
+      "page": 2
+    },
+    {
+      "family": "big_tech",
+      "start": "2016-09-22",
+      "end": "2016-12-20",
+      "page": 3
+    },
+    {
+      "family": "big_tech",
+      "start": "2016-09-22",
+      "end": "2016-12-20",
+      "page": 4
+    },
+    {
+      "family": "big_tech",
+      "start": "2016-09-22",
+      "end": "2016-12-20",
+      "page": 5
+    },
+    {
+      "family": "big_tech",
+      "start": "2016-09-22",
+      "end": "2016-12-20",
+      "page": 6
+    },
+    {
+      "family": "big_tech",
+      "start": "2016-12-21",
+      "end": "2017-06-18",
+      "page": 1
+    },
+    {
+      "family": "big_tech",
+      "start": "2016-12-21",
+      "end": "2017-06-18",
+      "page": 2
+    },
+    {
+      "family": "big_tech",
+      "start": "2016-12-21",
+      "end": "2017-06-18",
+      "page": 3
+    },
+    {
+      "family": "big_tech",
+      "start": "2016-12-21",
+      "end": "2017-06-18",
+      "page": 4
+    },
+    {
+      "family": "big_tech",
+      "start": "2016-12-21",
+      "end": "2017-06-18",
+      "page": 5
+    },
+    {
+      "family": "big_tech",
+      "start": "2016-12-21",
+      "end": "2017-06-18",
+      "page": 6
+    },
+    {
+      "family": "big_tech",
+      "start": "2016-12-21",
+      "end": "2017-06-18",
+      "page": 7
+    },
+    {
+      "family": "big_tech",
+      "start": "2016-12-21",
+      "end": "2017-06-18",
+      "page": 8
+    },
+    {
+      "family": "big_tech",
+      "start": "2017-06-19",
+      "end": "2017-12-15",
+      "page": 1
+    },
+    {
+      "family": "big_tech",
+      "start": "2017-06-19",
+      "end": "2017-12-15",
+      "page": 2
+    },
+    {
+      "family": "big_tech",
+      "start": "2017-06-19",
+      "end": "2017-12-15",
+      "page": 3
+    },
+    {
+      "family": "big_tech",
+      "start": "2017-06-19",
+      "end": "2017-12-15",
+      "page": 4
+    },
+    {
+      "family": "big_tech",
+      "start": "2017-06-19",
+      "end": "2017-12-15",
+      "page": 5
+    },
+    {
+      "family": "big_tech",
+      "start": "2017-06-19",
+      "end": "2017-12-15",
+      "page": 6
+    },
+    {
+      "family": "big_tech",
+      "start": "2017-06-19",
+      "end": "2017-12-15",
+      "page": 7
+    },
+    {
+      "family": "big_tech",
+      "start": "2017-06-19",
+      "end": "2017-12-15",
+      "page": 8
+    }
+  ]
+}

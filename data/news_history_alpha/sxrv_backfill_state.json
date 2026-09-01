@@ -1,0 +1,368 @@
+{
+  "ticker": "SXRV",
+  "created_at": "2026-08-14T23:21:07.713513",
+  "pending": [
+    {
+      "family": "benchmark_qqq",
+      "start": "2022-12-06",
+      "end": "2023-06-03"
+    },
+    {
+      "family": "benchmark_qqq",
+      "start": "2023-06-04",
+      "end": "2023-11-30"
+    },
+    {
+      "family": "benchmark_qqq",
+      "start": "2023-12-01",
+      "end": "2024-05-28"
+    },
+    {
+      "family": "benchmark_qqq",
+      "start": "2024-05-29",
+      "end": "2024-11-24"
+    },
+    {
+      "family": "benchmark_qqq",
+      "start": "2024-11-25",
+      "end": "2025-05-23"
+    },
+    {
+      "family": "benchmark_qqq",
+      "start": "2025-05-24",
+      "end": "2025-11-19"
+    },
+    {
+      "family": "benchmark_qqq",
+      "start": "2025-11-20",
+      "end": "2026-05-18"
+    },
+    {
+      "family": "benchmark_qqq",
+      "start": "2026-05-19",
+      "end": "2026-05-19"
+    },
+    {
+      "family": "economy_monetary",
+      "start": "2018-01-01",
+      "end": "2018-06-29"
+    },
+    {
+      "family": "financial_markets",
+      "start": "2018-01-01",
+      "end": "2018-06-29"
+    },
+    {
+      "family": "technology",
+      "start": "2018-01-01",
+      "end": "2018-06-29"
+    },
+    {
+      "family": "economy_monetary",
+      "start": "2018-06-30",
+      "end": "2018-12-26"
+    },
+    {
+      "family": "financial_markets",
+      "start": "2018-06-30",
+      "end": "2018-12-26"
+    },
+    {
+      "family": "technology",
+      "start": "2018-06-30",
+      "end": "2018-12-26"
+    },
+    {
+      "family": "economy_monetary",
+      "start": "2018-12-27",
+      "end": "2019-06-24"
+    },
+    {
+      "family": "financial_markets",
+      "start": "2018-12-27",
+      "end": "2019-06-24"
+    },
+    {
+      "family": "technology",
+      "start": "2018-12-27",
+      "end": "2019-06-24"
+    },
+    {
+      "family": "economy_monetary",
+      "start": "2019-06-25",
+      "end": "2019-12-21"
+    },
+    {
+      "family": "financial_markets",
+      "start": "2019-06-25",
+      "end": "2019-12-21"
+    },
+    {
+      "family": "technology",
+      "start": "2019-06-25",
+      "end": "2019-12-21"
+    },
+    {
+      "family": "economy_monetary",
+      "start": "2019-12-22",
+      "end": "2020-06-18"
+    },
+    {
+      "family": "financial_markets",
+      "start": "2019-12-22",
+      "end": "2020-06-18"
+    },
+    {
+      "family": "technology",
+      "start": "2019-12-22",
+      "end": "2020-06-18"
+    },
+    {
+      "family": "economy_monetary",
+      "start": "2020-06-19",
+      "end": "2020-12-15"
+    },
+    {
+      "family": "financial_markets",
+      "start": "2020-06-19",
+      "end": "2020-12-15"
+    },
+    {
+      "family": "technology",
+      "start": "2020-06-19",
+      "end": "2020-12-15"
+    },
+    {
+      "family": "economy_monetary",
+      "start": "2020-12-16",
+      "end": "2021-06-13"
+    },
+    {
+      "family": "financial_markets",
+      "start": "2020-12-16",
+      "end": "2021-06-13"
+    },
+    {
+      "family": "technology",
+      "start": "2020-12-16",
+      "end": "2021-06-13"
+    },
+    {
+      "family": "economy_monetary",
+      "start": "2021-06-14",
+      "end": "2021-12-10"
+    },
+    {
+      "family": "financial_markets",
+      "start": "2021-06-14",
+      "end": "2021-12-10"
+    },
+    {
+      "family": "technology",
+      "start": "2021-06-14",
+      "end": "2021-12-10"
+    },
+    {
+      "family": "economy_monetary",
+      "start": "2021-12-11",
+      "end": "2022-06-08"
+    },
+    {
+      "family": "financial_markets",
+      "start": "2021-12-11",
+      "end": "2022-06-08"
+    },
+    {
+      "family": "technology",
+      "start": "2021-12-11",
+      "end": "2022-06-08"
+    },
+    {
+      "family": "economy_monetary",
+      "start": "2022-06-09",
+      "end": "2022-12-05"
+    },
+    {
+      "family": "financial_markets",
+      "start": "2022-06-09",
+      "end": "2022-12-05"
+    },
+    {
+      "family": "technology",
+      "start": "2022-06-09",
+      "end": "2022-12-05"
+    },
+    {
+      "family": "economy_monetary",
+      "start": "2022-12-06",
+      "end": "2023-06-03"
+    },
+    {
+      "family": "financial_markets",
+      "start": "2022-12-06",
+      "end": "2023-06-03"
+    },
+    {
+      "family": "technology",
+      "start": "2022-12-06",
+      "end": "2023-06-03"
+    },
+    {
+      "family": "economy_monetary",
+      "start": "2023-06-04",
+      "end": "2023-11-30"
+    },
+    {
+      "family": "financial_markets",
+      "start": "2023-06-04",
+      "end": "2023-11-30"
+    },
+    {
+      "family": "technology",
+      "start": "2023-06-04",
+      "end": "2023-11-30"
+    },
+    {
+      "family": "economy_monetary",
+      "start": "2023-12-01",
+      "end": "2024-05-28"
+    },
+    {
+      "family": "financial_markets",
+      "start": "2023-12-01",
+      "end": "2024-05-28"
+    },
+    {
+      "family": "technology",
+      "start": "2023-12-01",
+      "end": "2024-05-28"
+    },
+    {
+      "family": "economy_monetary",
+      "start": "2024-05-29",
+      "end": "2024-11-24"
+    },
+    {
+      "family": "financial_markets",
+      "start": "2024-05-29",
+      "end": "2024-11-24"
+    },
+    {
+      "family": "technology",
+      "start": "2024-05-29",
+      "end": "2024-11-24"
+    },
+    {
+      "family": "economy_monetary",
+      "start": "2024-11-25",
+      "end": "2025-05-23"
+    },
+    {
+      "family": "financial_markets",
+      "start": "2024-11-25",
+      "end": "2025-05-23"
+    },
+    {
+      "family": "technology",
+      "start": "2024-11-25",
+      "end": "2025-05-23"
+    },
+    {
+      "family": "economy_monetary",
+      "start": "2025-05-24",
+      "end": "2025-11-19"
+    },
+    {
+      "family": "financial_markets",
+      "start": "2025-05-24",
+      "end": "2025-11-19"
+    },
+    {
+      "family": "technology",
+      "start": "2025-05-24",
+      "end": "2025-11-19"
+    },
+    {
+      "family": "economy_monetary",
+      "start": "2025-11-20",
+      "end": "2026-05-18"
+    },
+    {
+      "family": "financial_markets",
+      "start": "2025-11-20",
+      "end": "2026-05-18"
+    },
+    {
+      "family": "technology",
+      "start": "2025-11-20",
+      "end": "2026-05-18"
+    },
+    {
+      "family": "economy_monetary",
+      "start": "2026-05-19",
+      "end": "2026-05-19"
+    },
+    {
+      "family": "financial_markets",
+      "start": "2026-05-19",
+      "end": "2026-05-19"
+    },
+    {
+      "family": "technology",
+      "start": "2026-05-19",
+      "end": "2026-05-19"
+    }
+  ],
+  "completed": [
+    {
+      "family": "benchmark_qqq",
+      "start": "2018-01-01",
+      "end": "2018-06-29"
+    },
+    {
+      "family": "benchmark_qqq",
+      "start": "2018-06-30",
+      "end": "2018-12-26"
+    },
+    {
+      "family": "benchmark_qqq",
+      "start": "2018-12-27",
+      "end": "2019-06-24"
+    },
+    {
+      "family": "benchmark_qqq",
+      "start": "2019-06-25",
+      "end": "2019-12-21"
+    },
+    {
+      "family": "benchmark_qqq",
+      "start": "2019-12-22",
+      "end": "2020-06-18"
+    },
+    {
+      "family": "benchmark_qqq",
+      "start": "2020-06-19",
+      "end": "2020-12-15"
+    },
+    {
+      "family": "benchmark_qqq",
+      "start": "2020-12-16",
+      "end": "2021-06-13"
+    },
+    {
+      "family": "benchmark_qqq",
+      "start": "2021-06-14",
+      "end": "2021-12-10"
+    },
+    {
+      "family": "benchmark_qqq",
+      "start": "2021-12-11",
+      "end": "2022-06-08"
+    },
+    {
+      "family": "benchmark_qqq",
+      "start": "2022-06-09",
+      "end": "2022-12-05"
+    }
+  ]
+}

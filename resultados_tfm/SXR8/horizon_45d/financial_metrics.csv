@@ -1,0 +1,2 @@
+strategy_total_return,buy_hold_total_return,strategy_annual_return,buy_hold_annual_return,strategy_volatility,buy_hold_volatility,strategy_sharpe,buy_hold_sharpe,strategy_sortino,strategy_max_drawdown,buy_hold_max_drawdown,trades,market_exposure,win_rate_active_days,profit_factor
+0.22004648048753506,0.2563349690290415,0.10982197521032133,0.12699551845341528,0.13510132729875338,0.15847364803380973,0.8390758080279144,0.8339728407648012,0.7969544746772621,-0.17740447163175943,-0.23320322498080392,32,0.5987525987525988,0.5625,1.2347085164364218

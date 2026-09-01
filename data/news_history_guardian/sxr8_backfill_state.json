@@ -1,0 +1,1280 @@
+{
+  "ticker": "SXR8",
+  "created_at": "2026-08-15T01:12:17.409052",
+  "pending": [
+    {
+      "family": "sp500_wallstreet",
+      "start": "2018-12-11",
+      "end": "2019-06-08",
+      "page": 10
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2019-06-09",
+      "end": "2019-12-05",
+      "page": 1
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2019-12-06",
+      "end": "2020-06-02",
+      "page": 1
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2020-06-03",
+      "end": "2020-11-29",
+      "page": 1
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2020-11-30",
+      "end": "2021-05-28",
+      "page": 1
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2021-05-29",
+      "end": "2021-11-24",
+      "page": 1
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2021-11-25",
+      "end": "2022-05-23",
+      "page": 1
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2022-05-24",
+      "end": "2022-11-19",
+      "page": 1
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2022-11-20",
+      "end": "2023-05-18",
+      "page": 1
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2023-05-19",
+      "end": "2023-11-14",
+      "page": 1
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2023-11-15",
+      "end": "2024-05-12",
+      "page": 1
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2024-05-13",
+      "end": "2024-11-08",
+      "page": 1
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2024-11-09",
+      "end": "2025-05-07",
+      "page": 1
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2025-05-08",
+      "end": "2025-11-03",
+      "page": 1
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2025-11-04",
+      "end": "2026-05-02",
+      "page": 1
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2026-05-03",
+      "end": "2026-05-19",
+      "page": 1
+    },
+    {
+      "family": "fed_markets",
+      "start": "2015-01-01",
+      "end": "2015-06-29",
+      "page": 1
+    },
+    {
+      "family": "fed_markets",
+      "start": "2015-06-30",
+      "end": "2015-12-26",
+      "page": 1
+    },
+    {
+      "family": "fed_markets",
+      "start": "2015-12-27",
+      "end": "2016-06-23",
+      "page": 1
+    },
+    {
+      "family": "fed_markets",
+      "start": "2016-06-24",
+      "end": "2016-12-20",
+      "page": 1
+    },
+    {
+      "family": "fed_markets",
+      "start": "2016-12-21",
+      "end": "2017-06-18",
+      "page": 1
+    },
+    {
+      "family": "fed_markets",
+      "start": "2017-06-19",
+      "end": "2017-12-15",
+      "page": 1
+    },
+    {
+      "family": "fed_markets",
+      "start": "2017-12-16",
+      "end": "2018-06-13",
+      "page": 1
+    },
+    {
+      "family": "fed_markets",
+      "start": "2018-06-14",
+      "end": "2018-12-10",
+      "page": 1
+    },
+    {
+      "family": "fed_markets",
+      "start": "2018-12-11",
+      "end": "2019-06-08",
+      "page": 1
+    },
+    {
+      "family": "fed_markets",
+      "start": "2019-06-09",
+      "end": "2019-12-05",
+      "page": 1
+    },
+    {
+      "family": "fed_markets",
+      "start": "2019-12-06",
+      "end": "2020-06-02",
+      "page": 1
+    },
+    {
+      "family": "fed_markets",
+      "start": "2020-06-03",
+      "end": "2020-11-29",
+      "page": 1
+    },
+    {
+      "family": "fed_markets",
+      "start": "2020-11-30",
+      "end": "2021-05-28",
+      "page": 1
+    },
+    {
+      "family": "fed_markets",
+      "start": "2021-05-29",
+      "end": "2021-11-24",
+      "page": 1
+    },
+    {
+      "family": "fed_markets",
+      "start": "2021-11-25",
+      "end": "2022-05-23",
+      "page": 1
+    },
+    {
+      "family": "fed_markets",
+      "start": "2022-05-24",
+      "end": "2022-11-19",
+      "page": 1
+    },
+    {
+      "family": "fed_markets",
+      "start": "2022-11-20",
+      "end": "2023-05-18",
+      "page": 1
+    },
+    {
+      "family": "fed_markets",
+      "start": "2023-05-19",
+      "end": "2023-11-14",
+      "page": 1
+    },
+    {
+      "family": "fed_markets",
+      "start": "2023-11-15",
+      "end": "2024-05-12",
+      "page": 1
+    },
+    {
+      "family": "fed_markets",
+      "start": "2024-05-13",
+      "end": "2024-11-08",
+      "page": 1
+    },
+    {
+      "family": "fed_markets",
+      "start": "2024-11-09",
+      "end": "2025-05-07",
+      "page": 1
+    },
+    {
+      "family": "fed_markets",
+      "start": "2025-05-08",
+      "end": "2025-11-03",
+      "page": 1
+    },
+    {
+      "family": "fed_markets",
+      "start": "2025-11-04",
+      "end": "2026-05-02",
+      "page": 1
+    },
+    {
+      "family": "fed_markets",
+      "start": "2026-05-03",
+      "end": "2026-05-19",
+      "page": 1
+    },
+    {
+      "family": "inflation_macro",
+      "start": "2015-01-01",
+      "end": "2015-06-29",
+      "page": 1
+    },
+    {
+      "family": "inflation_macro",
+      "start": "2015-06-30",
+      "end": "2015-12-26",
+      "page": 1
+    },
+    {
+      "family": "inflation_macro",
+      "start": "2015-12-27",
+      "end": "2016-06-23",
+      "page": 1
+    },
+    {
+      "family": "inflation_macro",
+      "start": "2016-06-24",
+      "end": "2016-12-20",
+      "page": 1
+    },
+    {
+      "family": "inflation_macro",
+      "start": "2016-12-21",
+      "end": "2017-06-18",
+      "page": 1
+    },
+    {
+      "family": "inflation_macro",
+      "start": "2017-06-19",
+      "end": "2017-12-15",
+      "page": 1
+    },
+    {
+      "family": "inflation_macro",
+      "start": "2017-12-16",
+      "end": "2018-06-13",
+      "page": 1
+    },
+    {
+      "family": "inflation_macro",
+      "start": "2018-06-14",
+      "end": "2018-12-10",
+      "page": 1
+    },
+    {
+      "family": "inflation_macro",
+      "start": "2018-12-11",
+      "end": "2019-06-08",
+      "page": 1
+    },
+    {
+      "family": "inflation_macro",
+      "start": "2019-06-09",
+      "end": "2019-12-05",
+      "page": 1
+    },
+    {
+      "family": "inflation_macro",
+      "start": "2019-12-06",
+      "end": "2020-06-02",
+      "page": 1
+    },
+    {
+      "family": "inflation_macro",
+      "start": "2020-06-03",
+      "end": "2020-11-29",
+      "page": 1
+    },
+    {
+      "family": "inflation_macro",
+      "start": "2020-11-30",
+      "end": "2021-05-28",
+      "page": 1
+    },
+    {
+      "family": "inflation_macro",
+      "start": "2021-05-29",
+      "end": "2021-11-24",
+      "page": 1
+    },
+    {
+      "family": "inflation_macro",
+      "start": "2021-11-25",
+      "end": "2022-05-23",
+      "page": 1
+    },
+    {
+      "family": "inflation_macro",
+      "start": "2022-05-24",
+      "end": "2022-11-19",
+      "page": 1
+    },
+    {
+      "family": "inflation_macro",
+      "start": "2022-11-20",
+      "end": "2023-05-18",
+      "page": 1
+    },
+    {
+      "family": "inflation_macro",
+      "start": "2023-05-19",
+      "end": "2023-11-14",
+      "page": 1
+    },
+    {
+      "family": "inflation_macro",
+      "start": "2023-11-15",
+      "end": "2024-05-12",
+      "page": 1
+    },
+    {
+      "family": "inflation_macro",
+      "start": "2024-05-13",
+      "end": "2024-11-08",
+      "page": 1
+    },
+    {
+      "family": "inflation_macro",
+      "start": "2024-11-09",
+      "end": "2025-05-07",
+      "page": 1
+    },
+    {
+      "family": "inflation_macro",
+      "start": "2025-05-08",
+      "end": "2025-11-03",
+      "page": 1
+    },
+    {
+      "family": "inflation_macro",
+      "start": "2025-11-04",
+      "end": "2026-05-02",
+      "page": 1
+    },
+    {
+      "family": "inflation_macro",
+      "start": "2026-05-03",
+      "end": "2026-05-19",
+      "page": 1
+    },
+    {
+      "family": "earnings_market",
+      "start": "2015-01-01",
+      "end": "2015-06-29",
+      "page": 1
+    },
+    {
+      "family": "earnings_market",
+      "start": "2015-06-30",
+      "end": "2015-12-26",
+      "page": 1
+    },
+    {
+      "family": "earnings_market",
+      "start": "2015-12-27",
+      "end": "2016-06-23",
+      "page": 1
+    },
+    {
+      "family": "earnings_market",
+      "start": "2016-06-24",
+      "end": "2016-12-20",
+      "page": 1
+    },
+    {
+      "family": "earnings_market",
+      "start": "2016-12-21",
+      "end": "2017-06-18",
+      "page": 1
+    },
+    {
+      "family": "earnings_market",
+      "start": "2017-06-19",
+      "end": "2017-12-15",
+      "page": 1
+    },
+    {
+      "family": "earnings_market",
+      "start": "2017-12-16",
+      "end": "2018-06-13",
+      "page": 1
+    },
+    {
+      "family": "earnings_market",
+      "start": "2018-06-14",
+      "end": "2018-12-10",
+      "page": 1
+    },
+    {
+      "family": "earnings_market",
+      "start": "2018-12-11",
+      "end": "2019-06-08",
+      "page": 1
+    },
+    {
+      "family": "earnings_market",
+      "start": "2019-06-09",
+      "end": "2019-12-05",
+      "page": 1
+    },
+    {
+      "family": "earnings_market",
+      "start": "2019-12-06",
+      "end": "2020-06-02",
+      "page": 1
+    },
+    {
+      "family": "earnings_market",
+      "start": "2020-06-03",
+      "end": "2020-11-29",
+      "page": 1
+    },
+    {
+      "family": "earnings_market",
+      "start": "2020-11-30",
+      "end": "2021-05-28",
+      "page": 1
+    },
+    {
+      "family": "earnings_market",
+      "start": "2021-05-29",
+      "end": "2021-11-24",
+      "page": 1
+    },
+    {
+      "family": "earnings_market",
+      "start": "2021-11-25",
+      "end": "2022-05-23",
+      "page": 1
+    },
+    {
+      "family": "earnings_market",
+      "start": "2022-05-24",
+      "end": "2022-11-19",
+      "page": 1
+    },
+    {
+      "family": "earnings_market",
+      "start": "2022-11-20",
+      "end": "2023-05-18",
+      "page": 1
+    },
+    {
+      "family": "earnings_market",
+      "start": "2023-05-19",
+      "end": "2023-11-14",
+      "page": 1
+    },
+    {
+      "family": "earnings_market",
+      "start": "2023-11-15",
+      "end": "2024-05-12",
+      "page": 1
+    },
+    {
+      "family": "earnings_market",
+      "start": "2024-05-13",
+      "end": "2024-11-08",
+      "page": 1
+    },
+    {
+      "family": "earnings_market",
+      "start": "2024-11-09",
+      "end": "2025-05-07",
+      "page": 1
+    },
+    {
+      "family": "earnings_market",
+      "start": "2025-05-08",
+      "end": "2025-11-03",
+      "page": 1
+    },
+    {
+      "family": "earnings_market",
+      "start": "2025-11-04",
+      "end": "2026-05-02",
+      "page": 1
+    },
+    {
+      "family": "earnings_market",
+      "start": "2026-05-03",
+      "end": "2026-05-19",
+      "page": 1
+    }
+  ],
+  "completed": [
+    {
+      "family": "sp500_wallstreet",
+      "start": "2015-01-01",
+      "end": "2015-03-31",
+      "page": 1
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2015-01-01",
+      "end": "2015-03-31",
+      "page": 2
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2015-01-01",
+      "end": "2015-03-31",
+      "page": 3
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2015-01-01",
+      "end": "2015-03-31",
+      "page": 4
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2015-01-01",
+      "end": "2015-03-31",
+      "page": 5
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2015-01-01",
+      "end": "2015-03-31",
+      "page": 6
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2015-01-01",
+      "end": "2015-03-31",
+      "page": 7
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2015-01-01",
+      "end": "2015-03-31",
+      "page": 8
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2015-04-01",
+      "end": "2015-06-29",
+      "page": 1
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2015-04-01",
+      "end": "2015-06-29",
+      "page": 2
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2015-04-01",
+      "end": "2015-06-29",
+      "page": 3
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2015-04-01",
+      "end": "2015-06-29",
+      "page": 4
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2015-04-01",
+      "end": "2015-06-29",
+      "page": 5
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2015-04-01",
+      "end": "2015-06-29",
+      "page": 6
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2015-04-01",
+      "end": "2015-06-29",
+      "page": 7
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2015-04-01",
+      "end": "2015-06-29",
+      "page": 8
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2015-06-30",
+      "end": "2015-09-27",
+      "page": 1
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2015-06-30",
+      "end": "2015-09-27",
+      "page": 2
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2015-06-30",
+      "end": "2015-09-27",
+      "page": 3
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2015-06-30",
+      "end": "2015-09-27",
+      "page": 4
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2015-06-30",
+      "end": "2015-09-27",
+      "page": 5
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2015-06-30",
+      "end": "2015-09-27",
+      "page": 6
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2015-06-30",
+      "end": "2015-09-27",
+      "page": 7
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2015-06-30",
+      "end": "2015-09-27",
+      "page": 8
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2015-06-30",
+      "end": "2015-09-27",
+      "page": 9
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2015-09-28",
+      "end": "2015-12-26",
+      "page": 1
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2015-09-28",
+      "end": "2015-12-26",
+      "page": 2
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2015-09-28",
+      "end": "2015-12-26",
+      "page": 3
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2015-09-28",
+      "end": "2015-12-26",
+      "page": 4
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2015-09-28",
+      "end": "2015-12-26",
+      "page": 5
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2015-09-28",
+      "end": "2015-12-26",
+      "page": 6
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2015-09-28",
+      "end": "2015-12-26",
+      "page": 7
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2015-09-28",
+      "end": "2015-12-26",
+      "page": 8
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2015-09-28",
+      "end": "2015-12-26",
+      "page": 9
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2015-12-27",
+      "end": "2016-02-09",
+      "page": 1
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2015-12-27",
+      "end": "2016-02-09",
+      "page": 2
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2015-12-27",
+      "end": "2016-02-09",
+      "page": 3
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2015-12-27",
+      "end": "2016-02-09",
+      "page": 4
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2015-12-27",
+      "end": "2016-02-09",
+      "page": 5
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2015-12-27",
+      "end": "2016-02-09",
+      "page": 6
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2015-12-27",
+      "end": "2016-02-09",
+      "page": 7
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2016-02-10",
+      "end": "2016-03-25",
+      "page": 1
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2016-02-10",
+      "end": "2016-03-25",
+      "page": 2
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2016-02-10",
+      "end": "2016-03-25",
+      "page": 3
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2016-02-10",
+      "end": "2016-03-25",
+      "page": 4
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2016-02-10",
+      "end": "2016-03-25",
+      "page": 5
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2016-02-10",
+      "end": "2016-03-25",
+      "page": 6
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2016-03-26",
+      "end": "2016-06-23",
+      "page": 1
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2016-03-26",
+      "end": "2016-06-23",
+      "page": 2
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2016-03-26",
+      "end": "2016-06-23",
+      "page": 3
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2016-03-26",
+      "end": "2016-06-23",
+      "page": 4
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2016-03-26",
+      "end": "2016-06-23",
+      "page": 5
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2016-03-26",
+      "end": "2016-06-23",
+      "page": 6
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2016-03-26",
+      "end": "2016-06-23",
+      "page": 7
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2016-03-26",
+      "end": "2016-06-23",
+      "page": 8
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2016-03-26",
+      "end": "2016-06-23",
+      "page": 9
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2016-06-24",
+      "end": "2016-09-21",
+      "page": 1
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2016-06-24",
+      "end": "2016-09-21",
+      "page": 2
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2016-06-24",
+      "end": "2016-09-21",
+      "page": 3
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2016-06-24",
+      "end": "2016-09-21",
+      "page": 4
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2016-06-24",
+      "end": "2016-09-21",
+      "page": 5
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2016-06-24",
+      "end": "2016-09-21",
+      "page": 6
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2016-06-24",
+      "end": "2016-09-21",
+      "page": 7
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2016-06-24",
+      "end": "2016-09-21",
+      "page": 8
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2016-09-22",
+      "end": "2016-12-20",
+      "page": 1
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2016-09-22",
+      "end": "2016-12-20",
+      "page": 2
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2016-09-22",
+      "end": "2016-12-20",
+      "page": 3
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2016-09-22",
+      "end": "2016-12-20",
+      "page": 4
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2016-09-22",
+      "end": "2016-12-20",
+      "page": 5
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2016-09-22",
+      "end": "2016-12-20",
+      "page": 6
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2016-09-22",
+      "end": "2016-12-20",
+      "page": 7
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2016-09-22",
+      "end": "2016-12-20",
+      "page": 8
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2016-09-22",
+      "end": "2016-12-20",
+      "page": 9
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2016-12-21",
+      "end": "2017-03-20",
+      "page": 1
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2016-12-21",
+      "end": "2017-03-20",
+      "page": 2
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2016-12-21",
+      "end": "2017-03-20",
+      "page": 3
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2016-12-21",
+      "end": "2017-03-20",
+      "page": 4
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2016-12-21",
+      "end": "2017-03-20",
+      "page": 5
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2016-12-21",
+      "end": "2017-03-20",
+      "page": 6
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2016-12-21",
+      "end": "2017-03-20",
+      "page": 7
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2017-03-21",
+      "end": "2017-06-18",
+      "page": 1
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2017-03-21",
+      "end": "2017-06-18",
+      "page": 2
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2017-03-21",
+      "end": "2017-06-18",
+      "page": 3
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2017-03-21",
+      "end": "2017-06-18",
+      "page": 4
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2017-03-21",
+      "end": "2017-06-18",
+      "page": 5
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2017-06-19",
+      "end": "2017-12-15",
+      "page": 1
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2017-06-19",
+      "end": "2017-12-15",
+      "page": 2
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2017-06-19",
+      "end": "2017-12-15",
+      "page": 3
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2017-06-19",
+      "end": "2017-12-15",
+      "page": 4
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2017-06-19",
+      "end": "2017-12-15",
+      "page": 5
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2017-06-19",
+      "end": "2017-12-15",
+      "page": 6
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2017-06-19",
+      "end": "2017-12-15",
+      "page": 7
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2017-06-19",
+      "end": "2017-12-15",
+      "page": 8
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2017-06-19",
+      "end": "2017-12-15",
+      "page": 9
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2017-06-19",
+      "end": "2017-12-15",
+      "page": 10
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2017-12-16",
+      "end": "2018-06-13",
+      "page": 1
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2017-12-16",
+      "end": "2018-06-13",
+      "page": 2
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2017-12-16",
+      "end": "2018-06-13",
+      "page": 3
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2017-12-16",
+      "end": "2018-06-13",
+      "page": 4
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2017-12-16",
+      "end": "2018-06-13",
+      "page": 5
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2017-12-16",
+      "end": "2018-06-13",
+      "page": 6
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2017-12-16",
+      "end": "2018-06-13",
+      "page": 7
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2017-12-16",
+      "end": "2018-06-13",
+      "page": 8
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2017-12-16",
+      "end": "2018-06-13",
+      "page": 9
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2017-12-16",
+      "end": "2018-06-13",
+      "page": 10
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2018-06-14",
+      "end": "2018-12-10",
+      "page": 1
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2018-06-14",
+      "end": "2018-12-10",
+      "page": 2
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2018-06-14",
+      "end": "2018-12-10",
+      "page": 3
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2018-06-14",
+      "end": "2018-12-10",
+      "page": 4
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2018-06-14",
+      "end": "2018-12-10",
+      "page": 5
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2018-06-14",
+      "end": "2018-12-10",
+      "page": 6
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2018-06-14",
+      "end": "2018-12-10",
+      "page": 7
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2018-06-14",
+      "end": "2018-12-10",
+      "page": 8
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2018-06-14",
+      "end": "2018-12-10",
+      "page": 9
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2018-06-14",
+      "end": "2018-12-10",
+      "page": 10
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2018-12-11",
+      "end": "2019-06-08",
+      "page": 1
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2018-12-11",
+      "end": "2019-06-08",
+      "page": 2
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2018-12-11",
+      "end": "2019-06-08",
+      "page": 3
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2018-12-11",
+      "end": "2019-06-08",
+      "page": 4
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2018-12-11",
+      "end": "2019-06-08",
+      "page": 5
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2018-12-11",
+      "end": "2019-06-08",
+      "page": 6
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2018-12-11",
+      "end": "2019-06-08",
+      "page": 7
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2018-12-11",
+      "end": "2019-06-08",
+      "page": 8
+    },
+    {
+      "family": "sp500_wallstreet",
+      "start": "2018-12-11",
+      "end": "2019-06-08",
+      "page": 9
+    }
+  ]
+}

@@ -1,0 +1,3361 @@
+======================================================================================================================
+REGISTRO COMPLETO DE EJECUCIÓN - TFM ETFs
+======================================================================================================================
+Inicio:                  2026-08-15 21:00:31
+Python:                  3.13.5
+Sistema:                 Windows-11-10.0.26200-SP0
+Directorio de trabajo:   C:\Users\david\Music\Master_big_data_data_science_IA\TFM\Realización
+Archivo de log:          C:\Users\david\Music\Master_big_data_data_science_IA\TFM\Realización\resultados_tfm\logs\ejecucion_tfm_2026-08-15_21-00-31.txt
+======================================================================================================================
+
+CONFIGURACIÓN DEL EXPERIMENTO
+----------------------------------------------------------------------------------------------------------------------
+ETFs:                         ['SXR8', 'SXRV']
+Datos RAW:                    data/raw
+Datos procesados:             data/processed
+Sentimiento histórico:        data/news_sentiment
+Resultados:                   resultados_tfm
+Fecha inicial:                2015-01-01
+Fecha final:                  2026-08-15
+Horizontes:                   [1, 5, 10, 15, 20, 30, 45, 60]
+TimeSeriesSplit folds:         5
+Holdout temporal:             20%
+Capital inicial:              10,000.00
+Coste por transacción:        0.1000%
+Umbral alcista:               0.60
+Umbral bajista:               0.40
+Permitir posiciones cortas:   False
+LSTM solicitada:              True
+XGBoost obligatorio:          True
+TensorFlow obligatorio:       True
+Noticias/FinBERT solicitado:  True
+Histórico GDELT solicitado:   False
+Variables externas FRED:      True
+Lag variables externas:       1
+feedparser obligatorio:        True
+transformers obligatorio:      True
+PyTorch obligatorio NLP:       True
+Comparar con/sin sentimiento: True
+Alpha Vantage histórico:      True
+Inicio histórico noticias:    2018-01-01
+Ventanas NLP:                  [1, 5, 10, 15, 20, 30, 45, 60]
+Validación targets solapados: True
+Cuota Alpha total/run:        20
+Cuota Alpha por ETF/run:      10
+Guardian histórico:           True
+Guardian API key presente:    True
+Seed reproducible:            42
+Horizontes predicción:         [1, 5, 10, 15, 20, 30, 45, 60]
+LSTM en ablación NLP:          True
+SHAP solicitado:               True
+----------------------------------------------------------------------------------------------------------------------
+
+======================================================================================================================
+COMPONENTES DISPONIBLES
+======================================================================================================================
+pandas                    OK   versión 2.2.3
+numpy                     OK   versión 2.1.3
+scikit-learn              OK
+Logistic Regression       OK
+Random Forest             OK
+Reproducibilidad           OK   seed=42, TF determinista=True
+XGBoost                    OK   versión 3.4.0
+TensorFlow / LSTM          OK   versión 2.21.0
+Google News RSS/feedparser OK
+Transformers               OK   versión 5.15.0
+PyTorch                    OK   versión 2.12.0+cpu
+SHAP                       OK   versión 0.52.0
+======================================================================================================================
+Cargando FinBERT (CPU)...
+FinBERT: OK
+
+======================================================================================================================
+ANÁLISIS AVANZADO: SXR8
+======================================================================================================================
+
+Preprocesando SXR8: data/raw\sxr8.csv
+
+PREPROCESAMIENTO / AUDITORÍA
+------------------------------------------------------------------------------------------
+ticker                                  : SXR8
+rows_original                           : 3914
+date_format_detected                    : %Y-%m-%d
+invalid_dates_removed                   : 0
+invalid_numeric_rows_removed            : 0
+duplicate_dates_removed                 : 0
+invalid_ohlc_rows_removed               : 0
+negative_volume_rows_removed            : 0
+rows_outside_requested_range_removed    : 1053
+rows_clean                              : 2861
+first_date                              : 2015-01-02
+last_date                               : 2026-05-19
+dates_monotonic                         : True
+remaining_duplicate_dates               : 0
+suspicious_return_rows                  : 0
+hard_return_limit_rows                  : 0
+large_calendar_gaps                     : 1
+max_abs_daily_return                    : 0.08550885489552673
+processed_file                          : data/processed\sxr8_clean.csv
+anomalies_file                          : resultados_tfm\preprocessing\sxr8_anomalies.csv
+------------------------------------------------------------------------------------------
+
+============================================================================================================
+HISTÓRICO MULTIFUENTE ALPHA VANTAGE + FINBERT: SXR8
+============================================================================================================
+Periodo:                   2018-01-01 -> 2026-05-19
+Familias de consulta:      4
+Tareas pendientes:         72
+Tareas completadas:        0
+Presupuesto ETF esta vez:  10 llamadas
+Presupuesto global usado:  0/20
+
+[SXR8] benchmark_spy: 2018-01-01 -> 2018-06-29
+Alpha Vantage: We have detected your API key as QDYSXMB5TEWSZ0BL and our standard API rate limit is 25 requests per day. Please subscribe to any of the premium plans at https://www.alphavantage.co/premium/ to instantly remove all daily rate limits.
+Alpha Vantage ha alcanzado su cuota. El proceso queda guardado y continuará en la siguiente ejecución.
+FinBERT histórico: no hay artículos pendientes.
+Histórico diario FinBERT: data/news_sentiment\sxr8_sentiment.csv (29 días Alpha multifamilia).
+
+RESUMEN HISTÓRICO NLP
+Artículos relevantes:        31
+Tareas pendientes:           72
+Tareas completadas:          0
+Llamadas SXR8 esta vez:  1
+Llamadas globales esta vez:  1
+
+============================================================================================================
+HISTÓRICO THE GUARDIAN + FINBERT: SXR8
+============================================================================================================
+Periodo:                   2015-01-01 -> 2026-05-19
+Familias de consulta:      4
+Tareas pendientes:         93
+Tareas completadas:        56
+Presupuesto esta ejecución:10 llamadas
+
+[Guardian SXR8] sp500_wallstreet 2016-06-24 -> 2016-12-20 | page=1
+Ventana demasiado densa (16 páginas): se divide para evitar truncación.
+
+[Guardian SXR8] sp500_wallstreet 2016-06-24 -> 2016-09-21 | page=1
+
+[Guardian SXR8] sp500_wallstreet 2016-06-24 -> 2016-09-21 | page=2
+
+[Guardian SXR8] sp500_wallstreet 2016-06-24 -> 2016-09-21 | page=3
+
+[Guardian SXR8] sp500_wallstreet 2016-06-24 -> 2016-09-21 | page=4
+
+[Guardian SXR8] sp500_wallstreet 2016-06-24 -> 2016-09-21 | page=5
+
+[Guardian SXR8] sp500_wallstreet 2016-06-24 -> 2016-09-21 | page=6
+
+[Guardian SXR8] sp500_wallstreet 2016-06-24 -> 2016-09-21 | page=7
+
+[Guardian SXR8] sp500_wallstreet 2016-06-24 -> 2016-09-21 | page=8
+
+[Guardian SXR8] sp500_wallstreet 2016-09-22 -> 2016-12-20 | page=1
+FinBERT Guardian: 419 artículos pendientes.
+
+RESUMEN GUARDIAN
+Artículos relevantes:  3005
+Tareas pendientes:     100
+Tareas completadas:    65
+Llamadas esta vez:     10
+Histórico multifuente SXR8: 3036 artículos únicos, 648 días reales.
+Google News RSS SXR8: 100 titulares, 6 nuevos para FinBERT.
+Histórico FinBERT fusionado con histórico NLP: data/news_sentiment\sxr8_sentiment.csv (27 días FinBERT recientes).
+Sentimiento histórico SXR8: 675 días reales de noticias, cobertura operativa=27.6%.
+NLP histórico SXR8: NO APTO. Cobertura 27.6% < 35.0%.
+
+VARIABLES EXTERNAS FRED
+------------------------------------------------------------------------------------------
+sp500           SP500        OK (2457 observaciones)
+nasdaq100       NASDAQ100    OK (2948 observaciones)
+vix             VIXCLS       OK (2976 observaciones)
+eurusd          DEXUSEU      OK (2927 observaciones)
+us10y           DGS10        OK (2930 observaciones)
+us2y            DGS2         OK (2930 observaciones)
+fedfunds        DFF          OK (4279 observaciones)
+------------------------------------------------------------------------------------------
+Cobertura media de features externas: 98.2%
+Lag anti-look-ahead: 1 sesión/sesiones
+Cache features: data/external\external_features_merged.csv
+------------------------------------------------------------------------------------------
+Variables externas: ACTIVADAS (16 features).
+NLP histórico: DESACTIVADO dentro del modelo (evita covariate shift/leakage).
+Sentimiento en modelo predictivo: NO
+Sentimiento actual de contexto: -0.000 (100 noticias)
+
+----------------------------------------------------------------------------------------------------------------------
+SXR8 - HORIZONTE 1 SESIÓN/SESIONES
+----------------------------------------------------------------------------------------------------------------------
+Semilla reproducible experimento: 1400461955
+Dataset supervisado: 2445 filas
+Train purgado:       1955 filas
+Gap/purge:           1 filas
+Holdout final:       489 filas
+Tasa de subidas train: 0.554
+Tasa de subidas test:  0.554
+
+Validación cruzada temporal: LogisticRegression
+  Fold 1: Acc=0.551 BalAcc=0.488 F1=0.691 AUC=0.487 Brier=0.366
+  Fold 2: Acc=0.486 BalAcc=0.489 F1=0.495 AUC=0.521 Brier=0.304
+  Fold 3: Acc=0.452 BalAcc=0.497 F1=0.264 AUC=0.518 Brier=0.278
+  Fold 4: Acc=0.520 BalAcc=0.518 F1=0.549 AUC=0.541 Brier=0.258
+  Fold 5: Acc=0.529 BalAcc=0.552 F1=0.485 AUC=0.543 Brier=0.259
+
+Validación cruzada temporal: RandomForest
+  Fold 1: Acc=0.551 BalAcc=0.546 F1=0.599 AUC=0.524 Brier=0.254
+  Fold 2: Acc=0.551 BalAcc=0.524 F1=0.664 AUC=0.529 Brier=0.250
+  Fold 3: Acc=0.542 BalAcc=0.543 F1=0.568 AUC=0.559 Brier=0.248
+  Fold 4: Acc=0.483 BalAcc=0.471 F1=0.606 AUC=0.499 Brier=0.254
+  Fold 5: Acc=0.455 BalAcc=0.494 F1=0.311 AUC=0.489 Brier=0.259
+
+Validación cruzada temporal: XGBoost
+  Fold 1: Acc=0.532 BalAcc=0.517 F1=0.602 AUC=0.524 Brier=0.293
+  Fold 2: Acc=0.520 BalAcc=0.499 F1=0.621 AUC=0.526 Brier=0.272
+  Fold 3: Acc=0.495 BalAcc=0.494 F1=0.531 AUC=0.546 Brier=0.255
+  Fold 4: Acc=0.495 BalAcc=0.488 F1=0.582 AUC=0.482 Brier=0.275
+  Fold 5: Acc=0.486 BalAcc=0.533 F1=0.301 AUC=0.497 Brier=0.296
+
+Resumen validación cruzada:
+             model  accuracy  balanced_accuracy  precision   recall       f1  roc_auc  log_loss    brier  positive_rate
+LogisticRegression  0.507692           0.508846   0.570989 0.488572 0.496918 0.521862  0.961201 0.293042       0.558154
+      RandomForest  0.516308           0.515660   0.571788 0.578387 0.549506 0.519975  0.699436 0.253029       0.558154
+           XGBoost  0.505846           0.506318   0.577496 0.539244 0.527554 0.514878  0.764643 0.278397       0.558154
+
+Pesos por validación (sin usar holdout):
+  LogisticRegression: 0.320
+  RandomForest: 0.352
+  XGBoost: 0.328
+Entrenando modelo final: LogisticRegression
+Entrenando modelo final: RandomForest
+Entrenando modelo final: XGBoost
+Entrenando LSTM para validación interna...
+LSTM validación interna: epochs=1, Acc=0.561, BalAcc=0.507, F1=0.698, AUC=0.503
+Entrenando LSTM final durante 1 epochs...
+LSTM holdout: Acc=0.497, BalAcc=0.504, F1=0.490, AUC=0.511
+
+Evaluación OUT-OF-SAMPLE (holdout temporal NO usado para pesos):
+             model  accuracy  balanced_accuracy  precision   recall       f1  roc_auc  log_loss    brier  positive_rate
+              LSTM  0.496933           0.504409   0.559242 0.435424 0.489627 0.510825  0.693519 0.250185       0.554192
+           XGBoost  0.517382           0.504469   0.557756 0.623616 0.588850 0.499560  0.717363 0.260815       0.554192
+      RandomForest  0.519427           0.503622   0.556962 0.649446 0.599659 0.499458  0.695531 0.251146       0.554192
+LogisticRegression  0.509202           0.489463   0.546547 0.671587 0.602649 0.478723  0.710429 0.258184       0.554192
+
+Pesos finales del ensemble:
+  LogisticRegression: 0.271
+  RandomForest: 0.299
+  XGBoost: 0.278
+  LSTM: 0.151
+
+ENSEMBLE OUT-OF-SAMPLE:
+  accuracy: 0.5419
+  balanced_accuracy: 0.5235
+  precision: 0.5714
+  recall: 0.6937
+  f1: 0.6267
+  roc_auc: 0.4971
+  log_loss: 0.6989
+  brier: 0.2528
+  positive_rate: 0.5542
+
+BASELINE (clase mayoritaria / probabilidad histórica):
+  accuracy: 0.5542
+  balanced_accuracy: 0.5000
+  precision: 0.5542
+  recall: 1.0000
+  f1: 0.7132
+  roc_auc: 0.5000
+  log_loss: 0.6873
+  brier: 0.2471
+  positive_rate: 0.5542
+
+MÉTRICAS FINANCIERAS:
+  strategy_total_return: -0.0518
+  buy_hold_total_return: 0.3048
+  strategy_annual_return: -0.0270
+  buy_hold_annual_return: 0.1469
+  strategy_volatility: 0.0664
+  buy_hold_volatility: 0.1584
+  strategy_sharpe: -0.3799
+  buy_hold_sharpe: 0.9451
+  strategy_sortino: -0.2088
+  strategy_max_drawdown: -0.1016
+  buy_hold_max_drawdown: -0.2332
+  trades: 62
+  market_exposure: 0.0920
+  win_rate_active_days: 0.4667
+  profit_factor: 0.8157
+
+**********************************************************************************************************************
+PREDICCIÓN FINAL SXR8 | Horizonte: 1 sesión/sesiones
+**********************************************************************************************************************
+Fecha del último dato:      2026-05-19
+Precio de cierre:           680.9400
+LogisticRegression          P(SUBE) =  63.62%
+RandomForest                P(SUBE) =  52.38%
+XGBoost                     P(SUBE) =  52.11%
+LSTM                        P(SUBE) =  51.08%
+ENSEMBLE P(SUBE):            55.16%
+ENSEMBLE P(BAJA):            44.84%
+SEÑAL:                      NEUTRAL / BAJA CONFIANZA
+CONFIANZA:                  BAJA
+SENTIMIENTO ACTUAL CONTEXTO: -0.000
+Nº NOTICIAS ACTUALES:       100
+SENTIMIENTO DENTRO MODELO:  NO
+**********************************************************************************************************************
+
+VALIDACIÓN DE TARGETS SOLAPADOS
+Horizonte: 1 | Holdout n=489 | n efectivo aprox.=489
+AUC fases no solapadas: 0.4971 ± 0.0000
+AUC bootstrap por bloques 95% CI: [0.4457, 0.5480]
+\nESTUDIO CON vs SIN SENTIMIENTO:
+NO EJECUTADO: el sentimiento histórico todavía no entra en el modelo. Se esperará a disponer de cobertura NLP real suficiente; no se simula sentimiento histórico con ceros.
+\nSHAP SXR8 1d: 489 muestras, 58 variables.
+\nTOP VARIABLES SHAP:
+                feature  mean_abs_shap  importance_pct  rank
+              range_pct       0.117039        6.722111     1
+        intraday_return       0.082490        4.737785     2
+   ext_eurusd_return_1d       0.070328        4.039281     3
+   ext_eurusd_return_5d       0.069183        3.973501     4
+       volume_change_1d       0.064405        3.699098     5
+     ext_us2y_change_1d       0.058812        3.377857     6
+             return_15d       0.058315        3.349321     7
+          close_vs_ma_5       0.054005        3.101741     8
+     bollinger_position       0.044709        2.567856     9
+      ext_vix_change_1d       0.044150        2.535725    10
+           ma_50_vs_200       0.042511        2.441580    11
+            macd_signal       0.041053        2.357887    12
+         close_vs_ma_60       0.040306        2.314956    13
+             gap_return       0.040202        2.309006    14
+             return_60d       0.037810        2.171606    15
+        close_vs_ma_100       0.037654        2.162664    16
+                  month       0.031318        1.798764    17
+         volume_vs_ma20       0.030681        1.762172    18
+        close_vs_ma_200       0.029013        1.666336    19
+         volatility_30d       0.028645        1.645221    20
+         volatility_20d       0.028512        1.637605    21
+ext_nasdaq100_return_5d       0.028300        1.625383    22
+         volatility_10d       0.027785        1.595850    23
+             return_45d       0.027067        1.554564    24
+     ext_fedfunds_level       0.027034        1.552690    25
+
+----------------------------------------------------------------------------------------------------------------------
+SXR8 - HORIZONTE 5 SESIÓN/SESIONES
+----------------------------------------------------------------------------------------------------------------------
+Semilla reproducible experimento: 508872177
+Dataset supervisado: 2441 filas
+Train purgado:       1947 filas
+Gap/purge:           5 filas
+Holdout final:       489 filas
+Tasa de subidas train: 0.608
+Tasa de subidas test:  0.620
+
+Validación cruzada temporal: LogisticRegression
+  Fold 1: Acc=0.611 BalAcc=0.556 F1=0.712 AUC=0.605 Brier=0.329
+  Fold 2: Acc=0.460 BalAcc=0.456 F1=0.521 AUC=0.477 Brier=0.373
+  Fold 3: Acc=0.358 BalAcc=0.516 F1=0.161 AUC=0.470 Brier=0.404
+  Fold 4: Acc=0.549 BalAcc=0.549 F1=0.541 AUC=0.531 Brier=0.286
+  Fold 5: Acc=0.583 BalAcc=0.574 F1=0.651 AUC=0.617 Brier=0.235
+
+Validación cruzada temporal: RandomForest
+  Fold 1: Acc=0.503 BalAcc=0.513 F1=0.552 AUC=0.485 Brier=0.278
+  Fold 2: Acc=0.580 BalAcc=0.545 F1=0.671 AUC=0.514 Brier=0.253
+  Fold 3: Acc=0.500 BalAcc=0.532 F1=0.550 AUC=0.564 Brier=0.258
+  Fold 4: Acc=0.512 BalAcc=0.518 F1=0.629 AUC=0.499 Brier=0.261
+  Fold 5: Acc=0.367 BalAcc=0.482 F1=0.135 AUC=0.486 Brier=0.291
+
+Validación cruzada temporal: XGBoost
+  Fold 1: Acc=0.488 BalAcc=0.521 F1=0.500 AUC=0.522 Brier=0.348
+  Fold 2: Acc=0.580 BalAcc=0.526 F1=0.689 AUC=0.490 Brier=0.301
+  Fold 3: Acc=0.481 BalAcc=0.516 F1=0.528 AUC=0.525 Brier=0.320
+  Fold 4: Acc=0.481 BalAcc=0.485 F1=0.567 AUC=0.512 Brier=0.282
+  Fold 5: Acc=0.383 BalAcc=0.483 F1=0.213 AUC=0.513 Brier=0.369
+
+Resumen validación cruzada:
+             model  accuracy  balanced_accuracy  precision   recall       f1  roc_auc  log_loss    brier  positive_rate
+LogisticRegression  0.512346           0.530285   0.653723 0.492600 0.517242 0.539991  1.148789 0.325409       0.615432
+           XGBoost  0.482716           0.506194   0.613986 0.479453 0.499439 0.512356  0.906487 0.323803       0.615432
+      RandomForest  0.492593           0.518034   0.614977 0.507088 0.507432 0.509788  0.732268 0.268147       0.615432
+
+Pesos por validación (sin usar holdout):
+  LogisticRegression: 0.368
+  RandomForest: 0.320
+  XGBoost: 0.311
+Entrenando modelo final: LogisticRegression
+Entrenando modelo final: RandomForest
+Entrenando modelo final: XGBoost
+Entrenando LSTM para validación interna...
+LSTM validación interna: epochs=1, Acc=0.608, BalAcc=0.474, F1=0.748, AUC=0.528
+Entrenando LSTM final durante 1 epochs...
+LSTM holdout: Acc=0.446, BalAcc=0.458, F1=0.476, AUC=0.461
+
+Evaluación OUT-OF-SAMPLE (holdout temporal NO usado para pesos):
+             model  accuracy  balanced_accuracy  precision   recall       f1  roc_auc  log_loss    brier  positive_rate
+LogisticRegression  0.580777           0.491483   0.615023 0.864686 0.718793 0.576706  0.679635 0.240450       0.619632
+           XGBoost  0.591002           0.522570   0.633075 0.808581 0.710145 0.555076  0.692956 0.247416       0.619632
+      RandomForest  0.560327           0.504046   0.622222 0.739274 0.675716 0.531743  0.686062 0.246409       0.619632
+              LSTM  0.445808           0.458347   0.574766 0.405941 0.475822 0.460503  0.699037 0.252933       0.619632
+
+Pesos finales del ensemble:
+  LogisticRegression: 0.307
+  RandomForest: 0.266
+  XGBoost: 0.259
+  LSTM: 0.168
+
+ENSEMBLE OUT-OF-SAMPLE:
+  accuracy: 0.5992
+  balanced_accuracy: 0.5178
+  precision: 0.6295
+  recall: 0.8581
+  f1: 0.7263
+  roc_auc: 0.5647
+  log_loss: 0.6675
+  brier: 0.2375
+  positive_rate: 0.6196
+
+BASELINE (clase mayoritaria / probabilidad histórica):
+  accuracy: 0.6196
+  balanced_accuracy: 0.5000
+  precision: 0.6196
+  recall: 1.0000
+  f1: 0.7652
+  roc_auc: 0.5000
+  log_loss: 0.6645
+  brier: 0.2358
+  positive_rate: 0.6196
+
+MÉTRICAS FINANCIERAS:
+  strategy_total_return: 0.2334
+  buy_hold_total_return: 0.3194
+  strategy_annual_return: 0.1142
+  buy_hold_annual_return: 0.1535
+  strategy_volatility: 0.0965
+  buy_hold_volatility: 0.1581
+  strategy_sharpe: 1.1692
+  buy_hold_sharpe: 0.9830
+  strategy_sortino: 1.1495
+  strategy_max_drawdown: -0.1199
+  buy_hold_max_drawdown: -0.2332
+  trades: 76
+  market_exposure: 0.4479
+  win_rate_active_days: 0.5479
+  profit_factor: 1.3717
+
+**********************************************************************************************************************
+PREDICCIÓN FINAL SXR8 | Horizonte: 5 sesión/sesiones
+**********************************************************************************************************************
+Fecha del último dato:      2026-05-19
+Precio de cierre:           680.9400
+LogisticRegression          P(SUBE) =  59.99%
+RandomForest                P(SUBE) =  42.19%
+XGBoost                     P(SUBE) =  49.09%
+LSTM                        P(SUBE) =  47.26%
+ENSEMBLE P(SUBE):            50.29%
+ENSEMBLE P(BAJA):            49.71%
+SEÑAL:                      NEUTRAL / BAJA CONFIANZA
+CONFIANZA:                  BAJA
+SENTIMIENTO ACTUAL CONTEXTO: -0.000
+Nº NOTICIAS ACTUALES:       100
+SENTIMIENTO DENTRO MODELO:  NO
+**********************************************************************************************************************
+
+VALIDACIÓN DE TARGETS SOLAPADOS
+Horizonte: 5 | Holdout n=489 | n efectivo aprox.=98
+AUC fases no solapadas: 0.5623 ± 0.0366
+AUC bootstrap por bloques 95% CI: [0.4852, 0.6538]
+\nESTUDIO CON vs SIN SENTIMIENTO:
+NO EJECUTADO: el sentimiento histórico todavía no entra en el modelo. Se esperará a disponer de cobertura NLP real suficiente; no se simula sentimiento histórico con ceros.
+\nSHAP SXR8 5d: 489 muestras, 58 variables.
+\nTOP VARIABLES SHAP:
+              feature  mean_abs_shap  importance_pct  rank
+   ext_fedfunds_level       0.328494       11.739719     1
+       ext_us2y_level       0.162225        5.797603     2
+      close_vs_ma_100       0.158945        5.680386     3
+ext_yield_curve_10y2y       0.135254        4.833714     4
+         ma_50_vs_200       0.131516        4.700130     5
+       volatility_45d       0.110999        3.966887     6
+       volatility_30d       0.094524        3.378085     7
+       volatility_10d       0.077819        2.781106     8
+        volatility_5d       0.075739        2.706774     9
+           return_15d       0.072949        2.607063    10
+           return_45d       0.068524        2.448921    11
+            macd_diff       0.059303        2.119363    12
+       close_vs_ma_60       0.056860        2.032067    13
+                month       0.055337        1.977643    14
+       volume_vs_ma20       0.053407        1.908669    15
+     volume_change_1d       0.051445        1.838543    16
+       volatility_15d       0.051423        1.837737    17
+          macd_signal       0.050712        1.812355    18
+   bollinger_position       0.049931        1.784440    19
+            return_2d       0.044108        1.576339    20
+      ext_us10y_level       0.043428        1.552023    21
+            return_5d       0.042776        1.528737    22
+          ma_20_vs_50       0.042720        1.526725    23
+           return_60d       0.041188        1.471960    24
+  ext_us10y_change_1d       0.041018        1.465908    25
+
+----------------------------------------------------------------------------------------------------------------------
+SXR8 - HORIZONTE 10 SESIÓN/SESIONES
+----------------------------------------------------------------------------------------------------------------------
+Semilla reproducible experimento: 427273911
+Dataset supervisado: 2436 filas
+Train purgado:       1938 filas
+Gap/purge:           10 filas
+Holdout final:       488 filas
+Tasa de subidas train: 0.637
+Tasa de subidas test:  0.656
+
+Validación cruzada temporal: LogisticRegression
+  Fold 1: Acc=0.536 BalAcc=0.584 F1=0.566 AUC=0.606 Brier=0.433
+  Fold 2: Acc=0.511 BalAcc=0.467 F1=0.620 AUC=0.500 Brier=0.337
+  Fold 3: Acc=0.375 BalAcc=0.526 F1=0.322 AUC=0.474 Brier=0.451
+  Fold 4: Acc=0.604 BalAcc=0.605 F1=0.576 AUC=0.618 Brier=0.248
+  Fold 5: Acc=0.594 BalAcc=0.620 F1=0.647 AUC=0.601 Brier=0.246
+
+Validación cruzada temporal: RandomForest
+  Fold 1: Acc=0.458 BalAcc=0.477 F1=0.515 AUC=0.488 Brier=0.299
+  Fold 2: Acc=0.644 BalAcc=0.554 F1=0.755 AUC=0.539 Brier=0.241
+  Fold 3: Acc=0.635 BalAcc=0.592 F1=0.733 AUC=0.588 Brier=0.231
+  Fold 4: Acc=0.567 BalAcc=0.562 F1=0.673 AUC=0.550 Brier=0.255
+  Fold 5: Acc=0.307 BalAcc=0.471 F1=0.018 AUC=0.419 Brier=0.354
+
+Validación cruzada temporal: XGBoost
+  Fold 1: Acc=0.424 BalAcc=0.490 F1=0.419 AUC=0.503 Brier=0.432
+  Fold 2: Acc=0.647 BalAcc=0.549 F1=0.761 AUC=0.549 Brier=0.266
+  Fold 3: Acc=0.536 BalAcc=0.539 F1=0.627 AUC=0.520 Brier=0.298
+  Fold 4: Acc=0.483 BalAcc=0.483 F1=0.486 AUC=0.479 Brier=0.310
+  Fold 5: Acc=0.300 BalAcc=0.446 F1=0.066 AUC=0.470 Brier=0.488
+
+Resumen validación cruzada:
+             model  accuracy  balanced_accuracy  precision   recall       f1  roc_auc  log_loss    brier  positive_rate
+LogisticRegression  0.523839           0.560409   0.725338 0.464585 0.546375 0.559870  1.484296 0.343000        0.65387
+      RandomForest  0.521981           0.531033   0.583046 0.562210 0.538701 0.516706  0.751452 0.275878        0.65387
+           XGBoost  0.478019           0.501371   0.592871 0.437984 0.471678 0.504020  1.050059 0.358954        0.65387
+
+Pesos por validación (sin usar holdout):
+  LogisticRegression: 0.401
+  RandomForest: 0.333
+  XGBoost: 0.266
+Entrenando modelo final: LogisticRegression
+Entrenando modelo final: RandomForest
+Entrenando modelo final: XGBoost
+Entrenando LSTM para validación interna...
+LSTM validación interna: epochs=1, Acc=0.450, BalAcc=0.525, F1=0.481, AUC=0.486
+Entrenando LSTM final durante 1 epochs...
+LSTM holdout: Acc=0.369, BalAcc=0.496, F1=0.154, AUC=0.485
+
+Evaluación OUT-OF-SAMPLE (holdout temporal NO usado para pesos):
+             model  accuracy  balanced_accuracy  precision   recall       f1  roc_auc  log_loss    brier  positive_rate
+LogisticRegression  0.627049           0.529018   0.671642 0.843750 0.747922 0.592932  0.663577 0.230138       0.655738
+      RandomForest  0.573770           0.508185   0.660920 0.718750 0.688623 0.561998  0.673719 0.241139       0.655738
+           XGBoost  0.549180           0.541741   0.690840 0.565625 0.621993 0.561551  0.713840 0.255217       0.655738
+              LSTM  0.368852           0.496131   0.636364 0.087500 0.153846 0.484617  0.729465 0.268019       0.655738
+
+Pesos finales del ensemble:
+  LogisticRegression: 0.356
+  RandomForest: 0.296
+  XGBoost: 0.236
+  LSTM: 0.112
+
+ENSEMBLE OUT-OF-SAMPLE:
+  accuracy: 0.6127
+  balanced_accuracy: 0.5237
+  precision: 0.6693
+  recall: 0.8094
+  f1: 0.7327
+  roc_auc: 0.5969
+  log_loss: 0.6545
+  brier: 0.2313
+  positive_rate: 0.6557
+
+BASELINE (clase mayoritaria / probabilidad histórica):
+  accuracy: 0.6557
+  balanced_accuracy: 0.5000
+  precision: 0.6557
+  recall: 1.0000
+  f1: 0.7921
+  roc_auc: 0.5000
+  log_loss: 0.6446
+  brier: 0.2261
+  positive_rate: 0.6557
+
+MÉTRICAS FINANCIERAS:
+  strategy_total_return: 0.2762
+  buy_hold_total_return: 0.2953
+  strategy_annual_return: 0.1342
+  buy_hold_annual_return: 0.1430
+  strategy_volatility: 0.1160
+  buy_hold_volatility: 0.1584
+  strategy_sharpe: 1.1441
+  buy_hold_sharpe: 0.9232
+  strategy_sortino: 0.9179
+  strategy_max_drawdown: -0.1551
+  buy_hold_max_drawdown: -0.2332
+  trades: 54
+  market_exposure: 0.3955
+  win_rate_active_days: 0.5855
+  profit_factor: 1.4178
+
+**********************************************************************************************************************
+PREDICCIÓN FINAL SXR8 | Horizonte: 10 sesión/sesiones
+**********************************************************************************************************************
+Fecha del último dato:      2026-05-19
+Precio de cierre:           680.9400
+LogisticRegression          P(SUBE) =  43.93%
+RandomForest                P(SUBE) =  43.64%
+XGBoost                     P(SUBE) =  39.64%
+LSTM                        P(SUBE) =  41.55%
+ENSEMBLE P(SUBE):            42.57%
+ENSEMBLE P(BAJA):            57.43%
+SEÑAL:                      NEUTRAL / BAJA CONFIANZA
+CONFIANZA:                  BAJA
+SENTIMIENTO ACTUAL CONTEXTO: -0.000
+Nº NOTICIAS ACTUALES:       100
+SENTIMIENTO DENTRO MODELO:  NO
+**********************************************************************************************************************
+
+VALIDACIÓN DE TARGETS SOLAPADOS
+Horizonte: 10 | Holdout n=488 | n efectivo aprox.=49
+AUC fases no solapadas: 0.5959 ± 0.0332
+AUC bootstrap por bloques 95% CI: [0.4879, 0.6935]
+\nESTUDIO CON vs SIN SENTIMIENTO:
+NO EJECUTADO: el sentimiento histórico todavía no entra en el modelo. Se esperará a disponer de cobertura NLP real suficiente; no se simula sentimiento histórico con ceros.
+\nSHAP SXR8 10d: 488 muestras, 58 variables.
+\nTOP VARIABLES SHAP:
+             feature  mean_abs_shap  importance_pct  rank
+  ext_fedfunds_level       0.401543       12.408865     1
+        ma_50_vs_200       0.289048        8.932440     2
+      ext_us2y_level       0.207508        6.412620     3
+      volatility_30d       0.186656        5.768228     4
+     ext_us10y_level       0.177457        5.483938     5
+      volatility_45d       0.171464        5.298754     6
+     close_vs_ma_100       0.152264        4.705407     7
+          return_60d       0.148253        4.581460     8
+      volume_vs_ma20       0.104424        3.227003     9
+       ext_vix_level       0.092838        2.868979    10
+      close_vs_ma_60       0.083694        2.586383    11
+     close_vs_ma_200       0.082858        2.560559    12
+               month       0.074880        2.314026    13
+         macd_signal       0.066801        2.064359    14
+           macd_diff       0.064364        1.989025    15
+      volatility_60d       0.055276        1.708202    16
+              rsi_14       0.052708        1.628825    17
+          return_45d       0.048553        1.500416    18
+ext_eurusd_return_5d       0.046180        1.427088    19
+       close_vs_ma_5       0.044818        1.385008    20
+         ma_20_vs_50       0.043329        1.338993    21
+     intraday_return       0.042854        1.324322    22
+      volatility_10d       0.042357        1.308956    23
+      volatility_15d       0.035721        1.103881    24
+          return_30d       0.034314        1.060408    25
+
+----------------------------------------------------------------------------------------------------------------------
+SXR8 - HORIZONTE 15 SESIÓN/SESIONES
+----------------------------------------------------------------------------------------------------------------------
+Semilla reproducible experimento: 1004969569
+Dataset supervisado: 2431 filas
+Train purgado:       1929 filas
+Gap/purge:           15 filas
+Holdout final:       487 filas
+Tasa de subidas train: 0.640
+Tasa de subidas test:  0.671
+
+Validación cruzada temporal: LogisticRegression
+  Fold 1: Acc=0.486 BalAcc=0.470 F1=0.578 AUC=0.566 Brier=0.490
+  Fold 2: Acc=0.685 BalAcc=0.557 F1=0.798 AUC=0.509 Brier=0.267
+  Fold 3: Acc=0.349 BalAcc=0.495 F1=0.315 AUC=0.548 Brier=0.470
+  Fold 4: Acc=0.607 BalAcc=0.609 F1=0.625 AUC=0.678 Brier=0.230
+  Fold 5: Acc=0.589 BalAcc=0.630 F1=0.637 AUC=0.613 Brier=0.260
+
+Validación cruzada temporal: RandomForest
+  Fold 1: Acc=0.498 BalAcc=0.487 F1=0.586 AUC=0.491 Brier=0.282
+  Fold 2: Acc=0.570 BalAcc=0.437 F1=0.720 AUC=0.500 Brier=0.246
+  Fold 3: Acc=0.595 BalAcc=0.561 F1=0.699 AUC=0.582 Brier=0.232
+  Fold 4: Acc=0.489 BalAcc=0.498 F1=0.632 AUC=0.511 Brier=0.274
+  Fold 5: Acc=0.308 BalAcc=0.483 F1=0.051 AUC=0.451 Brier=0.333
+
+Validación cruzada temporal: XGBoost
+  Fold 1: Acc=0.502 BalAcc=0.478 F1=0.598 AUC=0.431 Brier=0.380
+  Fold 2: Acc=0.679 BalAcc=0.565 F1=0.789 AUC=0.616 Brier=0.240
+  Fold 3: Acc=0.495 BalAcc=0.532 F1=0.576 AUC=0.588 Brier=0.305
+  Fold 4: Acc=0.480 BalAcc=0.483 F1=0.535 AUC=0.437 Brier=0.337
+  Fold 5: Acc=0.321 BalAcc=0.487 F1=0.099 AUC=0.481 Brier=0.500
+
+Resumen validación cruzada:
+             model  accuracy  balanced_accuracy  precision   recall       f1  roc_auc  log_loss    brier  positive_rate
+LogisticRegression  0.543302           0.552094   0.701400 0.565322 0.590705 0.582974  1.521592 0.343456       0.657944
+           XGBoost  0.495327           0.508818   0.645599 0.510832 0.519453 0.510572  1.054937 0.352494       0.657944
+      RandomForest  0.492212           0.493205   0.618508 0.577627 0.537655 0.507263  0.745880 0.273519       0.657944
+
+Pesos por validación (sin usar holdout):
+  LogisticRegression: 0.423
+  RandomForest: 0.289
+  XGBoost: 0.288
+Entrenando modelo final: LogisticRegression
+Entrenando modelo final: RandomForest
+Entrenando modelo final: XGBoost
+Entrenando LSTM para validación interna...
+LSTM validación interna: epochs=1, Acc=0.262, BalAcc=0.500, F1=0.000, AUC=0.520
+Entrenando LSTM final durante 1 epochs...
+LSTM holdout: Acc=0.339, BalAcc=0.460, F1=0.179, AUC=0.461
+
+Evaluación OUT-OF-SAMPLE (holdout temporal NO usado para pesos):
+             model  accuracy  balanced_accuracy  precision   recall       f1  roc_auc  log_loss    brier  positive_rate
+LogisticRegression  0.677618           0.578001   0.713568 0.868502 0.783448 0.651070  0.630116 0.211684       0.671458
+           XGBoost  0.558522           0.521235   0.686667 0.629969 0.657097 0.536105  0.737546 0.264294       0.671458
+      RandomForest  0.587269           0.496359   0.669355 0.761468 0.712446 0.522917  0.677896 0.242926       0.671458
+              LSTM  0.338809           0.459767   0.538462 0.107034 0.178571 0.461277  0.734484 0.270486       0.671458
+
+Pesos finales del ensemble:
+  LogisticRegression: 0.419
+  RandomForest: 0.286
+  XGBoost: 0.285
+  LSTM: 0.010
+
+ENSEMBLE OUT-OF-SAMPLE:
+  accuracy: 0.6776
+  balanced_accuracy: 0.5860
+  precision: 0.7191
+  recall: 0.8532
+  f1: 0.7804
+  roc_auc: 0.6170
+  log_loss: 0.6377
+  brier: 0.2222
+  positive_rate: 0.6715
+
+BASELINE (clase mayoritaria / probabilidad histórica):
+  accuracy: 0.6715
+  balanced_accuracy: 0.5000
+  precision: 0.6715
+  recall: 1.0000
+  f1: 0.8034
+  roc_auc: 0.5000
+  log_loss: 0.6354
+  brier: 0.2216
+  positive_rate: 0.6715
+
+MÉTRICAS FINANCIERAS:
+  strategy_total_return: 0.2569
+  buy_hold_total_return: 0.2670
+  strategy_annual_return: 0.1256
+  buy_hold_annual_return: 0.1303
+  strategy_volatility: 0.1345
+  buy_hold_volatility: 0.1585
+  strategy_sharpe: 0.9472
+  buy_hold_sharpe: 0.8525
+  strategy_sortino: 0.8913
+  strategy_max_drawdown: -0.1551
+  buy_hold_max_drawdown: -0.2332
+  trades: 63
+  market_exposure: 0.5524
+  win_rate_active_days: 0.5762
+  profit_factor: 1.2765
+
+**********************************************************************************************************************
+PREDICCIÓN FINAL SXR8 | Horizonte: 15 sesión/sesiones
+**********************************************************************************************************************
+Fecha del último dato:      2026-05-19
+Precio de cierre:           680.9400
+LogisticRegression          P(SUBE) =  35.68%
+RandomForest                P(SUBE) =  38.38%
+XGBoost                     P(SUBE) =  23.37%
+LSTM                        P(SUBE) =  38.57%
+ENSEMBLE P(SUBE):            32.97%
+ENSEMBLE P(BAJA):            67.03%
+SEÑAL:                      BAJADA / BAJISTA
+CONFIANZA:                  MODERADA
+SENTIMIENTO ACTUAL CONTEXTO: -0.000
+Nº NOTICIAS ACTUALES:       100
+SENTIMIENTO DENTRO MODELO:  NO
+**********************************************************************************************************************
+
+VALIDACIÓN DE TARGETS SOLAPADOS
+Horizonte: 15 | Holdout n=487 | n efectivo aprox.=33
+AUC fases no solapadas: 0.6205 ± 0.0857
+AUC bootstrap por bloques 95% CI: [0.4849, 0.7428]
+\nESTUDIO CON vs SIN SENTIMIENTO:
+NO EJECUTADO: el sentimiento histórico todavía no entra en el modelo. Se esperará a disponer de cobertura NLP real suficiente; no se simula sentimiento histórico con ceros.
+\nSHAP SXR8 15d: 487 muestras, 58 variables.
+\nTOP VARIABLES SHAP:
+              feature  mean_abs_shap  importance_pct  rank
+       volatility_45d       0.342250       10.306070     1
+       ext_us2y_level       0.293376        8.834360     2
+   ext_fedfunds_level       0.289194        8.708410     3
+         ma_50_vs_200       0.268815        8.094764     4
+      close_vs_ma_200       0.204968        6.172149     5
+      close_vs_ma_100       0.176322        5.309547     6
+       volatility_30d       0.150353        4.527543     7
+       volatility_20d       0.133432        4.018013     8
+           return_60d       0.116397        3.505022     9
+        ext_vix_level       0.112446        3.386068    10
+      ext_us10y_level       0.108417        3.264720    11
+            macd_diff       0.101354        3.052052    12
+        volatility_5d       0.087960        2.648709    13
+          macd_signal       0.083553        2.515996    14
+       volatility_60d       0.063742        1.919451    15
+                month       0.060167        1.811804    16
+     volume_change_1d       0.044385        1.336539    17
+            return_1d       0.040118        1.208070    18
+       volatility_10d       0.036883        1.110638    19
+       close_vs_ma_60       0.035878        1.080378    20
+ext_yield_curve_10y2y       0.034194        1.029662    21
+    ext_vix_change_1d       0.033845        1.019153    22
+          ma_20_vs_50       0.031919        0.961166    23
+            range_pct       0.031799        0.957562    24
+                 macd       0.030640        0.922656    25
+
+----------------------------------------------------------------------------------------------------------------------
+SXR8 - HORIZONTE 20 SESIÓN/SESIONES
+----------------------------------------------------------------------------------------------------------------------
+Semilla reproducible experimento: 244967864
+Dataset supervisado: 2426 filas
+Train purgado:       1920 filas
+Gap/purge:           20 filas
+Holdout final:       486 filas
+Tasa de subidas train: 0.639
+Tasa de subidas test:  0.700
+
+Validación cruzada temporal: LogisticRegression
+  Fold 1: Acc=0.509 BalAcc=0.518 F1=0.572 AUC=0.609 Brier=0.463
+  Fold 2: Acc=0.681 BalAcc=0.530 F1=0.802 AUC=0.590 Brier=0.240
+  Fold 3: Acc=0.350 BalAcc=0.501 F1=0.366 AUC=0.524 Brier=0.511
+  Fold 4: Acc=0.622 BalAcc=0.639 F1=0.653 AUC=0.724 Brier=0.226
+  Fold 5: Acc=0.562 BalAcc=0.666 F1=0.576 AUC=0.729 Brier=0.267
+
+Validación cruzada temporal: RandomForest
+  Fold 1: Acc=0.575 BalAcc=0.511 F1=0.688 AUC=0.471 Brier=0.259
+  Fold 2: Acc=0.584 BalAcc=0.459 F1=0.725 AUC=0.509 Brier=0.243
+  Fold 3: Acc=0.547 BalAcc=0.546 F1=0.656 AUC=0.566 Brier=0.254
+  Fold 4: Acc=0.516 BalAcc=0.556 F1=0.634 AUC=0.566 Brier=0.286
+  Fold 5: Acc=0.319 BalAcc=0.520 F1=0.076 AUC=0.546 Brier=0.385
+
+Validación cruzada temporal: XGBoost
+  Fold 1: Acc=0.509 BalAcc=0.490 F1=0.598 AUC=0.423 Brier=0.408
+  Fold 2: Acc=0.691 BalAcc=0.547 F1=0.806 AUC=0.634 Brier=0.225
+  Fold 3: Acc=0.487 BalAcc=0.524 F1=0.586 AUC=0.584 Brier=0.321
+  Fold 4: Acc=0.503 BalAcc=0.523 F1=0.562 AUC=0.541 Brier=0.326
+  Fold 5: Acc=0.319 BalAcc=0.507 F1=0.107 AUC=0.531 Brier=0.553
+
+Resumen validación cruzada:
+             model  accuracy  balanced_accuracy  precision   recall       f1  roc_auc  log_loss    brier  positive_rate
+LogisticRegression  0.545000           0.570718   0.729065 0.577479 0.593734 0.635138  1.670131 0.341272        0.65875
+           XGBoost  0.501875           0.518312   0.679620 0.543248 0.531673 0.542572  1.149699 0.366590        0.65875
+      RandomForest  0.508125           0.518347   0.726133 0.605528 0.555627 0.531708  0.775874 0.285378        0.65875
+
+Pesos por validación (sin usar holdout):
+  LogisticRegression: 0.423
+  RandomForest: 0.289
+  XGBoost: 0.288
+Entrenando modelo final: LogisticRegression
+Entrenando modelo final: RandomForest
+Entrenando modelo final: XGBoost
+Entrenando LSTM para validación interna...
+LSTM validación interna: epochs=1, Acc=0.260, BalAcc=0.500, F1=0.000, AUC=0.449
+Entrenando LSTM final durante 1 epochs...
+LSTM holdout: Acc=0.418, BalAcc=0.556, F1=0.334, AUC=0.586
+
+Evaluación OUT-OF-SAMPLE (holdout temporal NO usado para pesos):
+             model  accuracy  balanced_accuracy  precision   recall       f1  roc_auc  log_loss    brier  positive_rate
+LogisticRegression  0.681070           0.572744   0.737789 0.844118 0.787380 0.714182  0.582371 0.192729       0.699588
+           XGBoost  0.547325           0.565089   0.756410 0.520588 0.616725 0.586583  0.780768 0.281491       0.699588
+              LSTM  0.417695           0.556467   0.835294 0.208824 0.334118 0.586060  0.702532 0.254808       0.699588
+      RandomForest  0.598765           0.553002   0.734628 0.667647 0.699538 0.526692  0.671435 0.240060       0.699588
+
+Pesos finales del ensemble:
+  LogisticRegression: 0.423
+  RandomForest: 0.289
+  XGBoost: 0.288
+  LSTM: 0.000
+
+ENSEMBLE OUT-OF-SAMPLE:
+  accuracy: 0.6646
+  balanced_accuracy: 0.5962
+  precision: 0.7565
+  recall: 0.7676
+  f1: 0.7620
+  roc_auc: 0.6586
+  log_loss: 0.6036
+  brier: 0.2082
+  positive_rate: 0.6996
+
+BASELINE (clase mayoritaria / probabilidad histórica):
+  accuracy: 0.6996
+  balanced_accuracy: 0.5000
+  precision: 0.6996
+  recall: 1.0000
+  f1: 0.8232
+  roc_auc: 0.5000
+  log_loss: 0.6195
+  brier: 0.2139
+  positive_rate: 0.6996
+
+MÉTRICAS FINANCIERAS:
+  strategy_total_return: 0.3673
+  buy_hold_total_return: 0.2559
+  strategy_annual_return: 0.1761
+  buy_hold_annual_return: 0.1254
+  strategy_volatility: 0.1301
+  buy_hold_volatility: 0.1586
+  strategy_sharpe: 1.3126
+  buy_hold_sharpe: 0.8243
+  strategy_sortino: 1.1953
+  strategy_max_drawdown: -0.1551
+  buy_hold_max_drawdown: -0.2332
+  trades: 27
+  market_exposure: 0.5391
+  win_rate_active_days: 0.5763
+  profit_factor: 1.4186
+
+**********************************************************************************************************************
+PREDICCIÓN FINAL SXR8 | Horizonte: 20 sesión/sesiones
+**********************************************************************************************************************
+Fecha del último dato:      2026-05-19
+Precio de cierre:           680.9400
+LogisticRegression          P(SUBE) =  48.86%
+RandomForest                P(SUBE) =  42.08%
+XGBoost                     P(SUBE) =  19.12%
+LSTM                        P(SUBE) =  46.18%
+ENSEMBLE P(SUBE):            38.35%
+ENSEMBLE P(BAJA):            61.65%
+SEÑAL:                      BAJADA / BAJISTA
+CONFIANZA:                  BAJA
+SENTIMIENTO ACTUAL CONTEXTO: -0.000
+Nº NOTICIAS ACTUALES:       100
+SENTIMIENTO DENTRO MODELO:  NO
+**********************************************************************************************************************
+
+VALIDACIÓN DE TARGETS SOLAPADOS
+Horizonte: 20 | Holdout n=486 | n efectivo aprox.=25
+AUC fases no solapadas: 0.6561 ± 0.0844
+AUC bootstrap por bloques 95% CI: [0.5020, 0.8006]
+\nESTUDIO CON vs SIN SENTIMIENTO:
+NO EJECUTADO: el sentimiento histórico todavía no entra en el modelo. Se esperará a disponer de cobertura NLP real suficiente; no se simula sentimiento histórico con ceros.
+\nSHAP SXR8 20d: 486 muestras, 58 variables.
+\nTOP VARIABLES SHAP:
+              feature  mean_abs_shap  importance_pct  rank
+       ext_us2y_level       0.554598       14.250328     1
+         ma_50_vs_200       0.482005       12.385068     2
+   ext_fedfunds_level       0.466624       11.989854     3
+       volatility_45d       0.270348        6.946553     4
+      close_vs_ma_200       0.249720        6.416530     5
+           return_60d       0.170563        4.382593     6
+      close_vs_ma_100       0.145711        3.744029     7
+       volatility_30d       0.144880        3.722668     8
+       volatility_20d       0.112665        2.894903     9
+        ext_vix_level       0.105069        2.699735    10
+      ext_us10y_level       0.102485        2.633349    11
+          ma_20_vs_50       0.094172        2.419741    12
+                month       0.092128        2.367220    13
+       volatility_60d       0.073885        1.898454    14
+            macd_diff       0.071013        1.824668    15
+          macd_signal       0.054114        1.390452    16
+        volatility_5d       0.048901        1.256518    17
+       volatility_15d       0.047088        1.209928    18
+       close_vs_ma_60       0.041704        1.071572    19
+ext_yield_curve_10y2y       0.040773        1.047668    20
+       volatility_10d       0.038296        0.984023    21
+                 macd       0.037211        0.956142    22
+   bollinger_position       0.034503        0.886539    23
+    ext_vix_change_1d       0.034355        0.882743    24
+      intraday_return       0.032402        0.832566    25
+
+----------------------------------------------------------------------------------------------------------------------
+SXR8 - HORIZONTE 30 SESIÓN/SESIONES
+----------------------------------------------------------------------------------------------------------------------
+Semilla reproducible experimento: 1904880825
+Dataset supervisado: 2416 filas
+Train purgado:       1902 filas
+Gap/purge:           30 filas
+Holdout final:       484 filas
+Tasa de subidas train: 0.680
+Tasa de subidas test:  0.682
+
+Validación cruzada temporal: LogisticRegression
+  Fold 1: Acc=0.612 BalAcc=0.683 F1=0.599 AUC=0.687 Brier=0.383
+  Fold 2: Acc=0.726 BalAcc=0.572 F1=0.828 AUC=0.696 Brier=0.196
+  Fold 3: Acc=0.681 BalAcc=0.497 F1=0.802 AUC=0.495 Brier=0.223
+  Fold 4: Acc=0.521 BalAcc=0.529 F1=0.545 AUC=0.534 Brier=0.302
+  Fold 5: Acc=0.483 BalAcc=0.667 F1=0.534 AUC=0.695 Brier=0.336
+
+Validación cruzada temporal: RandomForest
+  Fold 1: Acc=0.584 BalAcc=0.555 F1=0.670 AUC=0.537 Brier=0.259
+  Fold 2: Acc=0.672 BalAcc=0.479 F1=0.801 AUC=0.579 Brier=0.205
+  Fold 3: Acc=0.732 BalAcc=0.658 F1=0.829 AUC=0.582 Brier=0.189
+  Fold 4: Acc=0.445 BalAcc=0.485 F1=0.612 AUC=0.537 Brier=0.335
+  Fold 5: Acc=0.278 BalAcc=0.553 F1=0.191 AUC=0.614 Brier=0.350
+
+Validación cruzada temporal: XGBoost
+  Fold 1: Acc=0.599 BalAcc=0.567 F1=0.686 AUC=0.506 Brier=0.340
+  Fold 2: Acc=0.748 BalAcc=0.545 F1=0.851 AUC=0.713 Brier=0.191
+  Fold 3: Acc=0.628 BalAcc=0.606 F1=0.745 AUC=0.575 Brier=0.288
+  Fold 4: Acc=0.457 BalAcc=0.491 F1=0.598 AUC=0.548 Brier=0.373
+  Fold 5: Acc=0.246 BalAcc=0.533 F1=0.125 AUC=0.629 Brier=0.590
+
+Resumen validación cruzada:
+             model  accuracy  balanced_accuracy  precision   recall       f1  roc_auc  log_loss    brier  positive_rate
+LogisticRegression  0.604416           0.589535   0.795511 0.623533 0.661820 0.621558  1.588628 0.287731       0.697792
+           XGBoost  0.535647           0.548463   0.757545 0.652192 0.600997 0.594114  1.142947 0.356236       0.697792
+      RandomForest  0.541956           0.545993   0.752272 0.678040 0.620578 0.569884  0.738402 0.267557       0.697792
+
+Pesos por validación (sin usar holdout):
+  LogisticRegression: 0.377
+  RandomForest: 0.306
+  XGBoost: 0.317
+Entrenando modelo final: LogisticRegression
+Entrenando modelo final: RandomForest
+Entrenando modelo final: XGBoost
+Entrenando LSTM para validación interna...
+LSTM validación interna: epochs=1, Acc=0.210, BalAcc=0.509, F1=0.034, AUC=0.557
+Entrenando LSTM final durante 1 epochs...
+LSTM holdout: Acc=0.411, BalAcc=0.565, F1=0.248, AUC=0.684
+
+Evaluación OUT-OF-SAMPLE (holdout temporal NO usado para pesos):
+             model  accuracy  balanced_accuracy  precision   recall       f1  roc_auc  log_loss    brier  positive_rate
+LogisticRegression  0.698347           0.572727   0.718009 0.918182 0.805851 0.741736  0.686726 0.198651       0.681818
+              LSTM  0.411157           0.564719   0.959184 0.142424 0.248021 0.683914  0.699578 0.253211       0.681818
+           XGBoost  0.586777           0.610390   0.782609 0.545455 0.642857 0.646458  0.785989 0.278149       0.681818
+      RandomForest  0.648760           0.636797   0.783688 0.669697 0.722222 0.618477  0.645857 0.228494       0.681818
+
+Pesos finales del ensemble:
+  LogisticRegression: 0.363
+  RandomForest: 0.294
+  XGBoost: 0.306
+  LSTM: 0.038
+
+ENSEMBLE OUT-OF-SAMPLE:
+  accuracy: 0.6715
+  balanced_accuracy: 0.6171
+  precision: 0.7552
+  recall: 0.7667
+  f1: 0.7609
+  roc_auc: 0.7107
+  log_loss: 0.5718
+  brier: 0.1957
+  positive_rate: 0.6818
+
+BASELINE (clase mayoritaria / probabilidad histórica):
+  accuracy: 0.6818
+  balanced_accuracy: 0.5000
+  precision: 0.6818
+  recall: 1.0000
+  f1: 0.8108
+  roc_auc: 0.5000
+  log_loss: 0.6255
+  brier: 0.2169
+  positive_rate: 0.6818
+
+MÉTRICAS FINANCIERAS:
+  strategy_total_return: 0.2973
+  buy_hold_total_return: 0.2139
+  strategy_annual_return: 0.1451
+  buy_hold_annual_return: 0.1062
+  strategy_volatility: 0.1246
+  buy_hold_volatility: 0.1578
+  strategy_sharpe: 1.1506
+  buy_hold_sharpe: 0.7187
+  strategy_sortino: 0.9684
+  strategy_max_drawdown: -0.1551
+  buy_hold_max_drawdown: -0.2332
+  trades: 28
+  market_exposure: 0.4938
+  win_rate_active_days: 0.6025
+  profit_factor: 1.3872
+
+**********************************************************************************************************************
+PREDICCIÓN FINAL SXR8 | Horizonte: 30 sesión/sesiones
+**********************************************************************************************************************
+Fecha del último dato:      2026-05-19
+Precio de cierre:           680.9400
+LogisticRegression          P(SUBE) =  47.62%
+RandomForest                P(SUBE) =  52.00%
+XGBoost                     P(SUBE) =  21.66%
+LSTM                        P(SUBE) =  48.73%
+ENSEMBLE P(SUBE):            41.02%
+ENSEMBLE P(BAJA):            58.98%
+SEÑAL:                      NEUTRAL / BAJA CONFIANZA
+CONFIANZA:                  BAJA
+SENTIMIENTO ACTUAL CONTEXTO: -0.000
+Nº NOTICIAS ACTUALES:       100
+SENTIMIENTO DENTRO MODELO:  NO
+**********************************************************************************************************************
+
+VALIDACIÓN DE TARGETS SOLAPADOS
+Horizonte: 30 | Holdout n=484 | n efectivo aprox.=17
+AUC fases no solapadas: 0.6977 ± 0.1101
+AUC bootstrap por bloques 95% CI: [0.5596, 0.8652]
+\nESTUDIO CON vs SIN SENTIMIENTO:
+NO EJECUTADO: el sentimiento histórico todavía no entra en el modelo. Se esperará a disponer de cobertura NLP real suficiente; no se simula sentimiento histórico con ceros.
+\nSHAP SXR8 30d: 484 muestras, 58 variables.
+\nTOP VARIABLES SHAP:
+              feature  mean_abs_shap  importance_pct  rank
+   ext_fedfunds_level       0.902641       18.439468     1
+       ext_us2y_level       0.768161       15.692258     2
+         ma_50_vs_200       0.728028       14.872402     3
+      ext_us10y_level       0.242328        4.950362     4
+        ext_vix_level       0.235172        4.804175     5
+      close_vs_ma_200       0.229790        4.694234     6
+      close_vs_ma_100       0.150070        3.065691     7
+       volatility_30d       0.132602        2.708834     8
+           return_60d       0.116515        2.380201     9
+       volatility_60d       0.112692        2.302107    10
+                month       0.110113        2.249436    11
+       volatility_20d       0.100226        2.047444    12
+       volatility_45d       0.098618        2.014608    13
+ext_yield_curve_10y2y       0.077670        1.586663    14
+          macd_signal       0.077283        1.578771    15
+           return_20d       0.063836        1.304062    16
+  ext_sp500_return_5d       0.057929        1.183390    17
+           return_45d       0.057547        1.175586    18
+          ma_20_vs_50       0.055268        1.129028    19
+       close_vs_ma_60       0.043341        0.885389    20
+       volatility_15d       0.040726        0.831964    21
+      intraday_return       0.035252        0.720137    22
+       volatility_10d       0.034551        0.705819    23
+       close_vs_ma_10       0.031975        0.653197    24
+           return_10d       0.030098        0.614860    25
+
+----------------------------------------------------------------------------------------------------------------------
+SXR8 - HORIZONTE 45 SESIÓN/SESIONES
+----------------------------------------------------------------------------------------------------------------------
+Semilla reproducible experimento: 1794213936
+Dataset supervisado: 2401 filas
+Train purgado:       1875 filas
+Gap/purge:           45 filas
+Holdout final:       481 filas
+Tasa de subidas train: 0.710
+Tasa de subidas test:  0.732
+
+Validación cruzada temporal: LogisticRegression
+  Fold 1: Acc=0.673 BalAcc=0.735 F1=0.655 AUC=0.782 Brier=0.320
+  Fold 2: Acc=0.625 BalAcc=0.569 F1=0.736 AUC=0.622 Brier=0.284
+  Fold 3: Acc=0.827 BalAcc=0.431 F1=0.905 AUC=0.307 Brier=0.110
+  Fold 4: Acc=0.513 BalAcc=0.515 F1=0.506 AUC=0.481 Brier=0.379
+  Fold 5: Acc=0.689 BalAcc=0.770 F1=0.762 AUC=0.787 Brier=0.235
+
+Validación cruzada temporal: RandomForest
+  Fold 1: Acc=0.696 BalAcc=0.680 F1=0.753 AUC=0.668 Brier=0.211
+  Fold 2: Acc=0.795 BalAcc=0.614 F1=0.877 AUC=0.663 Brier=0.169
+  Fold 3: Acc=0.766 BalAcc=0.436 F1=0.867 AUC=0.404 Brier=0.155
+  Fold 4: Acc=0.462 BalAcc=0.500 F1=0.632 AUC=0.517 Brier=0.366
+  Fold 5: Acc=0.372 BalAcc=0.585 F1=0.351 AUC=0.696 Brier=0.311
+
+Validación cruzada temporal: XGBoost
+  Fold 1: Acc=0.660 BalAcc=0.629 F1=0.735 AUC=0.534 Brier=0.312
+  Fold 2: Acc=0.827 BalAcc=0.736 F1=0.890 AUC=0.786 Brier=0.134
+  Fold 3: Acc=0.702 BalAcc=0.440 F1=0.824 AUC=0.406 Brier=0.220
+  Fold 4: Acc=0.513 BalAcc=0.545 F1=0.645 AUC=0.584 Brier=0.372
+  Fold 5: Acc=0.295 BalAcc=0.536 F1=0.209 AUC=0.635 Brier=0.550
+
+Resumen validación cruzada:
+             model  accuracy  balanced_accuracy  precision   recall       f1  roc_auc  log_loss    brier  positive_rate
+LogisticRegression  0.665385           0.603947   0.835894 0.639511 0.712945 0.595852  1.425048 0.265483       0.723718
+      RandomForest  0.617949           0.563193   0.790650 0.737131 0.695955 0.589755  0.697506 0.242577       0.723718
+           XGBoost  0.599359           0.577101   0.789515 0.689903 0.660453 0.588928  1.074483 0.317760       0.723718
+
+Pesos por validación (sin usar holdout):
+  LogisticRegression: 0.352
+  RandomForest: 0.328
+  XGBoost: 0.320
+Entrenando modelo final: LogisticRegression
+Entrenando modelo final: RandomForest
+Entrenando modelo final: XGBoost
+Entrenando LSTM para validación interna...
+LSTM validación interna: epochs=1, Acc=0.149, BalAcc=0.362, F1=0.008, AUC=0.411
+Entrenando LSTM final durante 1 epochs...
+LSTM holdout: Acc=0.484, BalAcc=0.628, F1=0.475, AUC=0.690
+
+Evaluación OUT-OF-SAMPLE (holdout temporal NO usado para pesos):
+             model  accuracy  balanced_accuracy  precision   recall       f1  roc_auc  log_loss    brier  positive_rate
+           XGBoost  0.702703           0.769864   0.952381 0.625000 0.754717 0.859584  0.566093 0.193553       0.731809
+LogisticRegression  0.733888           0.567719   0.761682 0.926136 0.835897 0.817940  0.585380 0.163180       0.731809
+      RandomForest  0.694387           0.641407   0.813456 0.755682 0.783505 0.741301  0.599963 0.206897       0.731809
+              LSTM  0.484407           0.628083   0.933333 0.318182 0.474576 0.689702  0.693331 0.250176       0.731809
+
+Pesos finales del ensemble:
+  LogisticRegression: 0.352
+  RandomForest: 0.327
+  XGBoost: 0.319
+  LSTM: 0.002
+
+ENSEMBLE OUT-OF-SAMPLE:
+  accuracy: 0.8233
+  balanced_accuracy: 0.7688
+  precision: 0.8739
+  recall: 0.8864
+  f1: 0.8801
+  roc_auc: 0.8720
+  log_loss: 0.4615
+  brier: 0.1468
+  positive_rate: 0.7318
+
+BASELINE (clase mayoritaria / probabilidad histórica):
+  accuracy: 0.7318
+  balanced_accuracy: 0.5000
+  precision: 0.7318
+  recall: 1.0000
+  f1: 0.8451
+  roc_auc: 0.5000
+  log_loss: 0.5826
+  brier: 0.1967
+  positive_rate: 0.7318
+
+MÉTRICAS FINANCIERAS:
+  strategy_total_return: 0.2334
+  buy_hold_total_return: 0.2563
+  strategy_annual_return: 0.1162
+  buy_hold_annual_return: 0.1270
+  strategy_volatility: 0.1304
+  buy_hold_volatility: 0.1585
+  strategy_sharpe: 0.9083
+  buy_hold_sharpe: 0.8340
+  strategy_sortino: 0.8158
+  strategy_max_drawdown: -0.1693
+  buy_hold_max_drawdown: -0.2332
+  trades: 28
+  market_exposure: 0.5405
+  win_rate_active_days: 0.5731
+  profit_factor: 1.2714
+
+**********************************************************************************************************************
+PREDICCIÓN FINAL SXR8 | Horizonte: 45 sesión/sesiones
+**********************************************************************************************************************
+Fecha del último dato:      2026-05-19
+Precio de cierre:           680.9400
+LogisticRegression          P(SUBE) =  15.99%
+RandomForest                P(SUBE) =  48.33%
+XGBoost                     P(SUBE) =  31.48%
+LSTM                        P(SUBE) =  46.84%
+ENSEMBLE P(SUBE):            31.58%
+ENSEMBLE P(BAJA):            68.42%
+SEÑAL:                      BAJADA / BAJISTA
+CONFIANZA:                  MODERADA
+SENTIMIENTO ACTUAL CONTEXTO: -0.000
+Nº NOTICIAS ACTUALES:       100
+SENTIMIENTO DENTRO MODELO:  NO
+**********************************************************************************************************************
+
+VALIDACIÓN DE TARGETS SOLAPADOS
+Horizonte: 45 | Holdout n=481 | n efectivo aprox.=11
+AUC fases no solapadas: 0.9029 ± 0.0857
+AUC bootstrap por bloques 95% CI: [0.8073, 0.9578]
+\nESTUDIO CON vs SIN SENTIMIENTO:
+NO EJECUTADO: el sentimiento histórico todavía no entra en el modelo. Se esperará a disponer de cobertura NLP real suficiente; no se simula sentimiento histórico con ceros.
+\nSHAP SXR8 45d: 481 muestras, 58 variables.
+\nTOP VARIABLES SHAP:
+              feature  mean_abs_shap  importance_pct  rank
+         ma_50_vs_200       0.961246       17.377531     1
+       ext_us2y_level       0.814647       14.727302     2
+   ext_fedfunds_level       0.710139       12.837990     3
+        ext_vix_level       0.537948        9.725096     4
+      close_vs_ma_200       0.332014        6.002189     5
+       volatility_30d       0.198293        3.584766     6
+       volatility_45d       0.185720        3.357471     7
+      ext_us10y_level       0.152922        2.764548     8
+      close_vs_ma_100       0.141550        2.558952     9
+       volatility_60d       0.130567        2.360400    10
+          macd_signal       0.128696        2.326586    11
+ext_yield_curve_10y2y       0.111522        2.016107    12
+                 macd       0.084465        1.526963    13
+            macd_diff       0.083028        1.500986    14
+       volatility_20d       0.082246        1.486853    15
+       volatility_15d       0.068232        1.233512    16
+           gap_return       0.067408        1.218617    17
+           return_45d       0.060324        1.090537    18
+           return_60d       0.058048        1.049408    19
+           return_30d       0.056925        1.029095    20
+   bollinger_position       0.054385        0.983174    21
+  ext_sp500_return_5d       0.053887        0.974175    22
+                month       0.045781        0.827633    23
+        volatility_5d       0.041022        0.741600    24
+       volatility_10d       0.039484        0.713803    25
+
+----------------------------------------------------------------------------------------------------------------------
+SXR8 - HORIZONTE 60 SESIÓN/SESIONES
+----------------------------------------------------------------------------------------------------------------------
+Semilla reproducible experimento: 1242435443
+Dataset supervisado: 2386 filas
+Train purgado:       1848 filas
+Gap/purge:           60 filas
+Holdout final:       478 filas
+Tasa de subidas train: 0.720
+Tasa de subidas test:  0.741
+
+Validación cruzada temporal: LogisticRegression
+  Fold 1: Acc=0.679 BalAcc=0.726 F1=0.686 AUC=0.845 Brier=0.296
+  Fold 2: Acc=0.656 BalAcc=0.510 F1=0.777 AUC=0.693 Brier=0.237
+  Fold 3: Acc=0.932 BalAcc=0.467 F1=0.965 AUC=0.179 Brier=0.041
+  Fold 4: Acc=0.299 BalAcc=0.356 F1=0.452 AUC=0.323 Brier=0.595
+  Fold 5: Acc=0.721 BalAcc=0.637 F1=0.817 AUC=0.776 Brier=0.184
+
+Validación cruzada temporal: RandomForest
+  Fold 1: Acc=0.766 BalAcc=0.728 F1=0.825 AUC=0.738 Brier=0.189
+  Fold 2: Acc=0.825 BalAcc=0.670 F1=0.894 AUC=0.781 Brier=0.150
+  Fold 3: Acc=0.945 BalAcc=0.474 F1=0.972 AUC=0.261 Brier=0.068
+  Fold 4: Acc=0.416 BalAcc=0.500 F1=0.587 AUC=0.377 Brier=0.467
+  Fold 5: Acc=0.721 BalAcc=0.542 F1=0.828 AUC=0.577 Brier=0.197
+
+Validación cruzada temporal: XGBoost
+  Fold 1: Acc=0.519 BalAcc=0.429 F1=0.668 AUC=0.446 Brier=0.348
+  Fold 2: Acc=0.903 BalAcc=0.806 F1=0.940 AUC=0.825 Brier=0.105
+  Fold 3: Acc=0.893 BalAcc=0.448 F1=0.943 AUC=0.303 Brier=0.064
+  Fold 4: Acc=0.416 BalAcc=0.500 F1=0.587 AUC=0.208 Brier=0.565
+  Fold 5: Acc=0.558 BalAcc=0.460 F1=0.694 AUC=0.511 Brier=0.306
+
+Resumen validación cruzada:
+             model  accuracy  balanced_accuracy  precision   recall       f1  roc_auc  log_loss    brier  positive_rate
+LogisticRegression  0.657143           0.539400   0.776171 0.746538 0.739306 0.563172  1.511258 0.270593       0.725325
+      RandomForest  0.734416           0.582869   0.772273 0.920738 0.821144 0.546644  0.661146 0.214153       0.725325
+           XGBoost  0.657792           0.528692   0.738735 0.852026 0.766433 0.458663  1.002912 0.277890       0.725325
+
+Pesos por validación (sin usar holdout):
+  LogisticRegression: 0.336
+  RandomForest: 0.370
+  XGBoost: 0.295
+Entrenando modelo final: LogisticRegression
+Entrenando modelo final: RandomForest
+Entrenando modelo final: XGBoost
+Entrenando LSTM para validación interna...
+LSTM validación interna: epochs=1, Acc=0.245, BalAcc=0.485, F1=0.261, AUC=0.490
+Entrenando LSTM final durante 1 epochs...
+LSTM holdout: Acc=0.615, BalAcc=0.538, F1=0.729, AUC=0.573
+
+Evaluación OUT-OF-SAMPLE (holdout temporal NO usado para pesos):
+             model  accuracy  balanced_accuracy  precision   recall       f1  roc_auc  log_loss    brier  positive_rate
+           XGBoost  0.728033           0.763988   0.924242 0.689266 0.789644 0.839006  0.543580 0.182308       0.740586
+      RandomForest  0.734310           0.694870   0.851393 0.776836 0.812408 0.803536  0.560991 0.187863       0.740586
+LogisticRegression  0.721757           0.492528   0.737634 0.968927 0.837607 0.768157  0.797516 0.213929       0.740586
+              LSTM  0.615063           0.538386   0.762346 0.697740 0.728614 0.572717  0.674185 0.240572       0.740586
+
+Pesos finales del ensemble:
+  LogisticRegression: 0.315
+  RandomForest: 0.347
+  XGBoost: 0.277
+  LSTM: 0.061
+
+ENSEMBLE OUT-OF-SAMPLE:
+  accuracy: 0.7657
+  balanced_accuracy: 0.6427
+  precision: 0.8071
+  recall: 0.8983
+  f1: 0.8503
+  roc_auc: 0.8178
+  log_loss: 0.4819
+  brier: 0.1552
+  positive_rate: 0.7406
+
+BASELINE (clase mayoritaria / probabilidad histórica):
+  accuracy: 0.7406
+  balanced_accuracy: 0.5000
+  precision: 0.7406
+  recall: 1.0000
+  f1: 0.8510
+  roc_auc: 0.5000
+  log_loss: 0.5735
+  brier: 0.1925
+  positive_rate: 0.7406
+
+MÉTRICAS FINANCIERAS:
+  strategy_total_return: 0.2446
+  buy_hold_total_return: 0.2234
+  strategy_annual_return: 0.1223
+  buy_hold_annual_return: 0.1121
+  strategy_volatility: 0.1434
+  buy_hold_volatility: 0.1587
+  strategy_sharpe: 0.8763
+  buy_hold_sharpe: 0.7495
+  strategy_sortino: 0.8224
+  strategy_max_drawdown: -0.2162
+  buy_hold_max_drawdown: -0.2332
+  trades: 21
+  market_exposure: 0.6109
+  win_rate_active_days: 0.5582
+  profit_factor: 1.2388
+
+**********************************************************************************************************************
+PREDICCIÓN FINAL SXR8 | Horizonte: 60 sesión/sesiones
+**********************************************************************************************************************
+Fecha del último dato:      2026-05-19
+Precio de cierre:           680.9400
+LogisticRegression          P(SUBE) =  49.63%
+RandomForest                P(SUBE) =  49.30%
+XGBoost                     P(SUBE) =  49.84%
+LSTM                        P(SUBE) =  52.11%
+ENSEMBLE P(SUBE):            49.72%
+ENSEMBLE P(BAJA):            50.28%
+SEÑAL:                      NEUTRAL / BAJA CONFIANZA
+CONFIANZA:                  BAJA
+SENTIMIENTO ACTUAL CONTEXTO: -0.000
+Nº NOTICIAS ACTUALES:       100
+SENTIMIENTO DENTRO MODELO:  NO
+**********************************************************************************************************************
+
+VALIDACIÓN DE TARGETS SOLAPADOS
+Horizonte: 60 | Holdout n=478 | n efectivo aprox.=8
+AUC fases no solapadas: 0.8346 ± 0.1658
+AUC bootstrap por bloques 95% CI: [0.7351, 0.9434]
+\nESTUDIO CON vs SIN SENTIMIENTO:
+NO EJECUTADO: el sentimiento histórico todavía no entra en el modelo. Se esperará a disponer de cobertura NLP real suficiente; no se simula sentimiento histórico con ceros.
+\nSHAP SXR8 60d: 478 muestras, 58 variables.
+\nTOP VARIABLES SHAP:
+              feature  mean_abs_shap  importance_pct  rank
+   ext_fedfunds_level       1.052875       16.610329     1
+         ma_50_vs_200       1.035259       16.332424     2
+       ext_us2y_level       0.995661       15.707716     3
+        ext_vix_level       0.502094        7.921118     4
+      close_vs_ma_200       0.327387        5.164909     5
+      ext_us10y_level       0.262904        4.147612     6
+                 macd       0.258002        4.070284     7
+       volatility_60d       0.222062        3.503289     8
+      close_vs_ma_100       0.163911        2.585885     9
+                month       0.146380        2.309316    10
+       volatility_45d       0.133263        2.102377    11
+ext_yield_curve_10y2y       0.108104        1.705463    12
+           return_30d       0.099759        1.573822    13
+          macd_signal       0.088704        1.399409    14
+  ext_us10y_change_1d       0.084150        1.327559    15
+       volatility_15d       0.069797        1.101130    16
+       close_vs_ma_15       0.068458        1.080009    17
+            macd_diff       0.054442        0.858887    18
+       volatility_20d       0.054352        0.857462    19
+               rsi_28       0.050647        0.799015    20
+       volatility_30d       0.047715        0.752766    21
+       volatility_10d       0.046515        0.733834    22
+           return_60d       0.046335        0.730982    23
+           return_15d       0.045270        0.714179    24
+       close_vs_ma_10       0.034992        0.552039    25
+
+======================================================================================================================
+ANÁLISIS AVANZADO: SXRV
+======================================================================================================================
+
+Preprocesando SXRV: data/raw\sxrv.csv
+
+PREPROCESAMIENTO / AUDITORÍA
+------------------------------------------------------------------------------------------
+ticker                                  : SXRV
+rows_original                           : 3909
+date_format_detected                    : %Y-%m-%d
+invalid_dates_removed                   : 0
+invalid_numeric_rows_removed            : 0
+duplicate_dates_removed                 : 0
+invalid_ohlc_rows_removed               : 0
+negative_volume_rows_removed            : 0
+rows_outside_requested_range_removed    : 1049
+rows_clean                              : 2860
+first_date                              : 2015-01-02
+last_date                               : 2026-05-19
+dates_monotonic                         : True
+remaining_duplicate_dates               : 0
+suspicious_return_rows                  : 0
+hard_return_limit_rows                  : 0
+large_calendar_gaps                     : 1
+max_abs_daily_return                    : 0.07956425813568657
+processed_file                          : data/processed\sxrv_clean.csv
+anomalies_file                          : resultados_tfm\preprocessing\sxrv_anomalies.csv
+------------------------------------------------------------------------------------------
+
+============================================================================================================
+HISTÓRICO MULTIFUENTE ALPHA VANTAGE + FINBERT: SXRV
+============================================================================================================
+Periodo:                   2018-01-01 -> 2026-05-19
+Familias de consulta:      4
+Tareas pendientes:         72
+Tareas completadas:        0
+Presupuesto ETF esta vez:  10 llamadas
+Presupuesto global usado:  1/20
+
+[SXRV] benchmark_qqq: 2018-01-01 -> 2018-06-29
+Alpha Vantage: We have detected your API key as QDYSXMB5TEWSZ0BL and our standard API rate limit is 25 requests per day. Please subscribe to any of the premium plans at https://www.alphavantage.co/premium/ to instantly remove all daily rate limits.
+Alpha Vantage ha alcanzado su cuota. El proceso queda guardado y continuará en la siguiente ejecución.
+FinBERT histórico: no hay artículos pendientes.
+Histórico diario FinBERT: data/news_sentiment\sxrv_sentiment.csv (1 días Alpha multifamilia).
+
+RESUMEN HISTÓRICO NLP
+Artículos relevantes:        1
+Tareas pendientes:           72
+Tareas completadas:          0
+Llamadas SXRV esta vez:  1
+Llamadas globales esta vez:  2
+
+============================================================================================================
+HISTÓRICO THE GUARDIAN + FINBERT: SXRV
+============================================================================================================
+Periodo:                   2015-01-01 -> 2026-05-19
+Familias de consulta:      4
+Tareas pendientes:         77
+Tareas completadas:        59
+Presupuesto esta ejecución:10 llamadas
+
+[Guardian SXRV] big_tech 2015-01-01 -> 2015-03-31 | page=3
+
+[Guardian SXRV] big_tech 2015-01-01 -> 2015-03-31 | page=4
+
+[Guardian SXRV] big_tech 2015-01-01 -> 2015-03-31 | page=5
+
+[Guardian SXRV] big_tech 2015-01-01 -> 2015-03-31 | page=6
+
+[Guardian SXRV] big_tech 2015-01-01 -> 2015-03-31 | page=7
+
+[Guardian SXRV] big_tech 2015-04-01 -> 2015-06-29 | page=1
+
+[Guardian SXRV] big_tech 2015-04-01 -> 2015-06-29 | page=2
+
+[Guardian SXRV] big_tech 2015-04-01 -> 2015-06-29 | page=3
+
+[Guardian SXRV] big_tech 2015-04-01 -> 2015-06-29 | page=4
+
+[Guardian SXRV] big_tech 2015-04-01 -> 2015-06-29 | page=5
+FinBERT Guardian: 495 artículos pendientes.
+
+RESUMEN GUARDIAN
+Artículos relevantes:  2959
+Tareas pendientes:     73
+Tareas completadas:    69
+Llamadas esta vez:     10
+Histórico multifuente SXRV: 2960 artículos únicos, 1930 días reales.
+Google News RSS SXRV: 100 titulares, 3 nuevos para FinBERT.
+Histórico FinBERT fusionado con histórico NLP: data/news_sentiment\sxrv_sentiment.csv (27 días FinBERT recientes).
+Sentimiento histórico SXRV: 1957 días reales de noticias, cobertura operativa=100.0%.
+NLP histórico SXRV: APTO PARA ENTRENAMIENTO (52 features NLP).
+
+VARIABLES EXTERNAS FRED
+------------------------------------------------------------------------------------------
+sp500           SP500        OK (2457 observaciones)
+nasdaq100       NASDAQ100    OK (2948 observaciones)
+vix             VIXCLS       OK (2976 observaciones)
+eurusd          DEXUSEU      OK (2927 observaciones)
+us10y           DGS10        OK (2930 observaciones)
+us2y            DGS2         OK (2930 observaciones)
+fedfunds        DFF          OK (4279 observaciones)
+------------------------------------------------------------------------------------------
+Cobertura media de features externas: 98.2%
+Lag anti-look-ahead: 1 sesión/sesiones
+Cache features: data/external\external_features_merged.csv
+------------------------------------------------------------------------------------------
+Variables externas: ACTIVADAS (16 features).
+NLP histórico: ACTIVADO dentro del modelo.
+Sentimiento en modelo predictivo: SÍ
+Sentimiento actual de contexto: +0.090 (100 noticias)
+
+----------------------------------------------------------------------------------------------------------------------
+SXRV - HORIZONTE 1 SESIÓN/SESIONES
+----------------------------------------------------------------------------------------------------------------------
+Semilla reproducible experimento: 1060741801
+Dataset supervisado: 2444 filas
+Train purgado:       1954 filas
+Gap/purge:           1 filas
+Holdout final:       489 filas
+Tasa de subidas train: 0.564
+Tasa de subidas test:  0.556
+
+Validación cruzada temporal: LogisticRegression
+  Fold 1: Acc=0.498 BalAcc=0.510 F1=0.508 AUC=0.499 Brier=0.382
+  Fold 2: Acc=0.437 BalAcc=0.482 F1=0.241 AUC=0.493 Brier=0.394
+  Fold 3: Acc=0.492 BalAcc=0.513 F1=0.498 AUC=0.530 Brier=0.277
+  Fold 4: Acc=0.535 BalAcc=0.535 F1=0.610 AUC=0.542 Brier=0.295
+  Fold 5: Acc=0.455 BalAcc=0.471 F1=0.404 AUC=0.454 Brier=0.294
+
+Validación cruzada temporal: RandomForest
+  Fold 1: Acc=0.508 BalAcc=0.503 F1=0.558 AUC=0.506 Brier=0.253
+  Fold 2: Acc=0.477 BalAcc=0.468 F1=0.538 AUC=0.447 Brier=0.258
+  Fold 3: Acc=0.498 BalAcc=0.469 F1=0.596 AUC=0.518 Brier=0.247
+  Fold 4: Acc=0.492 BalAcc=0.491 F1=0.629 AUC=0.528 Brier=0.252
+  Fold 5: Acc=0.495 BalAcc=0.524 F1=0.374 AUC=0.479 Brier=0.257
+
+Validación cruzada temporal: XGBoost
+  Fold 1: Acc=0.489 BalAcc=0.497 F1=0.509 AUC=0.513 Brier=0.291
+  Fold 2: Acc=0.434 BalAcc=0.442 F1=0.436 AUC=0.435 Brier=0.293
+  Fold 3: Acc=0.545 BalAcc=0.537 F1=0.604 AUC=0.571 Brier=0.249
+  Fold 4: Acc=0.502 BalAcc=0.501 F1=0.599 AUC=0.515 Brier=0.274
+  Fold 5: Acc=0.477 BalAcc=0.500 F1=0.388 AUC=0.492 Brier=0.278
+
+Resumen validación cruzada:
+             model  accuracy  balanced_accuracy  precision   recall       f1  roc_auc  log_loss    brier  positive_rate
+           XGBoost  0.489231           0.495208   0.556364 0.490139 0.507247 0.505085  0.756805 0.277070       0.563692
+LogisticRegression  0.483692           0.502161   0.555768 0.414105 0.452111 0.503687  0.996725 0.328280       0.563692
+      RandomForest  0.494154           0.490890   0.562422 0.561093 0.538969 0.495604  0.699691 0.253224       0.563692
+
+Pesos por validación (sin usar holdout):
+  LogisticRegression: 0.304
+  RandomForest: 0.355
+  XGBoost: 0.341
+Entrenando modelo final: LogisticRegression
+Entrenando modelo final: RandomForest
+Entrenando modelo final: XGBoost
+Entrenando LSTM para validación interna...
+LSTM validación interna: epochs=1, Acc=0.459, BalAcc=0.465, F1=0.468, AUC=0.427
+Entrenando LSTM final durante 1 epochs...
+LSTM holdout: Acc=0.505, BalAcc=0.538, F1=0.356, AUC=0.523
+
+Evaluación OUT-OF-SAMPLE (holdout temporal NO usado para pesos):
+             model  accuracy  balanced_accuracy  precision   recall       f1  roc_auc  log_loss    brier  positive_rate
+              LSTM  0.505112           0.537908   0.644231 0.246324 0.356383 0.523143  0.703150 0.254937       0.556237
+           XGBoost  0.466258           0.466175   0.522634 0.466912 0.493204 0.453798  0.740035 0.271526       0.556237
+      RandomForest  0.472393           0.469826   0.527559 0.492647 0.509506 0.448529  0.701379 0.254069       0.556237
+LogisticRegression  0.468303           0.462888   0.522556 0.511029 0.516729 0.446174  0.746370 0.274568       0.556237
+
+Pesos finales del ensemble:
+  LogisticRegression: 0.272
+  RandomForest: 0.318
+  XGBoost: 0.305
+  LSTM: 0.105
+
+ENSEMBLE OUT-OF-SAMPLE:
+  accuracy: 0.4847
+  balanced_accuracy: 0.4823
+  precision: 0.5394
+  recall: 0.5037
+  f1: 0.5209
+  roc_auc: 0.4378
+  log_loss: 0.7143
+  brier: 0.2604
+  positive_rate: 0.5562
+
+BASELINE (clase mayoritaria / probabilidad histórica):
+  accuracy: 0.5562
+  balanced_accuracy: 0.5000
+  precision: 0.5562
+  recall: 1.0000
+  f1: 0.7148
+  roc_auc: 0.5000
+  log_loss: 0.6869
+  brier: 0.2469
+  positive_rate: 0.5562
+
+MÉTRICAS FINANCIERAS:
+  strategy_total_return: -0.0136
+  buy_hold_total_return: 0.4178
+  strategy_annual_return: -0.0070
+  buy_hold_annual_return: 0.1971
+  strategy_volatility: 0.0784
+  buy_hold_volatility: 0.1987
+  strategy_sharpe: -0.0509
+  buy_hold_sharpe: 1.0051
+  strategy_sortino: -0.0250
+  strategy_max_drawdown: -0.1069
+  buy_hold_max_drawdown: -0.2669
+  trades: 42
+  market_exposure: 0.0573
+  win_rate_active_days: 0.4643
+  profit_factor: 0.9670
+
+**********************************************************************************************************************
+PREDICCIÓN FINAL SXRV | Horizonte: 1 sesión/sesiones
+**********************************************************************************************************************
+Fecha del último dato:      2026-05-19
+Precio de cierre:           1420.8000
+LogisticRegression          P(SUBE) =  70.50%
+RandomForest                P(SUBE) =  49.29%
+XGBoost                     P(SUBE) =  53.14%
+LSTM                        P(SUBE) =  49.36%
+ENSEMBLE P(SUBE):            56.24%
+ENSEMBLE P(BAJA):            43.76%
+SEÑAL:                      NEUTRAL / BAJA CONFIANZA
+CONFIANZA:                  BAJA
+SENTIMIENTO ACTUAL CONTEXTO: +0.090
+Nº NOTICIAS ACTUALES:       100
+SENTIMIENTO DENTRO MODELO:  SÍ
+**********************************************************************************************************************
+
+VALIDACIÓN DE TARGETS SOLAPADOS
+Horizonte: 1 | Holdout n=489 | n efectivo aprox.=489
+AUC fases no solapadas: 0.4378 ± 0.0000
+AUC bootstrap por bloques 95% CI: [0.3927, 0.4905]
+\n======================================================================================================================
+ABLACIÓN NLP SXRV - HORIZONTE 1d (mismas fechas y holdout)
+======================================================================================================================
+\nVARIANTE: SIN_SENTIMIENTO
+
+Validación cruzada temporal: LogisticRegression
+  Fold 1: Acc=0.425 BalAcc=0.486 F1=0.197 AUC=0.499 Brier=0.408
+  Fold 2: Acc=0.462 BalAcc=0.482 F1=0.415 AUC=0.497 Brier=0.333
+  Fold 3: Acc=0.563 BalAcc=0.542 F1=0.640 AUC=0.562 Brier=0.246
+  Fold 4: Acc=0.535 BalAcc=0.535 F1=0.602 AUC=0.539 Brier=0.285
+  Fold 5: Acc=0.523 BalAcc=0.531 F1=0.520 AUC=0.532 Brier=0.257
+
+Validación cruzada temporal: RandomForest
+  Fold 1: Acc=0.535 BalAcc=0.535 F1=0.575 AUC=0.533 Brier=0.251
+  Fold 2: Acc=0.511 BalAcc=0.494 F1=0.589 AUC=0.468 Brier=0.255
+  Fold 3: Acc=0.517 BalAcc=0.502 F1=0.590 AUC=0.526 Brier=0.248
+  Fold 4: Acc=0.492 BalAcc=0.491 F1=0.619 AUC=0.523 Brier=0.255
+  Fold 5: Acc=0.474 BalAcc=0.518 F1=0.219 AUC=0.508 Brier=0.256
+
+Validación cruzada temporal: XGBoost
+  Fold 1: Acc=0.505 BalAcc=0.527 F1=0.482 AUC=0.539 Brier=0.294
+  Fold 2: Acc=0.465 BalAcc=0.459 F1=0.514 AUC=0.460 Brier=0.289
+  Fold 3: Acc=0.548 BalAcc=0.549 F1=0.593 AUC=0.569 Brier=0.251
+  Fold 4: Acc=0.474 BalAcc=0.473 F1=0.563 AUC=0.517 Brier=0.275
+  Fold 5: Acc=0.498 BalAcc=0.529 F1=0.366 AUC=0.521 Brier=0.271
+Entrenando modelo final: LogisticRegression
+Entrenando modelo final: RandomForest
+Entrenando modelo final: XGBoost
+Entrenando LSTM para validación interna...
+LSTM validación interna: epochs=3, Acc=0.435, BalAcc=0.500, F1=0.000, AUC=0.477
+Entrenando LSTM final durante 3 epochs...
+LSTM holdout: Acc=0.468, BalAcc=0.510, F1=0.226, AUC=0.506
+ENSEMBLE SIN_SENTIMIENTO: AUC=0.4306 | BalAcc=0.4541 | F1=0.5111 | Brier=0.2619
+\nVARIANTE: CON_SENTIMIENTO
+
+Validación cruzada temporal: LogisticRegression
+  Fold 1: Acc=0.498 BalAcc=0.510 F1=0.508 AUC=0.499 Brier=0.382
+  Fold 2: Acc=0.437 BalAcc=0.482 F1=0.241 AUC=0.493 Brier=0.394
+  Fold 3: Acc=0.492 BalAcc=0.513 F1=0.498 AUC=0.530 Brier=0.277
+  Fold 4: Acc=0.535 BalAcc=0.535 F1=0.610 AUC=0.542 Brier=0.295
+  Fold 5: Acc=0.455 BalAcc=0.471 F1=0.404 AUC=0.454 Brier=0.294
+
+Validación cruzada temporal: RandomForest
+  Fold 1: Acc=0.508 BalAcc=0.503 F1=0.558 AUC=0.506 Brier=0.253
+  Fold 2: Acc=0.477 BalAcc=0.468 F1=0.538 AUC=0.447 Brier=0.258
+  Fold 3: Acc=0.498 BalAcc=0.469 F1=0.596 AUC=0.518 Brier=0.247
+  Fold 4: Acc=0.492 BalAcc=0.491 F1=0.629 AUC=0.528 Brier=0.252
+  Fold 5: Acc=0.495 BalAcc=0.524 F1=0.374 AUC=0.479 Brier=0.257
+
+Validación cruzada temporal: XGBoost
+  Fold 1: Acc=0.489 BalAcc=0.497 F1=0.509 AUC=0.513 Brier=0.291
+  Fold 2: Acc=0.434 BalAcc=0.442 F1=0.436 AUC=0.435 Brier=0.293
+  Fold 3: Acc=0.545 BalAcc=0.537 F1=0.604 AUC=0.571 Brier=0.249
+  Fold 4: Acc=0.502 BalAcc=0.501 F1=0.599 AUC=0.515 Brier=0.274
+  Fold 5: Acc=0.477 BalAcc=0.500 F1=0.388 AUC=0.492 Brier=0.278
+Entrenando modelo final: LogisticRegression
+Entrenando modelo final: RandomForest
+Entrenando modelo final: XGBoost
+Entrenando LSTM para validación interna...
+LSTM validación interna: epochs=1, Acc=0.459, BalAcc=0.465, F1=0.468, AUC=0.427
+Entrenando LSTM final durante 1 epochs...
+LSTM holdout: Acc=0.505, BalAcc=0.538, F1=0.356, AUC=0.523
+ENSEMBLE CON_SENTIMIENTO: AUC=0.4378 | BalAcc=0.4823 | F1=0.5209 | Brier=0.2604
+\nDELTA CON - SIN SENTIMIENTO:
+             model  delta_roc_auc  delta_balanced_accuracy  delta_f1  delta_brier
+LogisticRegression      -0.002914                 0.008827 -0.022954     0.002325
+      RandomForest       0.000288                 0.005955  0.017258    -0.001257
+           XGBoost      -0.000169                -0.015197 -0.010702     0.000943
+              LSTM       0.016959                 0.027963  0.130193     0.000375
+          ENSEMBLE       0.007150                 0.028116  0.009801    -0.001506
+\nSHAP SXRV 1d: 489 muestras, 110 variables.
+\nTOP VARIABLES SHAP:
+                     feature  mean_abs_shap  importance_pct  rank
+sentiment_negative_ratio_60d       0.074481        3.481538     1
+        ext_eurusd_return_5d       0.066949        3.129472     2
+    sentiment_momentum_20_60       0.063175        2.953058     3
+        ext_eurusd_return_1d       0.052943        2.474771     4
+    sentiment_momentum_15_45       0.051626        2.413219     5
+     sentiment_momentum_5_20       0.050211        2.347035     6
+                   range_pct       0.049842        2.329799     7
+          ext_us2y_change_1d       0.049447        2.311345     8
+              news_count_10d       0.047887        2.238416     9
+            volume_change_1d       0.047042        2.198923    10
+             intraday_return       0.046549        2.175865    11
+             ext_us10y_level       0.043652        2.040444    12
+                  return_60d       0.041471        1.938496    13
+               volatility_5d       0.039586        1.850390    14
+             close_vs_ma_100       0.038222        1.786664    15
+           ext_vix_change_1d       0.037435        1.749858    16
+              news_count_30d       0.037123        1.735267    17
+                  return_15d       0.036922        1.725891    18
+                   return_1d       0.036049        1.685081    19
+           ext_vix_change_5d       0.034562        1.615557    20
+              volatility_45d       0.034179        1.597659    21
+              close_vs_ma_30       0.034127        1.595220    22
+                ma_50_vs_200       0.034107        1.594286    23
+ sentiment_positive_ratio_5d       0.034002        1.589372    24
+           sentiment_mean_5d       0.033878        1.583577    25
+
+----------------------------------------------------------------------------------------------------------------------
+SXRV - HORIZONTE 5 SESIÓN/SESIONES
+----------------------------------------------------------------------------------------------------------------------
+Semilla reproducible experimento: 474795243
+Dataset supervisado: 2440 filas
+Train purgado:       1947 filas
+Gap/purge:           5 filas
+Holdout final:       488 filas
+Tasa de subidas train: 0.607
+Tasa de subidas test:  0.607
+
+Validación cruzada temporal: LogisticRegression
+  Fold 1: Acc=0.389 BalAcc=0.501 F1=0.238 AUC=0.529 Brier=0.540
+  Fold 2: Acc=0.454 BalAcc=0.456 F1=0.512 AUC=0.457 Brier=0.449
+  Fold 3: Acc=0.463 BalAcc=0.532 F1=0.396 AUC=0.542 Brier=0.327
+  Fold 4: Acc=0.478 BalAcc=0.495 F1=0.576 AUC=0.518 Brier=0.388
+  Fold 5: Acc=0.448 BalAcc=0.527 F1=0.325 AUC=0.564 Brier=0.321
+
+Validación cruzada temporal: RandomForest
+  Fold 1: Acc=0.515 BalAcc=0.532 F1=0.565 AUC=0.544 Brier=0.255
+  Fold 2: Acc=0.599 BalAcc=0.556 F1=0.693 AUC=0.507 Brier=0.255
+  Fold 3: Acc=0.645 BalAcc=0.580 F1=0.746 AUC=0.561 Brier=0.236
+  Fold 4: Acc=0.460 BalAcc=0.485 F1=0.607 AUC=0.451 Brier=0.287
+  Fold 5: Acc=0.410 BalAcc=0.506 F1=0.214 AUC=0.548 Brier=0.267
+
+Validación cruzada temporal: XGBoost
+  Fold 1: Acc=0.528 BalAcc=0.539 F1=0.583 AUC=0.559 Brier=0.303
+  Fold 2: Acc=0.525 BalAcc=0.529 F1=0.582 AUC=0.492 Brier=0.321
+  Fold 3: Acc=0.642 BalAcc=0.579 F1=0.742 AUC=0.584 Brier=0.252
+  Fold 4: Acc=0.448 BalAcc=0.465 F1=0.558 AUC=0.436 Brier=0.355
+  Fold 5: Acc=0.398 BalAcc=0.498 F1=0.177 AUC=0.566 Brier=0.345
+
+Resumen validación cruzada:
+             model  accuracy  balanced_accuracy  precision   recall       f1  roc_auc  log_loss    brier  positive_rate
+           XGBoost  0.508025           0.522007   0.622454 0.534864 0.528418 0.527312  0.882584 0.315167       0.606173
+      RandomForest  0.525926           0.531766   0.632941 0.604446 0.565073 0.522076  0.715135 0.259880       0.606173
+LogisticRegression  0.446296           0.502280   0.622766 0.367551 0.409532 0.521830  1.649250 0.405134       0.606173
+
+Pesos por validación (sin usar holdout):
+  LogisticRegression: 0.268
+  RandomForest: 0.377
+  XGBoost: 0.356
+Entrenando modelo final: LogisticRegression
+Entrenando modelo final: RandomForest
+Entrenando modelo final: XGBoost
+Entrenando LSTM para validación interna...
+LSTM validación interna: epochs=1, Acc=0.423, BalAcc=0.494, F1=0.321, AUC=0.547
+Entrenando LSTM final durante 1 epochs...
+LSTM holdout: Acc=0.447, BalAcc=0.501, F1=0.351, AUC=0.517
+
+Evaluación OUT-OF-SAMPLE (holdout temporal NO usado para pesos):
+             model  accuracy  balanced_accuracy  precision   recall       f1  roc_auc  log_loss    brier  positive_rate
+      RandomForest  0.600410           0.554406   0.642254 0.770270 0.700461 0.546699  0.677777 0.242354       0.606557
+LogisticRegression  0.557377           0.528998   0.628205 0.662162 0.644737 0.545591  0.745540 0.265753       0.606557
+              LSTM  0.446721           0.500915   0.608333 0.246622 0.350962 0.517349  0.709097 0.257899       0.606557
+           XGBoost  0.497951           0.494651   0.601594 0.510135 0.552102 0.487701  0.735182 0.268723       0.606557
+
+Pesos finales del ensemble:
+  LogisticRegression: 0.242
+  RandomForest: 0.341
+  XGBoost: 0.322
+  LSTM: 0.094
+
+ENSEMBLE OUT-OF-SAMPLE:
+  accuracy: 0.5676
+  balanced_accuracy: 0.5493
+  precision: 0.6460
+  recall: 0.6351
+  f1: 0.6405
+  roc_auc: 0.5358
+  log_loss: 0.6937
+  brier: 0.2498
+  positive_rate: 0.6066
+
+BASELINE (clase mayoritaria / probabilidad histórica):
+  accuracy: 0.6066
+  balanced_accuracy: 0.5000
+  precision: 0.6066
+  recall: 1.0000
+  f1: 0.7551
+  roc_auc: 0.5000
+  log_loss: 0.6703
+  brier: 0.2386
+  positive_rate: 0.6066
+
+MÉTRICAS FINANCIERAS:
+  strategy_total_return: 0.1248
+  buy_hold_total_return: 0.4491
+  strategy_annual_return: 0.0626
+  buy_hold_annual_return: 0.2111
+  strategy_volatility: 0.1240
+  buy_hold_volatility: 0.1986
+  strategy_sharpe: 0.5517
+  buy_hold_sharpe: 1.0644
+  strategy_sortino: 0.4198
+  strategy_max_drawdown: -0.1334
+  buy_hold_max_drawdown: -0.2669
+  trades: 68
+  market_exposure: 0.2480
+  win_rate_active_days: 0.5124
+  profit_factor: 1.2212
+
+**********************************************************************************************************************
+PREDICCIÓN FINAL SXRV | Horizonte: 5 sesión/sesiones
+**********************************************************************************************************************
+Fecha del último dato:      2026-05-19
+Precio de cierre:           1420.8000
+LogisticRegression          P(SUBE) =   0.10%
+RandomForest                P(SUBE) =  50.01%
+XGBoost                     P(SUBE) =  33.32%
+LSTM                        P(SUBE) =  40.44%
+ENSEMBLE P(SUBE):            31.63%
+ENSEMBLE P(BAJA):            68.37%
+SEÑAL:                      BAJADA / BAJISTA
+CONFIANZA:                  MODERADA
+SENTIMIENTO ACTUAL CONTEXTO: +0.090
+Nº NOTICIAS ACTUALES:       100
+SENTIMIENTO DENTRO MODELO:  SÍ
+**********************************************************************************************************************
+
+VALIDACIÓN DE TARGETS SOLAPADOS
+Horizonte: 5 | Holdout n=488 | n efectivo aprox.=98
+AUC fases no solapadas: 0.5359 ± 0.0331
+AUC bootstrap por bloques 95% CI: [0.4618, 0.6184]
+\n======================================================================================================================
+ABLACIÓN NLP SXRV - HORIZONTE 5d (mismas fechas y holdout)
+======================================================================================================================
+\nVARIANTE: SIN_SENTIMIENTO
+
+Validación cruzada temporal: LogisticRegression
+  Fold 1: Acc=0.343 BalAcc=0.496 F1=0.018 AUC=0.573 Brier=0.635
+  Fold 2: Acc=0.568 BalAcc=0.507 F1=0.682 AUC=0.489 Brier=0.331
+  Fold 3: Acc=0.540 BalAcc=0.593 F1=0.524 AUC=0.588 Brier=0.270
+  Fold 4: Acc=0.500 BalAcc=0.513 F1=0.578 AUC=0.560 Brier=0.340
+  Fold 5: Acc=0.466 BalAcc=0.547 F1=0.347 AUC=0.572 Brier=0.307
+
+Validación cruzada temporal: RandomForest
+  Fold 1: Acc=0.503 BalAcc=0.525 F1=0.546 AUC=0.535 Brier=0.271
+  Fold 2: Acc=0.580 BalAcc=0.532 F1=0.682 AUC=0.508 Brier=0.252
+  Fold 3: Acc=0.630 BalAcc=0.569 F1=0.731 AUC=0.560 Brier=0.238
+  Fold 4: Acc=0.503 BalAcc=0.525 F1=0.625 AUC=0.487 Brier=0.281
+  Fold 5: Acc=0.389 BalAcc=0.491 F1=0.154 AUC=0.523 Brier=0.278
+
+Validación cruzada temporal: XGBoost
+  Fold 1: Acc=0.506 BalAcc=0.536 F1=0.540 AUC=0.560 Brier=0.334
+  Fold 2: Acc=0.546 BalAcc=0.525 F1=0.630 AUC=0.521 Brier=0.298
+  Fold 3: Acc=0.651 BalAcc=0.601 F1=0.741 AUC=0.599 Brier=0.239
+  Fold 4: Acc=0.478 BalAcc=0.494 F1=0.574 AUC=0.477 Brier=0.336
+  Fold 5: Acc=0.380 BalAcc=0.492 F1=0.090 AUC=0.522 Brier=0.383
+Entrenando modelo final: LogisticRegression
+Entrenando modelo final: RandomForest
+Entrenando modelo final: XGBoost
+Entrenando LSTM para validación interna...
+LSTM validación interna: epochs=1, Acc=0.536, BalAcc=0.470, F1=0.663, AUC=0.511
+Entrenando LSTM final durante 1 epochs...
+LSTM holdout: Acc=0.502, BalAcc=0.469, F1=0.604, AUC=0.490
+ENSEMBLE SIN_SENTIMIENTO: AUC=0.5374 | BalAcc=0.5554 | F1=0.6721 | Brier=0.2456
+\nVARIANTE: CON_SENTIMIENTO
+
+Validación cruzada temporal: LogisticRegression
+  Fold 1: Acc=0.389 BalAcc=0.501 F1=0.238 AUC=0.529 Brier=0.540
+  Fold 2: Acc=0.454 BalAcc=0.456 F1=0.512 AUC=0.457 Brier=0.449
+  Fold 3: Acc=0.463 BalAcc=0.532 F1=0.396 AUC=0.542 Brier=0.327
+  Fold 4: Acc=0.478 BalAcc=0.495 F1=0.576 AUC=0.518 Brier=0.388
+  Fold 5: Acc=0.448 BalAcc=0.527 F1=0.325 AUC=0.564 Brier=0.321
+
+Validación cruzada temporal: RandomForest
+  Fold 1: Acc=0.515 BalAcc=0.532 F1=0.565 AUC=0.544 Brier=0.255
+  Fold 2: Acc=0.599 BalAcc=0.556 F1=0.693 AUC=0.507 Brier=0.255
+  Fold 3: Acc=0.645 BalAcc=0.580 F1=0.746 AUC=0.561 Brier=0.236
+  Fold 4: Acc=0.460 BalAcc=0.485 F1=0.607 AUC=0.451 Brier=0.287
+  Fold 5: Acc=0.410 BalAcc=0.506 F1=0.214 AUC=0.548 Brier=0.267
+
+Validación cruzada temporal: XGBoost
+  Fold 1: Acc=0.528 BalAcc=0.539 F1=0.583 AUC=0.559 Brier=0.303
+  Fold 2: Acc=0.525 BalAcc=0.529 F1=0.582 AUC=0.492 Brier=0.321
+  Fold 3: Acc=0.642 BalAcc=0.579 F1=0.742 AUC=0.584 Brier=0.252
+  Fold 4: Acc=0.448 BalAcc=0.465 F1=0.558 AUC=0.436 Brier=0.355
+  Fold 5: Acc=0.398 BalAcc=0.498 F1=0.177 AUC=0.566 Brier=0.345
+Entrenando modelo final: LogisticRegression
+Entrenando modelo final: RandomForest
+Entrenando modelo final: XGBoost
+Entrenando LSTM para validación interna...
+LSTM validación interna: epochs=1, Acc=0.423, BalAcc=0.494, F1=0.321, AUC=0.547
+Entrenando LSTM final durante 1 epochs...
+LSTM holdout: Acc=0.447, BalAcc=0.501, F1=0.351, AUC=0.517
+ENSEMBLE CON_SENTIMIENTO: AUC=0.5358 | BalAcc=0.5493 | F1=0.6405 | Brier=0.2498
+\nDELTA CON - SIN SENTIMIENTO:
+             model  delta_roc_auc  delta_balanced_accuracy  delta_f1  delta_brier
+LogisticRegression      -0.019215                -0.023438 -0.009687     0.008277
+      RandomForest       0.014833                 0.065315  0.045024    -0.000233
+           XGBoost      -0.014200                -0.006334 -0.027403     0.002866
+              LSTM       0.027062                 0.032165 -0.252627     0.008440
+          ENSEMBLE      -0.001601                -0.006053 -0.031533     0.004260
+\nSHAP SXRV 5d: 488 muestras, 110 variables.
+\nTOP VARIABLES SHAP:
+                     feature  mean_abs_shap  importance_pct  rank
+sentiment_positive_ratio_60d       0.163090        5.391858     1
+              volatility_45d       0.158962        5.255359     2
+             ext_us10y_level       0.137697        4.552340     3
+                       month       0.132916        4.394277     4
+                ma_50_vs_200       0.128930        4.262509     5
+             close_vs_ma_100       0.117025        3.868923     6
+              ext_us2y_level       0.087930        2.907026     7
+             close_vs_ma_200       0.085306        2.820267     8
+sentiment_negative_ratio_30d       0.072251        2.388671     9
+sentiment_positive_ratio_45d       0.068763        2.273358    10
+              volatility_60d       0.068360        2.260032    11
+sentiment_negative_ratio_60d       0.065462        2.164207    12
+                 ma_20_vs_50       0.064903        2.145746    13
+                        macd       0.061583        2.035980    14
+    sentiment_momentum_20_60       0.060006        1.983819    15
+              close_vs_ma_60       0.059996        1.983491    16
+          sentiment_mean_20d       0.057854        1.912682    17
+          ext_fedfunds_level       0.053391        1.765121    18
+                  return_60d       0.051271        1.695063    19
+                  return_20d       0.045176        1.493542    20
+    sentiment_momentum_10_30       0.038642        1.277528    21
+              news_count_60d       0.037663        1.245155    22
+sentiment_positive_ratio_30d       0.034971        1.156146    23
+          bollinger_position       0.033685        1.113635    24
+          sentiment_mean_60d       0.032839        1.085667    25
+
+----------------------------------------------------------------------------------------------------------------------
+SXRV - HORIZONTE 10 SESIÓN/SESIONES
+----------------------------------------------------------------------------------------------------------------------
+Semilla reproducible experimento: 529506331
+Dataset supervisado: 2435 filas
+Train purgado:       1938 filas
+Gap/purge:           10 filas
+Holdout final:       487 filas
+Tasa de subidas train: 0.647
+Tasa de subidas test:  0.630
+
+Validación cruzada temporal: LogisticRegression
+  Fold 1: Acc=0.458 BalAcc=0.534 F1=0.437 AUC=0.532 Brier=0.466
+  Fold 2: Acc=0.483 BalAcc=0.471 F1=0.577 AUC=0.509 Brier=0.430
+  Fold 3: Acc=0.381 BalAcc=0.535 F1=0.259 AUC=0.535 Brier=0.493
+  Fold 4: Acc=0.464 BalAcc=0.488 F1=0.587 AUC=0.497 Brier=0.442
+  Fold 5: Acc=0.378 BalAcc=0.505 F1=0.295 AUC=0.565 Brier=0.426
+
+Validación cruzada temporal: RandomForest
+  Fold 1: Acc=0.641 BalAcc=0.586 F1=0.736 AUC=0.597 Brier=0.229
+  Fold 2: Acc=0.598 BalAcc=0.503 F1=0.720 AUC=0.499 Brier=0.240
+  Fold 3: Acc=0.712 BalAcc=0.525 F1=0.828 AUC=0.582 Brier=0.204
+  Fold 4: Acc=0.477 BalAcc=0.499 F1=0.591 AUC=0.465 Brier=0.294
+  Fold 5: Acc=0.272 BalAcc=0.451 F1=0.008 AUC=0.491 Brier=0.331
+
+Validación cruzada temporal: XGBoost
+  Fold 1: Acc=0.607 BalAcc=0.584 F1=0.689 AUC=0.561 Brier=0.266
+  Fold 2: Acc=0.523 BalAcc=0.503 F1=0.621 AUC=0.503 Brier=0.293
+  Fold 3: Acc=0.709 BalAcc=0.583 F1=0.812 AUC=0.574 Brier=0.215
+  Fold 4: Acc=0.409 BalAcc=0.424 F1=0.499 AUC=0.366 Brier=0.407
+  Fold 5: Acc=0.300 BalAcc=0.482 F1=0.050 AUC=0.550 Brier=0.519
+
+Resumen validación cruzada:
+             model  accuracy  balanced_accuracy  precision   recall       f1  roc_auc  log_loss    brier  positive_rate
+LogisticRegression  0.432817           0.506769   0.677821 0.394678 0.431124 0.527490  1.807943 0.451634       0.648916
+      RandomForest  0.539938           0.512613   0.540450 0.656708 0.576705 0.527018  0.715963 0.259656       0.648916
+           XGBoost  0.509598           0.515091   0.619417 0.551311 0.534257 0.510892  0.991383 0.340096       0.648916
+
+Pesos por validación (sin usar holdout):
+  LogisticRegression: 0.289
+  RandomForest: 0.377
+  XGBoost: 0.335
+Entrenando modelo final: LogisticRegression
+Entrenando modelo final: RandomForest
+Entrenando modelo final: XGBoost
+Entrenando LSTM para validación interna...
+LSTM validación interna: epochs=3, Acc=0.612, BalAcc=0.563, F1=0.712, AUC=0.575
+Entrenando LSTM final durante 3 epochs...
+LSTM holdout: Acc=0.550, BalAcc=0.536, F1=0.623, AUC=0.539
+
+Evaluación OUT-OF-SAMPLE (holdout temporal NO usado para pesos):
+             model  accuracy  balanced_accuracy  precision   recall       f1  roc_auc  log_loss    brier  positive_rate
+LogisticRegression  0.583162           0.514251   0.639037 0.778502 0.701909 0.558035  0.805721 0.270603        0.63039
+              LSTM  0.550308           0.536455   0.660584 0.589577 0.623064 0.538545  0.690684 0.248724        0.63039
+      RandomForest  0.613963           0.551321   0.662125 0.791531 0.721068 0.523815  0.667984 0.238590        0.63039
+           XGBoost  0.494867           0.492481   0.623482 0.501629 0.555957 0.504488  0.725691 0.265229        0.63039
+
+Pesos finales del ensemble:
+  LogisticRegression: 0.234
+  RandomForest: 0.306
+  XGBoost: 0.272
+  LSTM: 0.188
+
+ENSEMBLE OUT-OF-SAMPLE:
+  accuracy: 0.5626
+  balanced_accuracy: 0.5106
+  precision: 0.6374
+  recall: 0.7101
+  f1: 0.6718
+  roc_auc: 0.5346
+  log_loss: 0.6735
+  brier: 0.2409
+  positive_rate: 0.6304
+
+BASELINE (clase mayoritaria / probabilidad histórica):
+  accuracy: 0.6304
+  balanced_accuracy: 0.5000
+  precision: 0.6304
+  recall: 1.0000
+  f1: 0.7733
+  roc_auc: 0.5000
+  log_loss: 0.6593
+  brier: 0.2333
+  positive_rate: 0.6304
+
+MÉTRICAS FINANCIERAS:
+  strategy_total_return: 0.0659
+  buy_hold_total_return: 0.3855
+  strategy_annual_return: 0.0336
+  buy_hold_annual_return: 0.1838
+  strategy_volatility: 0.1375
+  buy_hold_volatility: 0.1990
+  strategy_sharpe: 0.3091
+  buy_hold_sharpe: 0.9478
+  strategy_sortino: 0.2716
+  strategy_max_drawdown: -0.1563
+  buy_hold_max_drawdown: -0.2669
+  trades: 40
+  market_exposure: 0.3860
+  win_rate_active_days: 0.5000
+  profit_factor: 1.0974
+
+**********************************************************************************************************************
+PREDICCIÓN FINAL SXRV | Horizonte: 10 sesión/sesiones
+**********************************************************************************************************************
+Fecha del último dato:      2026-05-19
+Precio de cierre:           1420.8000
+LogisticRegression          P(SUBE) =   0.18%
+RandomForest                P(SUBE) =  53.15%
+XGBoost                     P(SUBE) =  44.47%
+LSTM                        P(SUBE) =  36.05%
+ENSEMBLE P(SUBE):            35.16%
+ENSEMBLE P(BAJA):            64.84%
+SEÑAL:                      BAJADA / BAJISTA
+CONFIANZA:                  MODERADA
+SENTIMIENTO ACTUAL CONTEXTO: +0.090
+Nº NOTICIAS ACTUALES:       100
+SENTIMIENTO DENTRO MODELO:  SÍ
+**********************************************************************************************************************
+
+VALIDACIÓN DE TARGETS SOLAPADOS
+Horizonte: 10 | Holdout n=487 | n efectivo aprox.=49
+AUC fases no solapadas: 0.5343 ± 0.0517
+AUC bootstrap por bloques 95% CI: [0.4312, 0.6382]
+\n======================================================================================================================
+ABLACIÓN NLP SXRV - HORIZONTE 10d (mismas fechas y holdout)
+======================================================================================================================
+\nVARIANTE: SIN_SENTIMIENTO
+
+Validación cruzada temporal: LogisticRegression
+  Fold 1: Acc=0.517 BalAcc=0.619 F1=0.473 AUC=0.706 Brier=0.387
+  Fold 2: Acc=0.536 BalAcc=0.484 F1=0.650 AUC=0.541 Brier=0.337
+  Fold 3: Acc=0.573 BalAcc=0.561 F1=0.660 AUC=0.558 Brier=0.275
+  Fold 4: Acc=0.464 BalAcc=0.487 F1=0.583 AUC=0.594 Brier=0.398
+  Fold 5: Acc=0.387 BalAcc=0.503 F1=0.327 AUC=0.535 Brier=0.390
+
+Validación cruzada temporal: RandomForest
+  Fold 1: Acc=0.594 BalAcc=0.575 F1=0.677 AUC=0.577 Brier=0.240
+  Fold 2: Acc=0.613 BalAcc=0.511 F1=0.735 AUC=0.516 Brier=0.233
+  Fold 3: Acc=0.728 BalAcc=0.554 F1=0.835 AUC=0.592 Brier=0.205
+  Fold 4: Acc=0.523 BalAcc=0.540 F1=0.603 AUC=0.490 Brier=0.291
+  Fold 5: Acc=0.276 BalAcc=0.453 F1=0.017 AUC=0.442 Brier=0.363
+
+Validación cruzada temporal: XGBoost
+  Fold 1: Acc=0.625 BalAcc=0.569 F1=0.724 AUC=0.557 Brier=0.270
+  Fold 2: Acc=0.613 BalAcc=0.566 F1=0.713 AUC=0.556 Brier=0.272
+  Fold 3: Acc=0.718 BalAcc=0.589 F1=0.819 AUC=0.589 Brier=0.212
+  Fold 4: Acc=0.464 BalAcc=0.482 F1=0.558 AUC=0.409 Brier=0.374
+  Fold 5: Acc=0.291 BalAcc=0.485 F1=0.000 AUC=0.521 Brier=0.545
+Entrenando modelo final: LogisticRegression
+Entrenando modelo final: RandomForest
+Entrenando modelo final: XGBoost
+Entrenando LSTM para validación interna...
+LSTM validación interna: epochs=1, Acc=0.395, BalAcc=0.435, F1=0.443, AUC=0.415
+Entrenando LSTM final durante 1 epochs...
+LSTM holdout: Acc=0.513, BalAcc=0.593, F1=0.426, AUC=0.586
+ENSEMBLE SIN_SENTIMIENTO: AUC=0.5723 | BalAcc=0.5614 | F1=0.7410 | Brier=0.2315
+\nVARIANTE: CON_SENTIMIENTO
+
+Validación cruzada temporal: LogisticRegression
+  Fold 1: Acc=0.458 BalAcc=0.534 F1=0.437 AUC=0.532 Brier=0.466
+  Fold 2: Acc=0.483 BalAcc=0.471 F1=0.577 AUC=0.509 Brier=0.430
+  Fold 3: Acc=0.381 BalAcc=0.535 F1=0.259 AUC=0.535 Brier=0.493
+  Fold 4: Acc=0.464 BalAcc=0.488 F1=0.587 AUC=0.497 Brier=0.442
+  Fold 5: Acc=0.378 BalAcc=0.505 F1=0.295 AUC=0.565 Brier=0.426
+
+Validación cruzada temporal: RandomForest
+  Fold 1: Acc=0.641 BalAcc=0.586 F1=0.736 AUC=0.597 Brier=0.229
+  Fold 2: Acc=0.598 BalAcc=0.503 F1=0.720 AUC=0.499 Brier=0.240
+  Fold 3: Acc=0.712 BalAcc=0.525 F1=0.828 AUC=0.582 Brier=0.204
+  Fold 4: Acc=0.477 BalAcc=0.499 F1=0.591 AUC=0.465 Brier=0.294
+  Fold 5: Acc=0.272 BalAcc=0.451 F1=0.008 AUC=0.491 Brier=0.331
+
+Validación cruzada temporal: XGBoost
+  Fold 1: Acc=0.607 BalAcc=0.584 F1=0.689 AUC=0.561 Brier=0.266
+  Fold 2: Acc=0.523 BalAcc=0.503 F1=0.621 AUC=0.503 Brier=0.293
+  Fold 3: Acc=0.709 BalAcc=0.583 F1=0.812 AUC=0.574 Brier=0.215
+  Fold 4: Acc=0.409 BalAcc=0.424 F1=0.499 AUC=0.366 Brier=0.407
+  Fold 5: Acc=0.300 BalAcc=0.482 F1=0.050 AUC=0.550 Brier=0.519
+Entrenando modelo final: LogisticRegression
+Entrenando modelo final: RandomForest
+Entrenando modelo final: XGBoost
+Entrenando LSTM para validación interna...
+LSTM validación interna: epochs=3, Acc=0.612, BalAcc=0.563, F1=0.712, AUC=0.575
+Entrenando LSTM final durante 3 epochs...
+LSTM holdout: Acc=0.550, BalAcc=0.536, F1=0.623, AUC=0.539
+ENSEMBLE CON_SENTIMIENTO: AUC=0.5346 | BalAcc=0.5106 | F1=0.6718 | Brier=0.2409
+\nDELTA CON - SIN SENTIMIENTO:
+             model  delta_roc_auc  delta_balanced_accuracy  delta_f1  delta_brier
+LogisticRegression      -0.039251                -0.041386 -0.042742     0.027184
+      RandomForest      -0.058125                -0.010161 -0.033861     0.003505
+           XGBoost      -0.016992                 0.010722 -0.032479     0.006920
+              LSTM      -0.047430                -0.056868  0.196914    -0.003779
+          ENSEMBLE      -0.037749                -0.050778 -0.069152     0.009400
+\nSHAP SXRV 10d: 487 muestras, 110 variables.
+\nTOP VARIABLES SHAP:
+                     feature  mean_abs_shap  importance_pct  rank
+             ext_us10y_level       0.223595        6.041808     1
+              ext_us2y_level       0.201772        5.452127     2
+sentiment_positive_ratio_60d       0.174394        4.712333     3
+                ma_50_vs_200       0.170039        4.594655     4
+              volatility_60d       0.162497        4.390872     5
+          ext_fedfunds_level       0.161934        4.375659     6
+                 macd_signal       0.140169        3.787543     7
+                       month       0.135042        3.648985     8
+              news_count_60d       0.106291        2.872105     9
+             close_vs_ma_100       0.092698        2.504802    10
+              volatility_30d       0.088195        2.383128    11
+sentiment_negative_ratio_60d       0.086242        2.330361    12
+                   macd_diff       0.081861        2.211993    13
+sentiment_negative_ratio_45d       0.081821        2.210912    14
+                  return_60d       0.079960        2.160616    15
+              volatility_20d       0.079513        2.148531    16
+                  return_45d       0.071682        1.936943    17
+    sentiment_momentum_15_45       0.071518        1.932495    18
+             close_vs_ma_200       0.069602        1.880733    19
+              close_vs_ma_60       0.058891        1.591315    20
+                        macd       0.053449        1.444259    21
+sentiment_negative_ratio_20d       0.045520        1.229995    22
+sentiment_positive_ratio_30d       0.042619        1.151617    23
+sentiment_negative_ratio_30d       0.042478        1.147815    24
+              volatility_10d       0.041997        1.134819    25
+
+----------------------------------------------------------------------------------------------------------------------
+SXRV - HORIZONTE 15 SESIÓN/SESIONES
+----------------------------------------------------------------------------------------------------------------------
+Semilla reproducible experimento: 1327116132
+Dataset supervisado: 2430 filas
+Train purgado:       1929 filas
+Gap/purge:           15 filas
+Holdout final:       486 filas
+Tasa de subidas train: 0.660
+Tasa de subidas test:  0.663
+
+Validación cruzada temporal: LogisticRegression
+  Fold 1: Acc=0.477 BalAcc=0.489 F1=0.546 AUC=0.446 Brier=0.456
+  Fold 2: Acc=0.505 BalAcc=0.474 F1=0.613 AUC=0.443 Brier=0.420
+  Fold 3: Acc=0.511 BalAcc=0.638 F1=0.529 AUC=0.658 Brier=0.376
+  Fold 4: Acc=0.421 BalAcc=0.480 F1=0.526 AUC=0.483 Brier=0.503
+  Fold 5: Acc=0.333 BalAcc=0.515 F1=0.171 AUC=0.570 Brier=0.523
+
+Validación cruzada temporal: RandomForest
+  Fold 1: Acc=0.551 BalAcc=0.499 F1=0.662 AUC=0.484 Brier=0.249
+  Fold 2: Acc=0.660 BalAcc=0.492 F1=0.788 AUC=0.490 Brier=0.223
+  Fold 3: Acc=0.738 BalAcc=0.500 F1=0.849 AUC=0.671 Brier=0.179
+  Fold 4: Acc=0.502 BalAcc=0.552 F1=0.570 AUC=0.497 Brier=0.321
+  Fold 5: Acc=0.277 BalAcc=0.489 F1=0.000 AUC=0.522 Brier=0.392
+
+Validación cruzada temporal: XGBoost
+  Fold 1: Acc=0.502 BalAcc=0.457 F1=0.614 AUC=0.453 Brier=0.313
+  Fold 2: Acc=0.670 BalAcc=0.602 F1=0.768 AUC=0.555 Brier=0.236
+  Fold 3: Acc=0.766 BalAcc=0.569 F1=0.861 AUC=0.587 Brier=0.194
+  Fold 4: Acc=0.480 BalAcc=0.528 F1=0.550 AUC=0.484 Brier=0.387
+  Fold 5: Acc=0.280 BalAcc=0.495 F1=0.000 AUC=0.625 Brier=0.576
+
+Resumen validación cruzada:
+             model  accuracy  balanced_accuracy  precision   recall       f1  roc_auc  log_loss    brier  positive_rate
+           XGBoost  0.539564           0.530217   0.525793 0.619342 0.558461 0.540843  1.057762 0.341129       0.654206
+      RandomForest  0.545794           0.506242   0.516600 0.664817 0.573770 0.532656  0.751794 0.272970       0.654206
+LogisticRegression  0.449221           0.519025   0.695455 0.451877 0.476733 0.519870  1.949031 0.455644       0.654206
+
+Pesos por validación (sin usar holdout):
+  LogisticRegression: 0.289
+  RandomForest: 0.349
+  XGBoost: 0.362
+Entrenando modelo final: LogisticRegression
+Entrenando modelo final: RandomForest
+Entrenando modelo final: XGBoost
+Entrenando LSTM para validación interna...
+LSTM validación interna: epochs=1, Acc=0.279, BalAcc=0.489, F1=0.054, AUC=0.507
+Entrenando LSTM final durante 1 epochs...
+LSTM holdout: Acc=0.434, BalAcc=0.483, F1=0.438, AUC=0.423
+
+Evaluación OUT-OF-SAMPLE (holdout temporal NO usado para pesos):
+             model  accuracy  balanced_accuracy  precision   recall       f1  roc_auc  log_loss    brier  positive_rate
+LogisticRegression  0.617284           0.512214   0.669154 0.835404 0.743094 0.604984  0.751359 0.246910       0.662551
+      RandomForest  0.652263           0.558059   0.694656 0.847826 0.763636 0.603204  0.638074 0.223862       0.662551
+           XGBoost  0.602881           0.553704   0.698462 0.704969 0.701700 0.587600  0.675542 0.241060       0.662551
+              LSTM  0.434156           0.483222   0.640719 0.332298 0.437628 0.423193  0.706690 0.256751       0.662551
+
+Pesos finales del ensemble:
+  LogisticRegression: 0.284
+  RandomForest: 0.343
+  XGBoost: 0.356
+  LSTM: 0.017
+
+ENSEMBLE OUT-OF-SAMPLE:
+  accuracy: 0.6049
+  balanced_accuracy: 0.5074
+  precision: 0.6667
+  recall: 0.8075
+  f1: 0.7303
+  roc_auc: 0.6077
+  log_loss: 0.6248
+  brier: 0.2194
+  positive_rate: 0.6626
+
+BASELINE (clase mayoritaria / probabilidad histórica):
+  accuracy: 0.6626
+  balanced_accuracy: 0.5000
+  precision: 0.6626
+  recall: 1.0000
+  f1: 0.7970
+  roc_auc: 0.5000
+  log_loss: 0.6393
+  brier: 0.2236
+  positive_rate: 0.6626
+
+MÉTRICAS FINANCIERAS:
+  strategy_total_return: 0.0106
+  buy_hold_total_return: 0.3411
+  strategy_annual_return: 0.0055
+  buy_hold_annual_return: 0.1644
+  strategy_volatility: 0.1623
+  buy_hold_volatility: 0.1984
+  strategy_sharpe: 0.1149
+  buy_hold_sharpe: 0.8666
+  strategy_sortino: 0.1161
+  strategy_max_drawdown: -0.2183
+  buy_hold_max_drawdown: -0.2669
+  trades: 70
+  market_exposure: 0.5412
+  win_rate_active_days: 0.5133
+  profit_factor: 1.0285
+
+**********************************************************************************************************************
+PREDICCIÓN FINAL SXRV | Horizonte: 15 sesión/sesiones
+**********************************************************************************************************************
+Fecha del último dato:      2026-05-19
+Precio de cierre:           1420.8000
+LogisticRegression          P(SUBE) =   3.60%
+RandomForest                P(SUBE) =  53.20%
+XGBoost                     P(SUBE) =  37.67%
+LSTM                        P(SUBE) =  45.53%
+ENSEMBLE P(SUBE):            33.44%
+ENSEMBLE P(BAJA):            66.56%
+SEÑAL:                      BAJADA / BAJISTA
+CONFIANZA:                  MODERADA
+SENTIMIENTO ACTUAL CONTEXTO: +0.090
+Nº NOTICIAS ACTUALES:       100
+SENTIMIENTO DENTRO MODELO:  SÍ
+**********************************************************************************************************************
+
+VALIDACIÓN DE TARGETS SOLAPADOS
+Horizonte: 15 | Holdout n=486 | n efectivo aprox.=33
+AUC fases no solapadas: 0.6067 ± 0.0833
+AUC bootstrap por bloques 95% CI: [0.5169, 0.7295]
+\n======================================================================================================================
+ABLACIÓN NLP SXRV - HORIZONTE 15d (mismas fechas y holdout)
+======================================================================================================================
+\nVARIANTE: SIN_SENTIMIENTO
+
+Validación cruzada temporal: LogisticRegression
+  Fold 1: Acc=0.620 BalAcc=0.500 F1=0.748 AUC=0.480 Brier=0.300
+  Fold 2: Acc=0.620 BalAcc=0.547 F1=0.730 AUC=0.525 Brier=0.300
+  Fold 3: Acc=0.695 BalAcc=0.570 F1=0.801 AUC=0.634 Brier=0.218
+  Fold 4: Acc=0.433 BalAcc=0.487 F1=0.524 AUC=0.533 Brier=0.466
+  Fold 5: Acc=0.371 BalAcc=0.538 F1=0.257 AUC=0.619 Brier=0.464
+
+Validación cruzada temporal: RandomForest
+  Fold 1: Acc=0.573 BalAcc=0.490 F1=0.696 AUC=0.488 Brier=0.243
+  Fold 2: Acc=0.676 BalAcc=0.523 F1=0.794 AUC=0.557 Brier=0.216
+  Fold 3: Acc=0.741 BalAcc=0.533 F1=0.847 AUC=0.699 Brier=0.179
+  Fold 4: Acc=0.558 BalAcc=0.595 F1=0.592 AUC=0.507 Brier=0.317
+  Fold 5: Acc=0.280 BalAcc=0.495 F1=0.000 AUC=0.550 Brier=0.432
+
+Validación cruzada temporal: XGBoost
+  Fold 1: Acc=0.558 BalAcc=0.473 F1=0.684 AUC=0.484 Brier=0.288
+  Fold 2: Acc=0.692 BalAcc=0.620 F1=0.785 AUC=0.623 Brier=0.225
+  Fold 3: Acc=0.751 BalAcc=0.616 F1=0.842 AUC=0.586 Brier=0.197
+  Fold 4: Acc=0.536 BalAcc=0.561 F1=0.547 AUC=0.528 Brier=0.355
+  Fold 5: Acc=0.287 BalAcc=0.499 F1=0.017 AUC=0.691 Brier=0.562
+Entrenando modelo final: LogisticRegression
+Entrenando modelo final: RandomForest
+Entrenando modelo final: XGBoost
+Entrenando LSTM para validación interna...
+LSTM validación interna: epochs=1, Acc=0.272, BalAcc=0.500, F1=0.000, AUC=0.539
+Entrenando LSTM final durante 1 epochs...
+LSTM holdout: Acc=0.337, BalAcc=0.500, F1=0.000, AUC=0.488
+ENSEMBLE SIN_SENTIMIENTO: AUC=0.6446 | BalAcc=0.5462 | F1=0.7734 | Brier=0.2098
+\nVARIANTE: CON_SENTIMIENTO
+
+Validación cruzada temporal: LogisticRegression
+  Fold 1: Acc=0.477 BalAcc=0.489 F1=0.546 AUC=0.446 Brier=0.456
+  Fold 2: Acc=0.505 BalAcc=0.474 F1=0.613 AUC=0.443 Brier=0.420
+  Fold 3: Acc=0.511 BalAcc=0.638 F1=0.529 AUC=0.658 Brier=0.376
+  Fold 4: Acc=0.421 BalAcc=0.480 F1=0.526 AUC=0.483 Brier=0.503
+  Fold 5: Acc=0.333 BalAcc=0.515 F1=0.171 AUC=0.570 Brier=0.523
+
+Validación cruzada temporal: RandomForest
+  Fold 1: Acc=0.551 BalAcc=0.499 F1=0.662 AUC=0.484 Brier=0.249
+  Fold 2: Acc=0.660 BalAcc=0.492 F1=0.788 AUC=0.490 Brier=0.223
+  Fold 3: Acc=0.738 BalAcc=0.500 F1=0.849 AUC=0.671 Brier=0.179
+  Fold 4: Acc=0.502 BalAcc=0.552 F1=0.570 AUC=0.497 Brier=0.321
+  Fold 5: Acc=0.277 BalAcc=0.489 F1=0.000 AUC=0.522 Brier=0.392
+
+Validación cruzada temporal: XGBoost
+  Fold 1: Acc=0.502 BalAcc=0.457 F1=0.614 AUC=0.453 Brier=0.313
+  Fold 2: Acc=0.670 BalAcc=0.602 F1=0.768 AUC=0.555 Brier=0.236
+  Fold 3: Acc=0.766 BalAcc=0.569 F1=0.861 AUC=0.587 Brier=0.194
+  Fold 4: Acc=0.480 BalAcc=0.528 F1=0.550 AUC=0.484 Brier=0.387
+  Fold 5: Acc=0.280 BalAcc=0.495 F1=0.000 AUC=0.625 Brier=0.576
+Entrenando modelo final: LogisticRegression
+Entrenando modelo final: RandomForest
+Entrenando modelo final: XGBoost
+Entrenando LSTM para validación interna...
+LSTM validación interna: epochs=1, Acc=0.279, BalAcc=0.489, F1=0.054, AUC=0.507
+Entrenando LSTM final durante 1 epochs...
+LSTM holdout: Acc=0.434, BalAcc=0.483, F1=0.438, AUC=0.423
+ENSEMBLE CON_SENTIMIENTO: AUC=0.6077 | BalAcc=0.5074 | F1=0.7303 | Brier=0.2194
+\nDELTA CON - SIN SENTIMIENTO:
+             model  delta_roc_auc  delta_balanced_accuracy  delta_f1  delta_brier
+LogisticRegression      -0.037343                -0.029276 -0.022980     0.021336
+      RandomForest      -0.027401                 0.012252  0.006653     0.002248
+           XGBoost      -0.018236                 0.006268  0.011075     0.001987
+              LSTM      -0.065293                -0.016778  0.437628    -0.013545
+          ENSEMBLE      -0.036832                -0.038820 -0.043069     0.009635
+\nSHAP SXRV 15d: 486 muestras, 110 variables.
+\nTOP VARIABLES SHAP:
+                     feature  mean_abs_shap  importance_pct  rank
+          ext_fedfunds_level       0.401162       10.152866     1
+              ext_us2y_level       0.259596        6.570031     2
+             ext_us10y_level       0.231678        5.863459     3
+                ma_50_vs_200       0.174225        4.409409     4
+              volatility_60d       0.143557        3.633227     5
+              news_count_60d       0.137942        3.491117     6
+                       month       0.123962        3.137304     7
+             close_vs_ma_200       0.113961        2.884203     8
+               ext_vix_level       0.113322        2.868023     9
+                 macd_signal       0.111200        2.814328    10
+                  return_45d       0.092797        2.348569    11
+              volatility_45d       0.090164        2.281921    12
+                  return_30d       0.085231        2.157071    13
+          sentiment_mean_10d       0.082276        2.082288    14
+                  return_60d       0.074984        1.897733    15
+                 ma_20_vs_50       0.074111        1.875654    16
+              volatility_15d       0.069781        1.766074    17
+sentiment_positive_ratio_60d       0.066317        1.678397    18
+                   macd_diff       0.066164        1.674522    19
+                  gap_return       0.064552        1.633713    20
+        ext_eurusd_return_1d       0.063271        1.601304    21
+          bollinger_position       0.062948        1.593125    22
+             close_vs_ma_100       0.061529        1.557208    23
+sentiment_negative_ratio_45d       0.060607        1.533874    24
+sentiment_positive_ratio_30d       0.049347        1.248915    25
+
+----------------------------------------------------------------------------------------------------------------------
+SXRV - HORIZONTE 20 SESIÓN/SESIONES
+----------------------------------------------------------------------------------------------------------------------
+Semilla reproducible experimento: 1661072383
+Dataset supervisado: 2425 filas
+Train purgado:       1920 filas
+Gap/purge:           20 filas
+Holdout final:       485 filas
+Tasa de subidas train: 0.668
+Tasa de subidas test:  0.656
+
+Validación cruzada temporal: LogisticRegression
+  Fold 1: Acc=0.303 BalAcc=0.405 F1=0.165 AUC=0.404 Brier=0.656
+  Fold 2: Acc=0.441 BalAcc=0.405 F1=0.556 AUC=0.410 Brier=0.464
+  Fold 3: Acc=0.659 BalAcc=0.490 F1=0.785 AUC=0.532 Brier=0.248
+  Fold 4: Acc=0.375 BalAcc=0.475 F1=0.497 AUC=0.503 Brier=0.523
+  Fold 5: Acc=0.256 BalAcc=0.499 F1=0.070 AUC=0.616 Brier=0.621
+
+Validación cruzada temporal: RandomForest
+  Fold 1: Acc=0.619 BalAcc=0.470 F1=0.762 AUC=0.405 Brier=0.250
+  Fold 2: Acc=0.675 BalAcc=0.490 F1=0.802 AUC=0.515 Brier=0.216
+  Fold 3: Acc=0.747 BalAcc=0.500 F1=0.855 AUC=0.726 Brier=0.171
+  Fold 4: Acc=0.459 BalAcc=0.532 F1=0.521 AUC=0.504 Brier=0.342
+  Fold 5: Acc=0.237 BalAcc=0.500 F1=0.000 AUC=0.355 Brier=0.470
+
+Validación cruzada temporal: XGBoost
+  Fold 1: Acc=0.475 BalAcc=0.424 F1=0.594 AUC=0.350 Brier=0.358
+  Fold 2: Acc=0.681 BalAcc=0.579 F1=0.786 AUC=0.587 Brier=0.232
+  Fold 3: Acc=0.759 BalAcc=0.529 F1=0.861 AUC=0.642 Brier=0.189
+  Fold 4: Acc=0.472 BalAcc=0.544 F1=0.529 AUC=0.515 Brier=0.407
+  Fold 5: Acc=0.237 BalAcc=0.500 F1=0.000 AUC=0.570 Brier=0.663
+
+Resumen validación cruzada:
+             model  accuracy  balanced_accuracy  precision   recall       f1  roc_auc  log_loss    brier  positive_rate
+           XGBoost  0.525000           0.515121   0.505137 0.639118 0.553985 0.532956  1.233604 0.369522         0.6525
+      RandomForest  0.547500           0.498373   0.500154 0.725535 0.587824 0.501182  0.798476 0.289832         0.6525
+LogisticRegression  0.406875           0.454733   0.581469 0.461087 0.414687 0.492882  2.506913 0.502160         0.6525
+
+Pesos por validación (sin usar holdout):
+  LogisticRegression: 0.253
+  RandomForest: 0.360
+  XGBoost: 0.387
+Entrenando modelo final: LogisticRegression
+Entrenando modelo final: RandomForest
+Entrenando modelo final: XGBoost
+Entrenando LSTM para validación interna...
+LSTM validación interna: epochs=4, Acc=0.642, BalAcc=0.666, F1=0.730, AUC=0.754
+Entrenando LSTM final durante 4 epochs...
+LSTM holdout: Acc=0.505, BalAcc=0.543, F1=0.528, AUC=0.507
+
+Evaluación OUT-OF-SAMPLE (holdout temporal NO usado para pesos):
+             model  accuracy  balanced_accuracy  precision   recall       f1  roc_auc  log_loss    brier  positive_rate
+      RandomForest  0.694845           0.630814   0.734807 0.836478 0.782353 0.733966  0.601334 0.206388        0.65567
+           XGBoost  0.698969           0.656705   0.759036 0.792453 0.775385 0.698302  0.612808 0.208545        0.65567
+LogisticRegression  0.641237           0.531644   0.672249 0.883648 0.763587 0.635107  0.761401 0.242037        0.65567
+              LSTM  0.505155           0.543027   0.705263 0.421384 0.527559 0.506760  0.810629 0.299790        0.65567
+
+Pesos finales del ensemble:
+  LogisticRegression: 0.187
+  RandomForest: 0.266
+  XGBoost: 0.287
+  LSTM: 0.260
+
+ENSEMBLE OUT-OF-SAMPLE:
+  accuracy: 0.6990
+  balanced_accuracy: 0.6425
+  precision: 0.7443
+  recall: 0.8239
+  f1: 0.7821
+  roc_auc: 0.7242
+  log_loss: 0.6073
+  brier: 0.2080
+  positive_rate: 0.6557
+
+BASELINE (clase mayoritaria / probabilidad histórica):
+  accuracy: 0.6557
+  balanced_accuracy: 0.5000
+  precision: 0.6557
+  recall: 1.0000
+  f1: 0.7920
+  roc_auc: 0.5000
+  log_loss: 0.6442
+  brier: 0.2259
+  positive_rate: 0.6557
+
+MÉTRICAS FINANCIERAS:
+  strategy_total_return: 0.4869
+  buy_hold_total_return: 0.3255
+  strategy_annual_return: 0.2289
+  buy_hold_annual_return: 0.1577
+  strategy_volatility: 0.1395
+  buy_hold_volatility: 0.1984
+  strategy_sharpe: 1.5475
+  buy_hold_sharpe: 0.8374
+  strategy_sortino: 1.3819
+  strategy_max_drawdown: -0.1334
+  buy_hold_max_drawdown: -0.2669
+  trades: 58
+  market_exposure: 0.4206
+  win_rate_active_days: 0.5931
+  profit_factor: 1.5539
+
+**********************************************************************************************************************
+PREDICCIÓN FINAL SXRV | Horizonte: 20 sesión/sesiones
+**********************************************************************************************************************
+Fecha del último dato:      2026-05-19
+Precio de cierre:           1420.8000
+LogisticRegression          P(SUBE) =  59.65%
+RandomForest                P(SUBE) =  57.18%
+XGBoost                     P(SUBE) =  46.47%
+LSTM                        P(SUBE) =  22.70%
+ENSEMBLE P(SUBE):            45.61%
+ENSEMBLE P(BAJA):            54.39%
+SEÑAL:                      NEUTRAL / BAJA CONFIANZA
+CONFIANZA:                  BAJA
+SENTIMIENTO ACTUAL CONTEXTO: +0.090
+Nº NOTICIAS ACTUALES:       100
+SENTIMIENTO DENTRO MODELO:  SÍ
+**********************************************************************************************************************
+
+VALIDACIÓN DE TARGETS SOLAPADOS
+Horizonte: 20 | Holdout n=485 | n efectivo aprox.=25
+AUC fases no solapadas: 0.7160 ± 0.0438
+AUC bootstrap por bloques 95% CI: [0.5583, 0.8635]
+\n======================================================================================================================
+ABLACIÓN NLP SXRV - HORIZONTE 20d (mismas fechas y holdout)
+======================================================================================================================
+\nVARIANTE: SIN_SENTIMIENTO
+
+Validación cruzada temporal: LogisticRegression
+  Fold 1: Acc=0.409 BalAcc=0.513 F1=0.318 AUC=0.564 Brier=0.523
+  Fold 2: Acc=0.703 BalAcc=0.536 F1=0.816 AUC=0.591 Brier=0.239
+  Fold 3: Acc=0.728 BalAcc=0.487 F1=0.843 AUC=0.562 Brier=0.225
+  Fold 4: Acc=0.378 BalAcc=0.456 F1=0.466 AUC=0.540 Brier=0.508
+  Fold 5: Acc=0.300 BalAcc=0.523 F1=0.176 AUC=0.605 Brier=0.553
+
+Validación cruzada temporal: RandomForest
+  Fold 1: Acc=0.600 BalAcc=0.463 F1=0.744 AUC=0.410 Brier=0.249
+  Fold 2: Acc=0.675 BalAcc=0.517 F1=0.795 AUC=0.571 Brier=0.210
+  Fold 3: Acc=0.747 BalAcc=0.500 F1=0.855 AUC=0.735 Brier=0.170
+  Fold 4: Acc=0.512 BalAcc=0.576 F1=0.549 AUC=0.495 Brier=0.346
+  Fold 5: Acc=0.237 BalAcc=0.500 F1=0.000 AUC=0.492 Brier=0.503
+
+Validación cruzada temporal: XGBoost
+  Fold 1: Acc=0.394 BalAcc=0.349 F1=0.515 AUC=0.324 Brier=0.401
+  Fold 2: Acc=0.703 BalAcc=0.597 F1=0.802 AUC=0.669 Brier=0.213
+  Fold 3: Acc=0.750 BalAcc=0.580 F1=0.847 AUC=0.639 Brier=0.184
+  Fold 4: Acc=0.481 BalAcc=0.542 F1=0.520 AUC=0.517 Brier=0.388
+  Fold 5: Acc=0.234 BalAcc=0.493 F1=0.000 AUC=0.648 Brier=0.690
+Entrenando modelo final: LogisticRegression
+Entrenando modelo final: RandomForest
+Entrenando modelo final: XGBoost
+Entrenando LSTM para validación interna...
+LSTM validación interna: epochs=1, Acc=0.226, BalAcc=0.500, F1=0.000, AUC=0.586
+Entrenando LSTM final durante 1 epochs...
+LSTM holdout: Acc=0.365, BalAcc=0.511, F1=0.078, AUC=0.512
+ENSEMBLE SIN_SENTIMIENTO: AUC=0.7112 | BalAcc=0.5589 | F1=0.7776 | Brier=0.1989
+\nVARIANTE: CON_SENTIMIENTO
+
+Validación cruzada temporal: LogisticRegression
+  Fold 1: Acc=0.303 BalAcc=0.405 F1=0.165 AUC=0.404 Brier=0.656
+  Fold 2: Acc=0.441 BalAcc=0.405 F1=0.556 AUC=0.410 Brier=0.464
+  Fold 3: Acc=0.659 BalAcc=0.490 F1=0.785 AUC=0.532 Brier=0.248
+  Fold 4: Acc=0.375 BalAcc=0.475 F1=0.497 AUC=0.503 Brier=0.523
+  Fold 5: Acc=0.256 BalAcc=0.499 F1=0.070 AUC=0.616 Brier=0.621
+
+Validación cruzada temporal: RandomForest
+  Fold 1: Acc=0.619 BalAcc=0.470 F1=0.762 AUC=0.405 Brier=0.250
+  Fold 2: Acc=0.675 BalAcc=0.490 F1=0.802 AUC=0.515 Brier=0.216
+  Fold 3: Acc=0.747 BalAcc=0.500 F1=0.855 AUC=0.726 Brier=0.171
+  Fold 4: Acc=0.459 BalAcc=0.532 F1=0.521 AUC=0.504 Brier=0.342
+  Fold 5: Acc=0.237 BalAcc=0.500 F1=0.000 AUC=0.355 Brier=0.470
+
+Validación cruzada temporal: XGBoost
+  Fold 1: Acc=0.475 BalAcc=0.424 F1=0.594 AUC=0.350 Brier=0.358
+  Fold 2: Acc=0.681 BalAcc=0.579 F1=0.786 AUC=0.587 Brier=0.232
+  Fold 3: Acc=0.759 BalAcc=0.529 F1=0.861 AUC=0.642 Brier=0.189
+  Fold 4: Acc=0.472 BalAcc=0.544 F1=0.529 AUC=0.515 Brier=0.407
+  Fold 5: Acc=0.237 BalAcc=0.500 F1=0.000 AUC=0.570 Brier=0.663
+Entrenando modelo final: LogisticRegression
+Entrenando modelo final: RandomForest
+Entrenando modelo final: XGBoost
+Entrenando LSTM para validación interna...
+LSTM validación interna: epochs=4, Acc=0.642, BalAcc=0.666, F1=0.730, AUC=0.754
+Entrenando LSTM final durante 4 epochs...
+LSTM holdout: Acc=0.505, BalAcc=0.543, F1=0.528, AUC=0.507
+ENSEMBLE CON_SENTIMIENTO: AUC=0.7242 | BalAcc=0.6425 | F1=0.7821 | Brier=0.2080
+\nDELTA CON - SIN SENTIMIENTO:
+             model  delta_roc_auc  delta_balanced_accuracy  delta_f1  delta_brier
+LogisticRegression      -0.043159                 0.014066 -0.008482     0.020779
+      RandomForest       0.037472                 0.045579  0.004263    -0.002759
+           XGBoost       0.034572                 0.071941  0.055758    -0.025746
+              LSTM      -0.005611                 0.031569  0.449715     0.039306
+          ENSEMBLE       0.012974                 0.083597  0.004463     0.009141
+\nSHAP SXRV 20d: 485 muestras, 110 variables.
+\nTOP VARIABLES SHAP:
+                     feature  mean_abs_shap  importance_pct  rank
+          ext_fedfunds_level       0.772701       16.465858     1
+              ext_us2y_level       0.502729       10.712896     2
+                ma_50_vs_200       0.225790        4.811460     3
+             ext_us10y_level       0.214808        4.577439     4
+              news_count_60d       0.187822        4.002393     5
+              volatility_60d       0.160334        3.416628     6
+               ext_vix_level       0.139929        2.981820     7
+sentiment_negative_ratio_30d       0.124769        2.658764     8
+              volatility_15d       0.109517        2.333741     9
+sentiment_negative_ratio_45d       0.102832        2.191306    10
+sentiment_positive_ratio_45d       0.101556        2.164097    11
+             close_vs_ma_100       0.100824        2.148504    12
+                 macd_signal       0.097148        2.070166    13
+                       month       0.092205        1.964837    14
+                   macd_diff       0.087364        1.861683    15
+             close_vs_ma_200       0.083259        1.774205    16
+              news_count_30d       0.079652        1.697351    17
+                  gap_return       0.078365        1.669912    18
+                        macd       0.077815        1.658190    19
+       ext_yield_curve_10y2y       0.075469        1.608215    20
+              volatility_45d       0.066465        1.416336    21
+sentiment_negative_ratio_60d       0.065447        1.394636    22
+          sentiment_mean_60d       0.061509        1.310731    23
+                      rsi_28       0.061360        1.307550    24
+              volatility_30d       0.059917        1.276810    25
+
+----------------------------------------------------------------------------------------------------------------------
+SXRV - HORIZONTE 30 SESIÓN/SESIONES
+----------------------------------------------------------------------------------------------------------------------
+Semilla reproducible experimento: 176183412
+Dataset supervisado: 2415 filas
+Train purgado:       1902 filas
+Gap/purge:           30 filas
+Holdout final:       483 filas
+Tasa de subidas train: 0.693
+Tasa de subidas test:  0.667
+
+Validación cruzada temporal: LogisticRegression
+  Fold 1: Acc=0.429 BalAcc=0.554 F1=0.236 AUC=0.625 Brier=0.532
+  Fold 2: Acc=0.527 BalAcc=0.518 F1=0.629 AUC=0.505 Brier=0.399
+  Fold 3: Acc=0.722 BalAcc=0.476 F1=0.838 AUC=0.629 Brier=0.223
+  Fold 4: Acc=0.372 BalAcc=0.462 F1=0.501 AUC=0.496 Brier=0.564
+  Fold 5: Acc=0.186 BalAcc=0.538 F1=0.140 AUC=0.799 Brier=0.718
+
+Validación cruzada temporal: RandomForest
+  Fold 1: Acc=0.637 BalAcc=0.515 F1=0.768 AUC=0.470 Brier=0.238
+  Fold 2: Acc=0.710 BalAcc=0.495 F1=0.827 AUC=0.626 Brier=0.189
+  Fold 3: Acc=0.754 BalAcc=0.496 F1=0.859 AUC=0.741 Brier=0.159
+  Fold 4: Acc=0.420 BalAcc=0.513 F1=0.540 AUC=0.590 Brier=0.342
+  Fold 5: Acc=0.120 BalAcc=0.500 F1=0.000 AUC=0.625 Brier=0.510
+
+Validación cruzada temporal: XGBoost
+  Fold 1: Acc=0.593 BalAcc=0.525 F1=0.706 AUC=0.522 Brier=0.270
+  Fold 2: Acc=0.741 BalAcc=0.649 F1=0.828 AUC=0.721 Brier=0.186
+  Fold 3: Acc=0.763 BalAcc=0.521 F1=0.863 AUC=0.719 Brier=0.177
+  Fold 4: Acc=0.438 BalAcc=0.532 F1=0.553 AUC=0.580 Brier=0.406
+  Fold 5: Acc=0.123 BalAcc=0.502 F1=0.007 AUC=0.739 Brier=0.729
+
+Resumen validación cruzada:
+             model  accuracy  balanced_accuracy  precision   recall       f1  roc_auc  log_loss    brier  positive_rate
+           XGBoost  0.531861           0.545800   0.731401 0.696686 0.591579 0.656124  1.255017 0.353639       0.684543
+LogisticRegression  0.447319           0.509652   0.755921 0.503732 0.468898 0.610962  2.769943 0.487058       0.684543
+      RandomForest  0.528076           0.504105   0.510838 0.746005 0.598790 0.610472  0.793065 0.287666       0.684543
+
+Pesos por validación (sin usar holdout):
+  LogisticRegression: 0.283
+  RandomForest: 0.333
+  XGBoost: 0.384
+Entrenando modelo final: LogisticRegression
+Entrenando modelo final: RandomForest
+Entrenando modelo final: XGBoost
+Entrenando LSTM para validación interna...
+LSTM validación interna: epochs=1, Acc=0.227, BalAcc=0.545, F1=0.208, AUC=0.461
+Entrenando LSTM final durante 1 epochs...
+LSTM holdout: Acc=0.489, BalAcc=0.494, F1=0.555, AUC=0.497
+
+Evaluación OUT-OF-SAMPLE (holdout temporal NO usado para pesos):
+             model  accuracy  balanced_accuracy  precision   recall       f1  roc_auc  log_loss    brier  positive_rate
+           XGBoost  0.691511           0.645963   0.761329 0.782609 0.771822 0.791887  0.567269 0.195939       0.666667
+LogisticRegression  0.643892           0.509317   0.671233 0.913043 0.773684 0.747386  0.718556 0.224706       0.666667
+      RandomForest  0.720497           0.611801   0.724221 0.937888 0.817321 0.743509  0.570008 0.192435       0.666667
+              LSTM  0.488613           0.493789   0.660944 0.478261 0.554955 0.497029  0.686811 0.246860       0.666667
+
+Pesos finales del ensemble:
+  LogisticRegression: 0.266
+  RandomForest: 0.313
+  XGBoost: 0.361
+  LSTM: 0.059
+
+ENSEMBLE OUT-OF-SAMPLE:
+  accuracy: 0.6998
+  balanced_accuracy: 0.6102
+  precision: 0.7275
+  recall: 0.8789
+  f1: 0.7961
+  roc_auc: 0.8097
+  log_loss: 0.5188
+  brier: 0.1746
+  positive_rate: 0.6667
+
+BASELINE (clase mayoritaria / probabilidad histórica):
+  accuracy: 0.6667
+  balanced_accuracy: 0.5000
+  precision: 0.6667
+  recall: 1.0000
+  f1: 0.8000
+  roc_auc: 0.5000
+  log_loss: 0.6381
+  brier: 0.2229
+  positive_rate: 0.6667
+
+MÉTRICAS FINANCIERAS:
+  strategy_total_return: 0.4479
+  buy_hold_total_return: 0.2431
+  strategy_annual_return: 0.2130
+  buy_hold_annual_return: 0.1202
+  strategy_volatility: 0.1712
+  buy_hold_volatility: 0.1969
+  strategy_sharpe: 1.2141
+  buy_hold_sharpe: 0.6752
+  strategy_sortino: 1.2561
+  strategy_max_drawdown: -0.1895
+  buy_hold_max_drawdown: -0.2669
+  trades: 26
+  market_exposure: 0.7081
+  win_rate_active_days: 0.5760
+  profit_factor: 1.3068
+
+**********************************************************************************************************************
+PREDICCIÓN FINAL SXRV | Horizonte: 30 sesión/sesiones
+**********************************************************************************************************************
+Fecha del último dato:      2026-05-19
+Precio de cierre:           1420.8000
+LogisticRegression          P(SUBE) =  99.96%
+RandomForest                P(SUBE) =  54.68%
+XGBoost                     P(SUBE) =   5.43%
+LSTM                        P(SUBE) =  51.29%
+ENSEMBLE P(SUBE):            48.75%
+ENSEMBLE P(BAJA):            51.25%
+SEÑAL:                      NEUTRAL / BAJA CONFIANZA
+CONFIANZA:                  BAJA
+SENTIMIENTO ACTUAL CONTEXTO: +0.090
+Nº NOTICIAS ACTUALES:       100
+SENTIMIENTO DENTRO MODELO:  SÍ
+**********************************************************************************************************************
+
+VALIDACIÓN DE TARGETS SOLAPADOS
+Horizonte: 30 | Holdout n=483 | n efectivo aprox.=17
+AUC fases no solapadas: 0.8051 ± 0.0849
+AUC bootstrap por bloques 95% CI: [0.6941, 0.9267]
+\n======================================================================================================================
+ABLACIÓN NLP SXRV - HORIZONTE 30d (mismas fechas y holdout)
+======================================================================================================================
+\nVARIANTE: SIN_SENTIMIENTO
+
+Validación cruzada temporal: LogisticRegression
+  Fold 1: Acc=0.366 BalAcc=0.512 F1=0.047 AUC=0.795 Brier=0.614
+  Fold 2: Acc=0.748 BalAcc=0.554 F1=0.848 AUC=0.679 Brier=0.211
+  Fold 3: Acc=0.748 BalAcc=0.502 F1=0.854 AUC=0.666 Brier=0.208
+  Fold 4: Acc=0.388 BalAcc=0.465 F1=0.492 AUC=0.520 Brier=0.527
+  Fold 5: Acc=0.246 BalAcc=0.572 F1=0.251 AUC=0.803 Brier=0.621
+
+Validación cruzada temporal: RandomForest
+  Fold 1: Acc=0.678 BalAcc=0.568 F1=0.791 AUC=0.576 Brier=0.226
+  Fold 2: Acc=0.719 BalAcc=0.498 F1=0.834 AUC=0.699 Brier=0.174
+  Fold 3: Acc=0.782 BalAcc=0.585 F1=0.871 AUC=0.743 Brier=0.158
+  Fold 4: Acc=0.438 BalAcc=0.540 F1=0.564 AUC=0.592 Brier=0.350
+  Fold 5: Acc=0.151 BalAcc=0.518 F1=0.069 AUC=0.543 Brier=0.516
+
+Validación cruzada temporal: XGBoost
+  Fold 1: Acc=0.628 BalAcc=0.560 F1=0.733 AUC=0.526 Brier=0.267
+  Fold 2: Acc=0.785 BalAcc=0.679 F1=0.862 AUC=0.787 Brier=0.161
+  Fold 3: Acc=0.757 BalAcc=0.578 F1=0.852 AUC=0.699 Brier=0.175
+  Fold 4: Acc=0.470 BalAcc=0.551 F1=0.558 AUC=0.604 Brier=0.383
+  Fold 5: Acc=0.126 BalAcc=0.504 F1=0.014 AUC=0.726 Brier=0.768
+Entrenando modelo final: LogisticRegression
+Entrenando modelo final: RandomForest
+Entrenando modelo final: XGBoost
+Entrenando LSTM para validación interna...
+LSTM validación interna: epochs=1, Acc=0.164, BalAcc=0.520, F1=0.077, AUC=0.692
+Entrenando LSTM final durante 1 epochs...
+LSTM holdout: Acc=0.518, BalAcc=0.533, F1=0.574, AUC=0.535
+ENSEMBLE SIN_SENTIMIENTO: AUC=0.8127 | BalAcc=0.6071 | F1=0.7927 | Brier=0.1740
+\nVARIANTE: CON_SENTIMIENTO
+
+Validación cruzada temporal: LogisticRegression
+  Fold 1: Acc=0.429 BalAcc=0.554 F1=0.236 AUC=0.625 Brier=0.532
+  Fold 2: Acc=0.527 BalAcc=0.518 F1=0.629 AUC=0.505 Brier=0.399
+  Fold 3: Acc=0.722 BalAcc=0.476 F1=0.838 AUC=0.629 Brier=0.223
+  Fold 4: Acc=0.372 BalAcc=0.462 F1=0.501 AUC=0.496 Brier=0.564
+  Fold 5: Acc=0.186 BalAcc=0.538 F1=0.140 AUC=0.799 Brier=0.718
+
+Validación cruzada temporal: RandomForest
+  Fold 1: Acc=0.637 BalAcc=0.515 F1=0.768 AUC=0.470 Brier=0.238
+  Fold 2: Acc=0.710 BalAcc=0.495 F1=0.827 AUC=0.626 Brier=0.189
+  Fold 3: Acc=0.754 BalAcc=0.496 F1=0.859 AUC=0.741 Brier=0.159
+  Fold 4: Acc=0.420 BalAcc=0.513 F1=0.540 AUC=0.590 Brier=0.342
+  Fold 5: Acc=0.120 BalAcc=0.500 F1=0.000 AUC=0.625 Brier=0.510
+
+Validación cruzada temporal: XGBoost
+  Fold 1: Acc=0.593 BalAcc=0.525 F1=0.706 AUC=0.522 Brier=0.270
+  Fold 2: Acc=0.741 BalAcc=0.649 F1=0.828 AUC=0.721 Brier=0.186
+  Fold 3: Acc=0.763 BalAcc=0.521 F1=0.863 AUC=0.719 Brier=0.177
+  Fold 4: Acc=0.438 BalAcc=0.532 F1=0.553 AUC=0.580 Brier=0.406
+  Fold 5: Acc=0.123 BalAcc=0.502 F1=0.007 AUC=0.739 Brier=0.729
+Entrenando modelo final: LogisticRegression
+Entrenando modelo final: RandomForest
+Entrenando modelo final: XGBoost
+Entrenando LSTM para validación interna...
+LSTM validación interna: epochs=1, Acc=0.227, BalAcc=0.545, F1=0.208, AUC=0.461
+Entrenando LSTM final durante 1 epochs...
+LSTM holdout: Acc=0.489, BalAcc=0.494, F1=0.555, AUC=0.497
+ENSEMBLE CON_SENTIMIENTO: AUC=0.8097 | BalAcc=0.6102 | F1=0.7961 | Brier=0.1746
+\nDELTA CON - SIN SENTIMIENTO:
+             model  delta_roc_auc  delta_balanced_accuracy  delta_f1  delta_brier
+LogisticRegression      -0.019694                -0.034161 -0.020008     0.012516
+      RandomForest      -0.047625                 0.013975  0.034959     0.003084
+           XGBoost       0.022819                -0.012422 -0.007319    -0.017682
+              LSTM      -0.037942                -0.038820 -0.019085    -0.003446
+          ENSEMBLE      -0.002990                 0.003106  0.003396     0.000584
+\nSHAP SXRV 30d: 483 muestras, 110 variables.
+\nTOP VARIABLES SHAP:
+                     feature  mean_abs_shap  importance_pct  rank
+          ext_fedfunds_level       1.763472       28.614712     1
+              ext_us2y_level       0.668053       10.840056     2
+                ma_50_vs_200       0.386256        6.267530     3
+             ext_us10y_level       0.378419        6.140355     4
+              news_count_45d       0.203725        3.305711     5
+sentiment_negative_ratio_20d       0.133799        2.171066     6
+              volatility_30d       0.132115        2.143744     7
+              volatility_60d       0.130594        2.119058     8
+sentiment_positive_ratio_60d       0.125003        2.028344     9
+       ext_yield_curve_10y2y       0.108141        1.754726    10
+                       month       0.098721        1.601882    11
+sentiment_negative_ratio_45d       0.094065        1.526333    12
+sentiment_positive_ratio_45d       0.088332        1.433310    13
+             close_vs_ma_200       0.084503        1.371169    14
+                        macd       0.076513        1.241530    15
+          sentiment_mean_60d       0.070128        1.137929    16
+                   macd_diff       0.068280        1.107933    17
+                      rsi_28       0.066700        1.082305    18
+              news_count_60d       0.065674        1.065643    19
+sentiment_negative_ratio_60d       0.064609        1.048371    20
+                 macd_signal       0.064119        1.040415    21
+         ext_sp500_return_5d       0.060889        0.988014    22
+                  return_45d       0.058004        0.941193    23
+              news_count_15d       0.057868        0.938991    24
+sentiment_negative_ratio_30d       0.055354        0.898197    25
+
+----------------------------------------------------------------------------------------------------------------------
+SXRV - HORIZONTE 45 SESIÓN/SESIONES
+----------------------------------------------------------------------------------------------------------------------
+Semilla reproducible experimento: 1011291306
+Dataset supervisado: 2400 filas
+Train purgado:       1875 filas
+Gap/purge:           45 filas
+Holdout final:       480 filas
+Tasa de subidas train: 0.736
+Tasa de subidas test:  0.692
+
+Validación cruzada temporal: LogisticRegression
+  Fold 1: Acc=0.718 BalAcc=0.720 F1=0.773 AUC=0.812 Brier=0.252
+  Fold 2: Acc=0.452 BalAcc=0.486 F1=0.544 AUC=0.506 Brier=0.489
+  Fold 3: Acc=0.904 BalAcc=0.500 F1=0.949 AUC=0.554 Brier=0.096
+  Fold 4: Acc=0.490 BalAcc=0.589 F1=0.574 AUC=0.683 Brier=0.434
+  Fold 5: Acc=0.256 BalAcc=0.583 F1=0.284 AUC=0.779 Brier=0.622
+
+Validación cruzada temporal: RandomForest
+  Fold 1: Acc=0.692 BalAcc=0.542 F1=0.810 AUC=0.540 Brier=0.219
+  Fold 2: Acc=0.753 BalAcc=0.497 F1=0.858 AUC=0.491 Brier=0.191
+  Fold 3: Acc=0.904 BalAcc=0.500 F1=0.949 AUC=0.697 Brier=0.096
+  Fold 4: Acc=0.362 BalAcc=0.500 F1=0.532 AUC=0.602 Brier=0.396
+  Fold 5: Acc=0.141 BalAcc=0.518 F1=0.069 AUC=0.599 Brier=0.428
+
+Validación cruzada temporal: XGBoost
+  Fold 1: Acc=0.667 BalAcc=0.543 F1=0.784 AUC=0.485 Brier=0.267
+  Fold 2: Acc=0.785 BalAcc=0.652 F1=0.866 AUC=0.705 Brier=0.162
+  Fold 3: Acc=0.904 BalAcc=0.500 F1=0.949 AUC=0.764 Brier=0.084
+  Fold 4: Acc=0.494 BalAcc=0.590 F1=0.573 AUC=0.573 Brier=0.415
+  Fold 5: Acc=0.167 BalAcc=0.532 F1=0.122 AUC=0.657 Brier=0.705
+
+Resumen validación cruzada:
+             model  accuracy  balanced_accuracy  precision   recall       f1  roc_auc  log_loss    brier  positive_rate
+LogisticRegression  0.564103           0.575583   0.783855 0.649979 0.624874 0.666999  2.042461 0.378782       0.720513
+           XGBoost  0.603205           0.563500   0.769672 0.759813 0.658811 0.636677  1.184236 0.326632       0.720513
+      RandomForest  0.570513           0.511498   0.746023 0.795793 0.643835 0.585757  0.754385 0.266130       0.720513
+
+Pesos por validación (sin usar holdout):
+  LogisticRegression: 0.362
+  RandomForest: 0.289
+  XGBoost: 0.349
+Entrenando modelo final: LogisticRegression
+Entrenando modelo final: RandomForest
+Entrenando modelo final: XGBoost
+Entrenando LSTM para validación interna...
+LSTM validación interna: epochs=1, Acc=0.894, BalAcc=0.671, F1=0.941, AUC=0.760
+Entrenando LSTM final durante 1 epochs...
+LSTM holdout: Acc=0.510, BalAcc=0.586, F1=0.523, AUC=0.705
+
+Evaluación OUT-OF-SAMPLE (holdout temporal NO usado para pesos):
+             model  accuracy  balanced_accuracy  precision   recall       f1  roc_auc  log_loss    brier  positive_rate
+LogisticRegression  0.697917           0.519497   0.700214 0.984940 0.818523 0.814535  1.102840 0.252350       0.691667
+           XGBoost  0.710417           0.607172   0.748072 0.876506 0.807212 0.778960  0.567014 0.195874       0.691667
+      RandomForest  0.706250           0.533010   0.706263 0.984940 0.822642 0.716542  0.573467 0.194259       0.691667
+              LSTM  0.510417           0.586169   0.801242 0.388554 0.523327 0.704555  0.694053 0.250545       0.691667
+
+Pesos finales del ensemble:
+  LogisticRegression: 0.257
+  RandomForest: 0.206
+  XGBoost: 0.248
+  LSTM: 0.290
+
+ENSEMBLE OUT-OF-SAMPLE:
+  accuracy: 0.7167
+  balanced_accuracy: 0.5405
+  precision: 0.7094
+  recall: 1.0000
+  f1: 0.8300
+  roc_auc: 0.8337
+  log_loss: 0.5329
+  brier: 0.1769
+  positive_rate: 0.6917
+
+BASELINE (clase mayoritaria / probabilidad histórica):
+  accuracy: 0.6917
+  balanced_accuracy: 0.5000
+  precision: 0.6917
+  recall: 1.0000
+  f1: 0.8177
+  roc_auc: 0.5000
+  log_loss: 0.6227
+  brier: 0.2152
+  positive_rate: 0.6917
+
+MÉTRICAS FINANCIERAS:
+  strategy_total_return: 0.4066
+  buy_hold_total_return: 0.3082
+  strategy_annual_return: 0.1962
+  buy_hold_annual_return: 0.1515
+  strategy_volatility: 0.1847
+  buy_hold_volatility: 0.1986
+  strategy_sharpe: 1.0625
+  buy_hold_sharpe: 0.8096
+  strategy_sortino: 1.1994
+  strategy_max_drawdown: -0.2669
+  buy_hold_max_drawdown: -0.2669
+  trades: 23
+  market_exposure: 0.8021
+  win_rate_active_days: 0.5610
+  profit_factor: 1.2417
+
+**********************************************************************************************************************
+PREDICCIÓN FINAL SXRV | Horizonte: 45 sesión/sesiones
+**********************************************************************************************************************
+Fecha del último dato:      2026-05-19
+Precio de cierre:           1420.8000
+LogisticRegression          P(SUBE) =  19.83%
+RandomForest                P(SUBE) =  50.27%
+XGBoost                     P(SUBE) =   9.99%
+LSTM                        P(SUBE) =  40.73%
+ENSEMBLE P(SUBE):            29.71%
+ENSEMBLE P(BAJA):            70.29%
+SEÑAL:                      BAJADA / BAJISTA
+CONFIANZA:                  MODERADA
+SENTIMIENTO ACTUAL CONTEXTO: +0.090
+Nº NOTICIAS ACTUALES:       100
+SENTIMIENTO DENTRO MODELO:  SÍ
+**********************************************************************************************************************
+
+VALIDACIÓN DE TARGETS SOLAPADOS
+Horizonte: 45 | Holdout n=480 | n efectivo aprox.=11
+AUC fases no solapadas: 0.8613 ± 0.0741
+AUC bootstrap por bloques 95% CI: [0.7742, 0.9514]
+\n======================================================================================================================
+ABLACIÓN NLP SXRV - HORIZONTE 45d (mismas fechas y holdout)
+======================================================================================================================
+\nVARIANTE: SIN_SENTIMIENTO
+
+Validación cruzada temporal: LogisticRegression
+  Fold 1: Acc=0.506 BalAcc=0.623 F1=0.438 AUC=0.800 Brier=0.437
+  Fold 2: Acc=0.747 BalAcc=0.573 F1=0.845 AUC=0.606 Brier=0.234
+  Fold 3: Acc=0.904 BalAcc=0.500 F1=0.949 AUC=0.518 Brier=0.096
+  Fold 4: Acc=0.429 BalAcc=0.513 F1=0.508 AUC=0.608 Brier=0.476
+  Fold 5: Acc=0.468 BalAcc=0.624 F1=0.587 AUC=0.786 Brier=0.396
+
+Validación cruzada temporal: RandomForest
+  Fold 1: Acc=0.702 BalAcc=0.554 F1=0.816 AUC=0.602 Brier=0.212
+  Fold 2: Acc=0.772 BalAcc=0.500 F1=0.872 AUC=0.454 Brier=0.193
+  Fold 3: Acc=0.904 BalAcc=0.500 F1=0.949 AUC=0.722 Brier=0.099
+  Fold 4: Acc=0.391 BalAcc=0.521 F1=0.541 AUC=0.624 Brier=0.389
+  Fold 5: Acc=0.186 BalAcc=0.543 F1=0.159 AUC=0.572 Brier=0.436
+
+Validación cruzada temporal: XGBoost
+  Fold 1: Acc=0.679 BalAcc=0.553 F1=0.794 AUC=0.543 Brier=0.249
+  Fold 2: Acc=0.788 BalAcc=0.644 F1=0.869 AUC=0.718 Brier=0.159
+  Fold 3: Acc=0.891 BalAcc=0.493 F1=0.942 AUC=0.722 Brier=0.086
+  Fold 4: Acc=0.471 BalAcc=0.574 F1=0.565 AUC=0.550 Brier=0.432
+  Fold 5: Acc=0.157 BalAcc=0.514 F1=0.108 AUC=0.641 Brier=0.704
+Entrenando modelo final: LogisticRegression
+Entrenando modelo final: RandomForest
+Entrenando modelo final: XGBoost
+Entrenando LSTM para validación interna...
+LSTM validación interna: epochs=1, Acc=0.142, BalAcc=0.524, F1=0.090, AUC=0.727
+Entrenando LSTM final durante 1 epochs...
+LSTM holdout: Acc=0.485, BalAcc=0.621, F1=0.419, AUC=0.597
+ENSEMBLE SIN_SENTIMIENTO: AUC=0.8331 | BalAcc=0.5067 | F1=0.8105 | Brier=0.1815
+\nVARIANTE: CON_SENTIMIENTO
+
+Validación cruzada temporal: LogisticRegression
+  Fold 1: Acc=0.718 BalAcc=0.720 F1=0.773 AUC=0.812 Brier=0.252
+  Fold 2: Acc=0.452 BalAcc=0.486 F1=0.544 AUC=0.506 Brier=0.489
+  Fold 3: Acc=0.904 BalAcc=0.500 F1=0.949 AUC=0.554 Brier=0.096
+  Fold 4: Acc=0.490 BalAcc=0.589 F1=0.574 AUC=0.683 Brier=0.434
+  Fold 5: Acc=0.256 BalAcc=0.583 F1=0.284 AUC=0.779 Brier=0.622
+
+Validación cruzada temporal: RandomForest
+  Fold 1: Acc=0.692 BalAcc=0.542 F1=0.810 AUC=0.540 Brier=0.219
+  Fold 2: Acc=0.753 BalAcc=0.497 F1=0.858 AUC=0.491 Brier=0.191
+  Fold 3: Acc=0.904 BalAcc=0.500 F1=0.949 AUC=0.697 Brier=0.096
+  Fold 4: Acc=0.362 BalAcc=0.500 F1=0.532 AUC=0.602 Brier=0.396
+  Fold 5: Acc=0.141 BalAcc=0.518 F1=0.069 AUC=0.599 Brier=0.428
+
+Validación cruzada temporal: XGBoost
+  Fold 1: Acc=0.667 BalAcc=0.543 F1=0.784 AUC=0.485 Brier=0.267
+  Fold 2: Acc=0.785 BalAcc=0.652 F1=0.866 AUC=0.705 Brier=0.162
+  Fold 3: Acc=0.904 BalAcc=0.500 F1=0.949 AUC=0.764 Brier=0.084
+  Fold 4: Acc=0.494 BalAcc=0.590 F1=0.573 AUC=0.573 Brier=0.415
+  Fold 5: Acc=0.167 BalAcc=0.532 F1=0.122 AUC=0.657 Brier=0.705
+Entrenando modelo final: LogisticRegression
+Entrenando modelo final: RandomForest
+Entrenando modelo final: XGBoost
+Entrenando LSTM para validación interna...
+LSTM validación interna: epochs=1, Acc=0.894, BalAcc=0.671, F1=0.941, AUC=0.760
+Entrenando LSTM final durante 1 epochs...
+LSTM holdout: Acc=0.510, BalAcc=0.586, F1=0.523, AUC=0.705
+ENSEMBLE CON_SENTIMIENTO: AUC=0.8337 | BalAcc=0.5405 | F1=0.8300 | Brier=0.1769
+\nDELTA CON - SIN SENTIMIENTO:
+             model  delta_roc_auc  delta_balanced_accuracy  delta_f1  delta_brier
+LogisticRegression      -0.022875                 0.016119 -0.000219     0.006975
+      RandomForest      -0.043715                -0.007856  0.003764     0.006041
+           XGBoost      -0.007306                -0.011926  0.018806    -0.023817
+              LSTM       0.107070                -0.034354  0.104503    -0.005623
+          ENSEMBLE       0.000631                 0.033824  0.019460    -0.004514
+\nSHAP SXRV 45d: 480 muestras, 110 variables.
+\nTOP VARIABLES SHAP:
+                     feature  mean_abs_shap  importance_pct  rank
+          ext_fedfunds_level       1.800461       29.309898     1
+              ext_us2y_level       0.833541       13.569305     2
+                ma_50_vs_200       0.353043        5.747231     3
+              volatility_30d       0.217384        3.538821     4
+sentiment_positive_ratio_30d       0.196158        3.193284     5
+             ext_us10y_level       0.177750        2.893619     6
+          sentiment_mean_60d       0.166744        2.714437     7
+               ext_vix_level       0.137139        2.232507     8
+             close_vs_ma_200       0.115750        1.884310     9
+              volatility_15d       0.102689        1.671681    10
+          sentiment_mean_45d       0.092276        1.502173    11
+                 macd_signal       0.091239        1.485286    12
+              volatility_60d       0.086199        1.403243    13
+sentiment_negative_ratio_45d       0.085668        1.394594    14
+                  gap_return       0.080894        1.316888    15
+              volatility_20d       0.077125        1.255523    16
+sentiment_negative_ratio_60d       0.076789        1.250059    17
+sentiment_negative_ratio_10d       0.075756        1.233233    18
+              news_count_60d       0.069773        1.135843    19
+                  return_60d       0.068375        1.113084    20
+                       month       0.062324        1.014578    21
+              volatility_45d       0.059558        0.969555    22
+       ext_yield_curve_10y2y       0.059379        0.966641    23
+sentiment_positive_ratio_60d       0.055931        0.910513    24
+              volume_vs_ma20       0.055229        0.899076    25
+
+----------------------------------------------------------------------------------------------------------------------
+SXRV - HORIZONTE 60 SESIÓN/SESIONES
+----------------------------------------------------------------------------------------------------------------------
+Semilla reproducible experimento: 2071104155
+Dataset supervisado: 2385 filas
+Train purgado:       1848 filas
+Gap/purge:           60 filas
+Holdout final:       477 filas
+Tasa de subidas train: 0.753
+Tasa de subidas test:  0.692
+
+Validación cruzada temporal: LogisticRegression
+  Fold 1: Acc=0.705 BalAcc=0.711 F1=0.764 AUC=0.805 Brier=0.227
+  Fold 2: Acc=0.786 BalAcc=0.753 F1=0.858 AUC=0.835 Brier=0.158
+  Fold 3: Acc=0.938 BalAcc=0.500 F1=0.968 AUC=0.781 Brier=0.062
+  Fold 4: Acc=0.377 BalAcc=0.455 F1=0.442 AUC=0.570 Brier=0.591
+  Fold 5: Acc=0.633 BalAcc=0.782 F1=0.754 AUC=0.731 Brier=0.334
+
+Validación cruzada temporal: RandomForest
+  Fold 1: Acc=0.682 BalAcc=0.495 F1=0.811 AUC=0.374 Brier=0.241
+  Fold 2: Acc=0.766 BalAcc=0.476 F1=0.868 AUC=0.449 Brier=0.179
+  Fold 3: Acc=0.938 BalAcc=0.500 F1=0.968 AUC=0.797 Brier=0.098
+  Fold 4: Acc=0.360 BalAcc=0.510 F1=0.521 AUC=0.378 Brier=0.474
+  Fold 5: Acc=0.529 BalAcc=0.506 F1=0.677 AUC=0.503 Brier=0.260
+
+Validación cruzada temporal: XGBoost
+  Fold 1: Acc=0.558 BalAcc=0.411 F1=0.714 AUC=0.214 Brier=0.321
+  Fold 2: Acc=0.747 BalAcc=0.508 F1=0.851 AUC=0.681 Brier=0.178
+  Fold 3: Acc=0.932 BalAcc=0.497 F1=0.965 AUC=0.681 Brier=0.064
+  Fold 4: Acc=0.351 BalAcc=0.461 F1=0.468 AUC=0.299 Brier=0.577
+  Fold 5: Acc=0.373 BalAcc=0.422 F1=0.519 AUC=0.470 Brier=0.512
+
+Resumen validación cruzada:
+             model  accuracy  balanced_accuracy  precision   recall       f1  roc_auc  log_loss    brier  positive_rate
+LogisticRegression  0.687662           0.640184   0.804076 0.763429 0.757171 0.744390  2.006867 0.274416       0.740909
+      RandomForest  0.655195           0.497367   0.740137 0.895102 0.768875 0.500262  0.751470 0.250585       0.740909
+           XGBoost  0.592208           0.459677   0.722702 0.776300 0.703385 0.468728  1.187216 0.330412       0.740909
+
+Pesos por validación (sin usar holdout):
+  LogisticRegression: 0.485
+  RandomForest: 0.269
+  XGBoost: 0.246
+Entrenando modelo final: LogisticRegression
+Entrenando modelo final: RandomForest
+Entrenando modelo final: XGBoost
+Entrenando LSTM para validación interna...
+LSTM validación interna: epochs=4, Acc=0.759, BalAcc=0.834, F1=0.857, AUC=0.861
+Entrenando LSTM final durante 4 epochs...
+LSTM holdout: Acc=0.493, BalAcc=0.415, F1=0.628, AUC=0.313
+
+Evaluación OUT-OF-SAMPLE (holdout temporal NO usado para pesos):
+             model  accuracy  balanced_accuracy  precision   recall       f1  roc_auc  log_loss    brier  positive_rate
+           XGBoost  0.698113           0.540383   0.710407 0.951515 0.813472 0.827231  0.661929 0.218677       0.691824
+LogisticRegression  0.689727           0.498485   0.691176 0.996970 0.816377 0.801608  1.624166 0.290810       0.691824
+      RandomForest  0.691824           0.500000   0.691824 1.000000 0.817844 0.671903  0.592360 0.203403       0.691824
+              LSTM  0.492662           0.414533   0.637500 0.618182 0.627692 0.313296  0.778580 0.281022       0.691824
+
+Pesos finales del ensemble:
+  LogisticRegression: 0.328
+  RandomForest: 0.182
+  XGBoost: 0.166
+  LSTM: 0.323
+
+ENSEMBLE OUT-OF-SAMPLE:
+  accuracy: 0.6918
+  balanced_accuracy: 0.5000
+  precision: 0.6918
+  recall: 1.0000
+  f1: 0.8178
+  roc_auc: 0.5440
+  log_loss: 0.6515
+  brier: 0.2218
+  positive_rate: 0.6918
+
+BASELINE (clase mayoritaria / probabilidad histórica):
+  accuracy: 0.6918
+  balanced_accuracy: 0.5000
+  precision: 0.6918
+  recall: 1.0000
+  f1: 0.8178
+  roc_auc: 0.5000
+  log_loss: 0.6271
+  brier: 0.2169
+  positive_rate: 0.6918
+
+MÉTRICAS FINANCIERAS:
+  strategy_total_return: 0.2628
+  buy_hold_total_return: 0.2640
+  strategy_annual_return: 0.1312
+  buy_hold_annual_return: 0.1318
+  strategy_volatility: 0.1985
+  buy_hold_volatility: 0.1985
+  strategy_sharpe: 0.7204
+  buy_hold_sharpe: 0.7230
+  strategy_sortino: 0.9154
+  strategy_max_drawdown: -0.2669
+  buy_hold_max_drawdown: -0.2669
+  trades: 1
+  market_exposure: 0.9979
+  win_rate_active_days: 0.5504
+  profit_factor: 1.1393
+
+**********************************************************************************************************************
+PREDICCIÓN FINAL SXRV | Horizonte: 60 sesión/sesiones
+**********************************************************************************************************************
+Fecha del último dato:      2026-05-19
+Precio de cierre:           1420.8000
+LogisticRegression          P(SUBE) =  99.98%
+RandomForest                P(SUBE) =  61.33%
+XGBoost                     P(SUBE) =  34.31%
+LSTM                        P(SUBE) =  44.34%
+ENSEMBLE P(SUBE):            64.01%
+ENSEMBLE P(BAJA):            35.99%
+SEÑAL:                      SUBIDA / ALCISTA
+CONFIANZA:                  MODERADA
+SENTIMIENTO ACTUAL CONTEXTO: +0.090
+Nº NOTICIAS ACTUALES:       100
+SENTIMIENTO DENTRO MODELO:  SÍ
+**********************************************************************************************************************
+
+VALIDACIÓN DE TARGETS SOLAPADOS
+Horizonte: 60 | Holdout n=477 | n efectivo aprox.=8
+AUC fases no solapadas: 0.5639 ± 0.2508
+AUC bootstrap por bloques 95% CI: [0.3811, 0.7241]
+\n======================================================================================================================
+ABLACIÓN NLP SXRV - HORIZONTE 60d (mismas fechas y holdout)
+======================================================================================================================
+\nVARIANTE: SIN_SENTIMIENTO
+
+Validación cruzada temporal: LogisticRegression
+  Fold 1: Acc=0.718 BalAcc=0.763 F1=0.758 AUC=0.909 Brier=0.243
+  Fold 2: Acc=0.799 BalAcc=0.629 F1=0.879 AUC=0.800 Brier=0.154
+  Fold 3: Acc=0.938 BalAcc=0.500 F1=0.968 AUC=0.758 Brier=0.062
+  Fold 4: Acc=0.360 BalAcc=0.416 F1=0.394 AUC=0.550 Brier=0.613
+  Fold 5: Acc=0.718 BalAcc=0.668 F1=0.826 AUC=0.759 Brier=0.236
+
+Validación cruzada temporal: RandomForest
+  Fold 1: Acc=0.682 BalAcc=0.495 F1=0.811 AUC=0.701 Brier=0.211
+  Fold 2: Acc=0.799 BalAcc=0.496 F1=0.888 AUC=0.600 Brier=0.163
+  Fold 3: Acc=0.938 BalAcc=0.500 F1=0.968 AUC=0.873 Brier=0.075
+  Fold 4: Acc=0.386 BalAcc=0.530 F1=0.531 AUC=0.393 Brier=0.488
+  Fold 5: Acc=0.490 BalAcc=0.485 F1=0.641 AUC=0.591 Brier=0.272
+
+Validación cruzada temporal: XGBoost
+  Fold 1: Acc=0.558 BalAcc=0.409 F1=0.715 AUC=0.304 Brier=0.287
+  Fold 2: Acc=0.773 BalAcc=0.581 F1=0.864 AUC=0.762 Brier=0.152
+  Fold 3: Acc=0.938 BalAcc=0.500 F1=0.968 AUC=0.715 Brier=0.057
+  Fold 4: Acc=0.347 BalAcc=0.448 F1=0.452 AUC=0.315 Brier=0.590
+  Fold 5: Acc=0.292 BalAcc=0.378 F1=0.420 AUC=0.474 Brier=0.563
+Entrenando modelo final: LogisticRegression
+Entrenando modelo final: RandomForest
+Entrenando modelo final: XGBoost
+Entrenando LSTM para validación interna...
+LSTM validación interna: epochs=1, Acc=0.291, BalAcc=0.590, F1=0.415, AUC=0.835
+Entrenando LSTM final durante 1 epochs...
+LSTM holdout: Acc=0.633, BalAcc=0.542, F1=0.746, AUC=0.635
+ENSEMBLE SIN_SENTIMIENTO: AUC=0.8779 | BalAcc=0.5000 | F1=0.8178 | Brier=0.2010
+\nVARIANTE: CON_SENTIMIENTO
+
+Validación cruzada temporal: LogisticRegression
+  Fold 1: Acc=0.705 BalAcc=0.711 F1=0.764 AUC=0.805 Brier=0.227
+  Fold 2: Acc=0.786 BalAcc=0.753 F1=0.858 AUC=0.835 Brier=0.158
+  Fold 3: Acc=0.938 BalAcc=0.500 F1=0.968 AUC=0.781 Brier=0.062
+  Fold 4: Acc=0.377 BalAcc=0.455 F1=0.442 AUC=0.570 Brier=0.591
+  Fold 5: Acc=0.633 BalAcc=0.782 F1=0.754 AUC=0.731 Brier=0.334
+
+Validación cruzada temporal: RandomForest
+  Fold 1: Acc=0.682 BalAcc=0.495 F1=0.811 AUC=0.374 Brier=0.241
+  Fold 2: Acc=0.766 BalAcc=0.476 F1=0.868 AUC=0.449 Brier=0.179
+  Fold 3: Acc=0.938 BalAcc=0.500 F1=0.968 AUC=0.797 Brier=0.098
+  Fold 4: Acc=0.360 BalAcc=0.510 F1=0.521 AUC=0.378 Brier=0.474
+  Fold 5: Acc=0.529 BalAcc=0.506 F1=0.677 AUC=0.503 Brier=0.260
+
+Validación cruzada temporal: XGBoost
+  Fold 1: Acc=0.558 BalAcc=0.411 F1=0.714 AUC=0.214 Brier=0.321
+  Fold 2: Acc=0.747 BalAcc=0.508 F1=0.851 AUC=0.681 Brier=0.178
+  Fold 3: Acc=0.932 BalAcc=0.497 F1=0.965 AUC=0.681 Brier=0.064
+  Fold 4: Acc=0.351 BalAcc=0.461 F1=0.468 AUC=0.299 Brier=0.577
+  Fold 5: Acc=0.373 BalAcc=0.422 F1=0.519 AUC=0.470 Brier=0.512
+Entrenando modelo final: LogisticRegression
+Entrenando modelo final: RandomForest
+Entrenando modelo final: XGBoost
+Entrenando LSTM para validación interna...
+LSTM validación interna: epochs=4, Acc=0.759, BalAcc=0.834, F1=0.857, AUC=0.861
+Entrenando LSTM final durante 4 epochs...
+LSTM holdout: Acc=0.493, BalAcc=0.415, F1=0.628, AUC=0.313
+ENSEMBLE CON_SENTIMIENTO: AUC=0.5440 | BalAcc=0.5000 | F1=0.8178 | Brier=0.2218
+\nDELTA CON - SIN SENTIMIENTO:
+             model  delta_roc_auc  delta_balanced_accuracy  delta_f1  delta_brier
+LogisticRegression      -0.040651                -0.001515 -0.001467     0.005887
+      RandomForest      -0.141414                 0.000000  0.000000     0.010425
+           XGBoost      -0.018244                -0.015894 -0.011271     0.011434
+              LSTM      -0.321459                -0.127922 -0.118316     0.041835
+          ENSEMBLE      -0.333890                 0.000000  0.000000     0.020755
+\nSHAP SXRV 60d: 477 muestras, 110 variables.
+\nTOP VARIABLES SHAP:
+                     feature  mean_abs_shap  importance_pct  rank
+          ext_fedfunds_level       2.607876       36.542881     1
+              ext_us2y_level       0.852748       11.949136     2
+                ma_50_vs_200       0.687652        9.635724     3
+               ext_vix_level       0.235511        3.300107     4
+              volatility_45d       0.226031        3.167263     5
+              volatility_60d       0.172553        2.417905     6
+                   range_pct       0.151895        2.128436     7
+       ext_yield_curve_10y2y       0.129408        1.813331     8
+                       month       0.124893        1.750063     9
+             close_vs_ma_200       0.106242        1.488715    10
+             close_vs_ma_100       0.096903        1.357860    11
+sentiment_positive_ratio_60d       0.094236        1.320488    12
+sentiment_negative_ratio_60d       0.092700        1.298958    13
+          sentiment_mean_60d       0.087651        1.228214    14
+                  return_60d       0.084820        1.188539    15
+sentiment_negative_ratio_45d       0.081458        1.141429    16
+             ext_us10y_level       0.081374        1.140248    17
+                        macd       0.075237        1.054266    18
+               close_vs_ma_5       0.059349        0.831626    19
+                 macd_signal       0.058988        0.826572    20
+         ext_us10y_change_1d       0.051756        0.725227    21
+              volatility_20d       0.049673        0.696040    22
+              news_count_30d       0.044330        0.621180    23
+              news_count_20d       0.040369        0.565671    24
+     sentiment_momentum_5_20       0.038666        0.541802    25
+
+######################################################################################################################
+RESUMEN FINAL DE PREDICCIONES
+######################################################################################################################
+ ETF  Horizonte P_Subida P_Bajada                    Señal Confianza  AUC_ensemble  BalAcc_ensemble  F1_ensemble  AUC_baseline    Sharpe  Return_strategy  Return_BH  Exposure  NLP_model  AUC_nonoverlap_mean  AUC_nonoverlap_std  AUC_bootstrap_low  AUC_bootstrap_high  Effective_N
+SXR8          1   55.16%   44.84% NEUTRAL / BAJA CONFIANZA      BAJA      0.497089         0.523469     0.626667           0.5 -0.379947        -0.051808   0.304764  0.092025      False             0.497089            0.000000           0.445703            0.547978          489
+SXR8          5   50.29%   49.71% NEUTRAL / BAJA CONFIANZA      BAJA      0.564747         0.517753     0.726257           0.5  1.169204         0.233428   0.319398  0.447853      False             0.562340            0.036553           0.485225            0.653815           98
+SXR8         10   42.57%   57.43% NEUTRAL / BAJA CONFIANZA      BAJA      0.596894         0.523735     0.732673           0.5  1.144126         0.276172   0.295317  0.395492      False             0.595941            0.033175           0.487863            0.693544           49
+SXR8         15   32.97%   67.03%         BAJADA / BAJISTA  MODERADA      0.617049         0.585981     0.780420           0.5  0.947245         0.256896   0.267048  0.552361      False             0.620531            0.085696           0.484927            0.742785           33
+SXR8         20   38.35%   61.65%         BAJADA / BAJISTA      BAJA      0.658602         0.596152     0.762044           0.5  1.312558         0.367290   0.255868  0.539095      False             0.656127            0.084373           0.502047            0.800638           25
+SXR8         30   41.02%   58.98% NEUTRAL / BAJA CONFIANZA      BAJA      0.710744         0.617100     0.760902           0.5  1.150572         0.297308   0.213886  0.493802      False             0.697708            0.110102           0.559631            0.865153           17
+SXR8         45   31.58%   68.42%         BAJADA / BAJISTA  MODERADA      0.872027         0.768763     0.880113           0.5  0.908320         0.233441   0.256335  0.540541      False             0.902906            0.085665           0.807336            0.957815           11
+SXR8         60   49.72%   50.28% NEUTRAL / BAJA CONFIANZA      BAJA      0.817797         0.642701     0.850267           0.5  0.876339         0.244580   0.223382  0.610879      False             0.834647            0.165835           0.735098            0.943359            8
+SXRV          1   56.24%   43.76% NEUTRAL / BAJA CONFIANZA      BAJA      0.437771         0.482253     0.520913           0.5 -0.050873        -0.013561   0.417777  0.057260       True             0.437771            0.000000           0.392696            0.490469          489
+SXRV          5   31.63%   68.37%         BAJADA / BAJISTA  MODERADA      0.535755         0.549338     0.640545           0.5  0.551720         0.124761   0.449105  0.247951       True             0.535865            0.033054           0.461819            0.618412           98
+SXRV         10   35.16%   64.84%         BAJADA / BAJISTA  MODERADA      0.534564         0.510604     0.671803           0.5  0.309072         0.065950   0.385505  0.386037       True             0.534345            0.051653           0.431154            0.638221           49
+SXRV         15   33.44%   66.56%         BAJADA / BAJISTA  MODERADA      0.607730         0.507385     0.730337           0.5  0.114881         0.010596   0.341114  0.541152       True             0.606748            0.083319           0.516865            0.729533           33
+SXRV         20   45.61%   54.39% NEUTRAL / BAJA CONFIANZA      BAJA      0.724155         0.642489     0.782090           0.5  1.547450         0.486876   0.325462  0.420619       True             0.716023            0.043807           0.558291            0.863497           25
+SXRV         30   48.75%   51.25% NEUTRAL / BAJA CONFIANZA      BAJA      0.809710         0.610248     0.796062           0.5  1.214128         0.447912   0.243097  0.708075       True             0.805146            0.084928           0.694090            0.926697           17
+SXRV         45   29.71%   70.29%         BAJADA / BAJISTA  MODERADA      0.833747         0.540541     0.830000           0.5  1.062471         0.406598   0.308192  0.802083       True             0.861340            0.074089           0.774184            0.951359           11
+SXRV         60   64.01%   35.99%         SUBIDA / ALCISTA  MODERADA      0.544012         0.500000     0.817844           0.5  0.720355         0.262778   0.264038  0.997904       True             0.563931            0.250794           0.381114            0.724087            8
+
+Resumen guardado en: resultados_tfm\resumen_predicciones.csv
+Histórico de predicciones: resultados_tfm/prediction_history.csv
+######################################################################################################################
+
+######################################################################################################################
+FIN DEL PROGRAMA
+######################################################################################################################
+Los CSV limpios se encuentran en data/processed/.
+Los informes de preprocesamiento y anomalías se encuentran en resultados_tfm/preprocessing/.
+Las métricas, modelos y gráficas se encuentran dentro de resultados_tfm/<ETF>/horizon_Xd/.
+Log actual: C:\Users\david\Music\Master_big_data_data_science_IA\TFM\Realización\resultados_tfm\logs\ejecucion_tfm_2026-08-15_21-00-31.txt
+
+======================================================================================================================
+EJECUCIÓN FINALIZADA CORRECTAMENTE
+Fin: 2026-08-15 21:29:35
+======================================================================================================================
+
+Salida completa guardada en: C:\Users\david\Music\Master_big_data_data_science_IA\TFM\Realización\resultados_tfm\logs\ejecucion_tfm_2026-08-15_21-00-31.txt
