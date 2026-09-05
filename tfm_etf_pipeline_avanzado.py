@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """
 TFM: Sistema inteligente de análisis, clasificación y regresión de tendencias/precios en ETFs
+Nombre TFM: ETF Predictive Analytics
 Autor: David Piñuel Bosque
 
-VERSIÓN CORREGIDA Y AUDITABLE
 ==============================
 ETFs de trabajo:
     - SXR8: iShares Core S&P 500 UCITS ETF
@@ -60,8 +60,6 @@ IMPORTANTE METODOLÓGICAMENTE
 
 Dependencias mínimas:
     pip install pandas numpy matplotlib scikit-learn joblib
-
-Opcionales:
     pip install xgboost
     pip install tensorflow
     pip install feedparser transformers torch sentencepiece requests shap
@@ -77,7 +75,7 @@ import random
 # -----------------------------------------------------------------------------
 # Reproducibilidad: estas variables deben existir antes de importar TensorFlow.
 # PYTHONHASHSEED solo es completamente efectivo si Python/Spyder se inicia con
-# ese valor ya definido; aun así lo fijamos aquí y además reseedamos todas las
+# ese valor ya definido; aun así lo fijamos aquí y además resetearlo todas las
 # librerías durante el entrenamiento.
 # -----------------------------------------------------------------------------
 os.environ.setdefault("PYTHONHASHSEED", "42")
