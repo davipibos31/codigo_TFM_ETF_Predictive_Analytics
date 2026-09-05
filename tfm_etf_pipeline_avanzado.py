@@ -193,12 +193,30 @@ class Reproducibility:
 
     @staticmethod
     def stable_seed(base_seed: int, *parts: Any) -> int:
+        """Genera una semilla entera determinista a partir de una semilla base y varios identificadores.
+
+        Args:
+            base_seed (int): Semilla base del experimento.
+            *parts (Any): Componentes adicionales usados para derivar una semilla estable.
+
+        Returns:
+            int: Valor de salida de tipo `int` producido por la función.
+        """
         raw = "|".join([str(base_seed)] + [str(p) for p in parts])
         digest = hashlib.sha256(raw.encode("utf-8")).hexdigest()[:8]
         return int(digest, 16) % (2**31 - 1)
 
     @staticmethod
     def apply(seed: int, deterministic_tensorflow: bool = True):
+        """Aplica la misma semilla a Python, NumPy, PyTorch y TensorFlow para reforzar la reproducibilidad.
+
+        Args:
+            seed (int): Semilla aleatoria usada para reproducibilidad.
+            deterministic_tensorflow (bool): Valor de entrada `deterministic_tensorflow` utilizado por la función.
+
+        Returns:
+            None: No devuelve ningún valor; realiza sus efectos sobre memoria, disco o consola.
+        """
         seed = int(seed)
         random.seed(seed)
         np.random.seed(seed)
@@ -233,6 +251,15 @@ class Reproducibility:
 
     @staticmethod
     def configure_runtime(seed: int, deterministic_tensorflow: bool = True):
+        """Configura el entorno de ejecución y aplica las opciones deterministas disponibles.
+
+        Args:
+            seed (int): Semilla aleatoria usada para reproducibilidad.
+            deterministic_tensorflow (bool): Valor de entrada `deterministic_tensorflow` utilizado por la función.
+
+        Returns:
+            None: No devuelve ningún valor; realiza sus efectos sobre memoria, disco o consola.
+        """
         Reproducibility.apply(seed, deterministic_tensorflow)
 
         if TENSORFLOW_AVAILABLE:
@@ -480,6 +507,11 @@ class Config:
     prediction_log: str = "resultados_tfm/prediction_history.csv"
 
     def __post_init__(self):
+        """Completa la configuración tras crear la instancia y garantiza que existan los directorios de trabajo.
+
+        Returns:
+            None: No devuelve ningún valor; realiza sus efectos sobre memoria, disco o consola.
+        """
         if self.end_date is None:
             self.end_date = datetime.today().strftime("%Y-%m-%d")
 
@@ -509,19 +541,46 @@ class Config:
 
 class TeeOutput:
     def __init__(self, console_stream, file_stream):
+        """Inicializa un flujo duplicado que escribe simultáneamente en consola y en un fichero.
+
+        Args:
+            console_stream (Any): Flujo de salida original de consola.
+            file_stream (Any): Flujo de fichero que recibe una copia de la salida.
+
+        Returns:
+            None: No devuelve ningún valor; realiza sus efectos sobre memoria, disco o consola.
+        """
         self.console_stream = console_stream
         self.file_stream = file_stream
 
     def write(self, message):
+        """Escribe un mensaje tanto en la consola original como en el fichero de log.
+
+        Args:
+            message (Any): Texto que se va a escribir.
+
+        Returns:
+            Any: Valor de salida de tipo `Any` producido por la función.
+        """
         self.console_stream.write(message)
         self.file_stream.write(message)
         return len(message)
 
     def flush(self):
+        """Fuerza el vaciado de los buffers de consola y fichero.
+
+        Returns:
+            None: No devuelve ningún valor; realiza sus efectos sobre memoria, disco o consola.
+        """
         self.console_stream.flush()
         self.file_stream.flush()
 
     def isatty(self):
+        """Indica si el flujo de consola subyacente está asociado a un terminal interactivo.
+
+        Returns:
+            Any: Valor de salida de tipo `Any` producido por la función.
+        """
         try:
             return self.console_stream.isatty()
         except Exception:
@@ -529,11 +588,24 @@ class TeeOutput:
 
     @property
     def encoding(self):
+        """Devuelve la codificación del flujo de consola.
+
+        Returns:
+            str: Valor de salida de tipo `str` producido por la función.
+        """
         return getattr(self.console_stream, "encoding", "utf-8")
 
 
 class ConsoleLogger:
     def __init__(self, output_dir: str):
+        """Prepara el registro completo de la ejecución y define la ruta del fichero de log.
+
+        Args:
+            output_dir (str): Directorio donde se guardan los resultados.
+
+        Returns:
+            None: No devuelve ningún valor; realiza sus efectos sobre memoria, disco o consola.
+        """
         logs_dir = os.path.join(output_dir, "logs")
         os.makedirs(logs_dir, exist_ok=True)
         timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
@@ -543,6 +615,11 @@ class ConsoleLogger:
         self.log_file = None
 
     def __enter__(self):
+        """Activa la redirección duplicada de stdout y stderr hacia el fichero de log.
+
+        Returns:
+            ConsoleLogger: Valor de salida de tipo `ConsoleLogger` producido por la función.
+        """
         self.original_stdout = sys.stdout
         self.original_stderr = sys.stderr
         self.log_file = open(self.log_path, "w", encoding="utf-8", buffering=1)
@@ -561,6 +638,16 @@ class ConsoleLogger:
         return self
 
     def __exit__(self, exc_type, exc_value, exc_tb):
+        """Restaura los flujos de salida originales, cierra el log y registra el estado final de la ejecución.
+
+        Args:
+            exc_type (Any): Tipo de excepción capturada por el gestor de contexto.
+            exc_value (Any): Instancia de la excepción capturada.
+            exc_tb (Any): Traza asociada a la excepción.
+
+        Returns:
+            bool: Valor de salida de tipo `bool` producido por la función.
+        """
         if exc_type is not None:
             print("\n" + "!" * 118)
             print("LA EJECUCIÓN HA FINALIZADO CON UN ERROR")
@@ -593,6 +680,14 @@ class ConsoleLogger:
 class ComponentStatus:
     @staticmethod
     def _version(module_name: str) -> str:
+        """Obtiene de forma segura la versión de un módulo importado.
+
+        Args:
+            module_name (str): Valor de entrada `module_name` utilizado por la función.
+
+        Returns:
+            str: Valor de salida de tipo `str` producido por la función.
+        """
         try:
             module = sys.modules.get(module_name)
             if module is None:
@@ -603,7 +698,14 @@ class ComponentStatus:
 
     @staticmethod
     def ensure_required(config: Config):
-        """Detiene la ejecución si faltan motores que el experimento exige."""
+        """Comprueba que estén disponibles las dependencias y credenciales marcadas como obligatorias.
+
+        Args:
+            config (Config): Configuración global del experimento.
+
+        Returns:
+            None: No devuelve ningún valor; realiza sus efectos sobre memoria, disco o consola.
+        """
         missing = []
 
         if config.require_xgboost and not XGBOOST_AVAILABLE:
@@ -696,6 +798,14 @@ class ComponentStatus:
 
     @staticmethod
     def print_status(config: Config):
+        """Muestra por consola el estado y versión de los componentes utilizados por el experimento.
+
+        Args:
+            config (Config): Configuración global del experimento.
+
+        Returns:
+            None: No devuelve ningún valor; realiza sus efectos sobre memoria, disco o consola.
+        """
         print("\n" + "=" * 118)
         print("COMPONENTES DISPONIBLES")
         print("=" * 118)
@@ -772,6 +882,16 @@ class RobustDateParser:
 
     @staticmethod
     def parse(series: pd.Series, ticker: str, override_format: Optional[str] = None) -> Tuple[pd.Series, str]:
+        """Detecta y convierte de forma segura una serie de fechas, evitando interpretar formatos ambiguos.
+
+        Args:
+            series (pd.Series): Serie de datos que se va a transformar.
+            ticker (str): Símbolo del ETF que se va a procesar.
+            override_format (Optional[str]): Formato de fecha forzado opcionalmente por configuración.
+
+        Returns:
+            Tuple[pd.Series, str]: Serie de fechas convertidas y formato que fue detectado o aplicado.
+        """
         values = series.astype(str).str.strip()
         values = values.replace({"nan": np.nan, "NaT": np.nan, "None": np.nan, "": np.nan})
         non_null = values.dropna()
@@ -855,9 +975,25 @@ class DataPreprocessor:
     }
 
     def __init__(self, config: Config):
+        """Inicializa una instancia de DataPreprocessor y almacena las dependencias necesarias para su funcionamiento.
+
+        Args:
+            config (Config): Configuración global del experimento.
+
+        Returns:
+            None: No devuelve ningún valor; realiza sus efectos sobre memoria, disco o consola.
+        """
         self.config = config
 
     def load_and_clean(self, ticker: str) -> Tuple[pd.DataFrame, Dict[str, Any]]:
+        """Carga el histórico bruto de un ETF, valida su estructura, limpia registros inválidos y genera informes de auditoría.
+
+        Args:
+            ticker (str): Símbolo del ETF que se va a procesar.
+
+        Returns:
+            Tuple[pd.DataFrame, Dict[str, Any]]: Dataset limpio y diccionario con el informe de auditoría.
+        """
         ticker = ticker.upper()
         raw_path = os.path.join(self.config.raw_data_dir, f"{ticker.lower()}.csv")
         if not os.path.exists(raw_path):
@@ -1002,6 +1138,14 @@ class DataPreprocessor:
 
     @staticmethod
     def _read_csv_robust(path: str) -> pd.DataFrame:
+        """Lee un CSV probando combinaciones habituales de separador y codificación.
+
+        Args:
+            path (str): Ruta del fichero o directorio utilizado.
+
+        Returns:
+            pd.DataFrame: Valor de salida de tipo `pd.DataFrame` producido por la función.
+        """
         attempts = [
             {"sep": ",", "encoding": "utf-8"},
             {"sep": ";", "encoding": "utf-8"},
@@ -1022,7 +1166,23 @@ class DataPreprocessor:
 
     @staticmethod
     def _to_numeric(series: pd.Series) -> pd.Series:
+        """Convierte una serie textual a valores numéricos admitiendo separadores locales y sufijos K, M y B.
+
+        Args:
+            series (pd.Series): Serie de datos que se va a transformar.
+
+        Returns:
+            pd.Series: Valor de salida de tipo `pd.Series` producido por la función.
+        """
         def parse(value: Any) -> float:
+            """Ejecuta la operación interna `parse` de DataPreprocessor.
+
+            Args:
+                value (Any): Valor de entrada `value` utilizado por la función.
+
+            Returns:
+                float: Valor de salida de tipo `float` producido por la función.
+            """
             if pd.isna(value):
                 return np.nan
 
@@ -1056,6 +1216,14 @@ class DataPreprocessor:
 
     @staticmethod
     def _print_report(report: Dict[str, Any]):
+        """Imprime un resumen estructurado del informe de preprocesamiento y auditoría.
+
+        Args:
+            report (Dict[str, Any]): Valor de entrada `report` utilizado por la función.
+
+        Returns:
+            None: No devuelve ningún valor; realiza sus efectos sobre memoria, disco o consola.
+        """
         print("\nPREPROCESAMIENTO / AUDITORÍA")
         print("-" * 90)
         keys = [
@@ -1106,9 +1274,25 @@ class GDELTHistoricalSentimentBuilder:
     }
 
     def __init__(self, config: Config):
+        """Inicializa una instancia de GDELTHistoricalSentimentBuilder y almacena las dependencias necesarias para su funcionamiento.
+
+        Args:
+            config (Config): Configuración global del experimento.
+
+        Returns:
+            None: No devuelve ningún valor; realiza sus efectos sobre memoria, disco o consola.
+        """
         self.config = config
 
     def update(self, ticker: str) -> Optional[pd.DataFrame]:
+        """Actualiza el histórico diario de sentimiento de un ETF a partir de GDELT y lo fusiona con la caché existente.
+
+        Args:
+            ticker (str): Símbolo del ETF que se va a procesar.
+
+        Returns:
+            Optional[pd.DataFrame]: Valor de salida de tipo `Optional[pd.DataFrame]` producido por la función.
+        """
         if not self.config.use_gdelt_history:
             return None
 
@@ -1215,15 +1399,16 @@ class GDELTHistoricalSentimentBuilder:
         start: pd.Timestamp,
         end: pd.Timestamp,
     ) -> pd.DataFrame:
-        """
-        Descarga una timeline de GDELT.
+        """Descarga una serie temporal de GDELT con reintentos y tratamiento de límites de peticiones.
 
-        GDELT puede responder HTTP 429 durante periodos de carga elevada.
-        Esta función:
-          - respeta Retry-After cuando existe;
-          - aplica espera exponencial limitada;
-          - no convierte un 429 temporal en un fallo difícil de diagnosticar;
-          - deja que update() use la caché local si finalmente no responde.
+        Args:
+            ticker (str): Símbolo del ETF que se va a procesar.
+            mode (str): Modo de consulta solicitado a la fuente externa.
+            start (pd.Timestamp): Fecha o índice inicial del intervalo.
+            end (pd.Timestamp): Fecha o índice final del intervalo.
+
+        Returns:
+            pd.DataFrame: Valor de salida de tipo `pd.DataFrame` producido por la función.
         """
         params = {
             "query": self.QUERY_MAP.get(ticker, ticker),
@@ -1340,16 +1525,25 @@ class GDELTHistoricalSentimentBuilder:
 
     @staticmethod
     def _extract_timeline_rows(payload: Any) -> List[Tuple[Any, Any]]:
-        """
-        GDELT ha utilizado más de una envoltura JSON a lo largo del tiempo.
-        Este extractor acepta las formas comunes:
-            {"timeline": [{"data": [{"date": ..., "value": ...}, ...]}]}
-            {"timeline": [{"date": ..., "value": ...}, ...]}
-            {"data": [{"date": ..., "value": ...}, ...]}
+        """Extrae pares fecha-valor de las distintas estructuras JSON que puede devolver GDELT.
+
+        Args:
+            payload (Any): Estructura de datos recibida de la API.
+
+        Returns:
+            List[Tuple[Any, Any]]: Valor de salida de tipo `List[Tuple[Any, Any]]` producido por la función.
         """
         rows: List[Tuple[Any, Any]] = []
 
         def walk(obj: Any):
+            """Ejecuta la operación interna `walk` de GDELTHistoricalSentimentBuilder.
+
+            Args:
+                obj (Any): Valor de entrada `obj` utilizado por la función.
+
+            Returns:
+                None: No devuelve ningún valor; realiza sus efectos sobre memoria, disco o consola.
+            """
             if isinstance(obj, dict):
                 if "date" in obj and "value" in obj:
                     rows.append((obj.get("date"), obj.get("value")))
@@ -1366,6 +1560,15 @@ class GDELTHistoricalSentimentBuilder:
 
     @staticmethod
     def _merge_with_existing(path: str, gdelt: pd.DataFrame) -> pd.DataFrame:
+        """Fusiona el histórico GDELT con el sentimiento existente dando prioridad a fuentes FinBERT.
+
+        Args:
+            path (str): Ruta del fichero o directorio utilizado.
+            gdelt (pd.DataFrame): Datos descargados desde GDELT.
+
+        Returns:
+            pd.DataFrame: Valor de salida de tipo `pd.DataFrame` producido por la función.
+        """
         common = [
             "date",
             "sentiment_mean",
@@ -1438,6 +1641,14 @@ class HistoricalSentimentLoader:
     ]
 
     def __init__(self, config: Config):
+        """Inicializa una instancia de HistoricalSentimentLoader y almacena las dependencias necesarias para su funcionamiento.
+
+        Args:
+            config (Config): Configuración global del experimento.
+
+        Returns:
+            None: No devuelve ningún valor; realiza sus efectos sobre memoria, disco o consola.
+        """
         self.config = config
 
     def load(
@@ -1446,6 +1657,15 @@ class HistoricalSentimentLoader:
         market_dates: Optional[pd.Series] = None,
     ) -> Optional[pd.DataFrame]:
 
+        """Carga el sentimiento histórico, crea variables por ventanas temporales y valida su cobertura antes de modelizar.
+
+        Args:
+            ticker (str): Símbolo del ETF que se va a procesar.
+            market_dates (Optional[pd.Series]): Fechas de mercado utilizadas para alinear la información.
+
+        Returns:
+            Optional[pd.DataFrame]: Valor de salida de tipo `Optional[pd.DataFrame]` producido por la función.
+        """
         path = os.path.join(
             self.config.historical_sentiment_dir,
             f"{ticker.lower()}_sentiment.csv",
@@ -1706,6 +1926,14 @@ class NewsSentimentAnalyzer:
     }
 
     def __init__(self, config: Config):
+        """Inicializa una instancia de NewsSentimentAnalyzer y almacena las dependencias necesarias para su funcionamiento.
+
+        Args:
+            config (Config): Configuración global del experimento.
+
+        Returns:
+            None: No devuelve ningún valor; realiza sus efectos sobre memoria, disco o consola.
+        """
         self.config = config
         self.finbert = None
         self.finbert_load_error = ""
@@ -1733,6 +1961,11 @@ class NewsSentimentAnalyzer:
 
     @staticmethod
     def _empty_score() -> Dict[str, float]:
+        """Construye un resultado de sentimiento vacío con valores neutros y sin noticias.
+
+        Returns:
+            Dict[str, float]: Valor de salida de tipo `Dict[str, float]` producido por la función.
+        """
         return {
             "sentiment_mean": 0.0,
             "sentiment_positive_ratio": 0.0,
@@ -1743,10 +1976,27 @@ class NewsSentimentAnalyzer:
 
     @staticmethod
     def _article_id(title: str, link: str) -> str:
+        """Genera un identificador estable para una noticia a partir de su título y enlace.
+
+        Args:
+            title (str): Título que se mostrará en la visualización.
+            link (str): Valor de entrada `link` utilizado por la función.
+
+        Returns:
+            str: Valor de salida de tipo `str` producido por la función.
+        """
         raw = f"{title.strip()}|{link.strip()}".encode("utf-8", errors="ignore")
         return hashlib.sha256(raw).hexdigest()[:24]
 
     def fetch_score_and_update_history(self, ticker: str) -> Tuple[Dict[str, float], pd.DataFrame]:
+        """Recupera noticias recientes, puntúa las nuevas con FinBERT, actualiza la caché y devuelve el sentimiento actual.
+
+        Args:
+            ticker (str): Símbolo del ETF que se va a procesar.
+
+        Returns:
+            Tuple[Dict[str, float], pd.DataFrame]: Valor de salida de tipo `Tuple[Dict[str, float], pd.DataFrame]` producido por la función.
+        """
         ticker = ticker.upper()
         if not self.config.use_news:
             return self._empty_score(), pd.DataFrame()
@@ -1826,6 +2076,14 @@ class NewsSentimentAnalyzer:
         return current_score, current_scored
 
     def _fetch_google_news(self, ticker: str) -> pd.DataFrame:
+        """Descarga titulares recientes de Google News RSS para el ETF indicado.
+
+        Args:
+            ticker (str): Símbolo del ETF que se va a procesar.
+
+        Returns:
+            pd.DataFrame: Valor de salida de tipo `pd.DataFrame` producido por la función.
+        """
         if not FEEDPARSER_AVAILABLE:
             return pd.DataFrame()
 
@@ -1875,12 +2133,13 @@ class NewsSentimentAnalyzer:
 
     @staticmethod
     def _normalize_article_cache(df: pd.DataFrame) -> pd.DataFrame:
-        """
-        Normaliza tipos de la caché de noticias.
+        """Homogeneiza columnas, fechas y tipos de la caché persistente de noticias.
 
-        Es imprescindible llamar a esta función DESPUÉS de cualquier concat.
-        Una parte de la caché puede venir de CSV (strings) y otra parte de
-        FinBERT (Timestamp). Pandas no puede ordenar str y Timestamp juntos.
+        Args:
+            df (pd.DataFrame): Valor de entrada `df` utilizado por la función.
+
+        Returns:
+            pd.DataFrame: Valor de salida de tipo `pd.DataFrame` producido por la función.
         """
         columns = [
             "article_id", "published_at", "date", "title", "link", "source", "query",
@@ -1935,6 +2194,14 @@ class NewsSentimentAnalyzer:
 
     @staticmethod
     def _load_article_cache(path: str) -> pd.DataFrame:
+        """Carga la caché de noticias desde disco y la normaliza.
+
+        Args:
+            path (str): Ruta del fichero o directorio utilizado.
+
+        Returns:
+            pd.DataFrame: Valor de salida de tipo `pd.DataFrame` producido por la función.
+        """
         columns = [
             "article_id", "published_at", "date", "title", "link", "source", "query",
             "label", "confidence", "sentiment_score",
@@ -1954,6 +2221,14 @@ class NewsSentimentAnalyzer:
             return pd.DataFrame(columns=columns)
 
     def _score_articles(self, news: pd.DataFrame) -> pd.DataFrame:
+        """Clasifica por lotes los titulares con FinBERT y asigna etiqueta, confianza y puntuación de sentimiento.
+
+        Args:
+            news (pd.DataFrame): Valor de entrada `news` utilizado por la función.
+
+        Returns:
+            pd.DataFrame: Valor de salida de tipo `pd.DataFrame` producido por la función.
+        """
         out = news.copy()
         labels = []
         confidences = []
@@ -2011,6 +2286,15 @@ class NewsSentimentAnalyzer:
         return self._normalize_article_cache(out)
 
     def _write_daily_history(self, ticker: str, article_cache: pd.DataFrame):
+        """Agrega las noticias puntuadas a nivel diario y fusiona el resultado con el histórico de sentimiento.
+
+        Args:
+            ticker (str): Símbolo del ETF que se va a procesar.
+            article_cache (pd.DataFrame): Caché de artículos ya procesados.
+
+        Returns:
+            None: No devuelve ningún valor; realiza sus efectos sobre memoria, disco o consola.
+        """
         if article_cache.empty:
             return
 
@@ -2091,6 +2375,14 @@ class NewsSentimentAnalyzer:
 
     @staticmethod
     def _aggregate_score(scored_news: pd.DataFrame) -> Dict[str, float]:
+        """Resume un conjunto de noticias puntuadas en métricas agregadas de sentimiento.
+
+        Args:
+            scored_news (pd.DataFrame): Noticias con puntuación de sentimiento.
+
+        Returns:
+            Dict[str, float]: Valor de salida de tipo `Dict[str, float]` producido por la función.
+        """
         if scored_news.empty:
             return NewsSentimentAnalyzer._empty_score()
 
@@ -2225,6 +2517,15 @@ class AlphaVantageHistoricalNewsBackfiller:
         config: Config,
         sentiment_analyzer: NewsSentimentAnalyzer,
     ):
+        """Inicializa una instancia de AlphaVantageHistoricalNewsBackfiller y almacena las dependencias necesarias para su funcionamiento.
+
+        Args:
+            config (Config): Configuración global del experimento.
+            sentiment_analyzer (NewsSentimentAnalyzer): Valor de entrada `sentiment_analyzer` utilizado por la función.
+
+        Returns:
+            None: No devuelve ningún valor; realiza sus efectos sobre memoria, disco o consola.
+        """
         self.config = config
         self.sentiment_analyzer = sentiment_analyzer
         self.total_calls_this_run = 0
@@ -2235,6 +2536,15 @@ class AlphaVantageHistoricalNewsBackfiller:
         market_dates: pd.Series,
     ) -> Optional[pd.DataFrame]:
 
+        """Amplía de forma reanudable el histórico de noticias de Alpha Vantage, aplica FinBERT y genera el histórico diario.
+
+        Args:
+            ticker (str): Símbolo del ETF que se va a procesar.
+            market_dates (pd.Series): Fechas de mercado utilizadas para alinear la información.
+
+        Returns:
+            Optional[pd.DataFrame]: Valor de salida de tipo `Optional[pd.DataFrame]` producido por la función.
+        """
         if not self.config.use_alpha_vantage_history:
             return None
 
@@ -2424,6 +2734,17 @@ class AlphaVantageHistoricalNewsBackfiller:
         end: pd.Timestamp,
     ) -> Dict[str, Any]:
 
+        """Carga el estado de backfill existente o crea las tareas temporales iniciales para cada familia de consulta.
+
+        Args:
+            ticker (str): Símbolo del ETF que se va a procesar.
+            path (str): Ruta del fichero o directorio utilizado.
+            start (pd.Timestamp): Fecha o índice inicial del intervalo.
+            end (pd.Timestamp): Fecha o índice final del intervalo.
+
+        Returns:
+            Dict[str, Any]: Valor de salida de tipo `Dict[str, Any]` producido por la función.
+        """
         if os.path.exists(path):
             try:
                 state = json.loads(
@@ -2474,6 +2795,15 @@ class AlphaVantageHistoricalNewsBackfiller:
 
     @staticmethod
     def _save_state(path: str, state: Dict[str, Any]):
+        """Persiste en JSON el estado de tareas pendientes y completadas del backfill.
+
+        Args:
+            path (str): Ruta del fichero o directorio utilizado.
+            state (Dict[str, Any]): Estado persistente del proceso reanudable.
+
+        Returns:
+            None: No devuelve ningún valor; realiza sus efectos sobre memoria, disco o consola.
+        """
         Path(path).write_text(
             json.dumps(state, indent=2, ensure_ascii=False),
             encoding="utf-8",
@@ -2484,6 +2814,15 @@ class AlphaVantageHistoricalNewsBackfiller:
         ticker: str,
         name: str,
     ) -> Dict[str, Any]:
+        """Localiza la configuración de una familia de consulta de Alpha Vantage por su nombre.
+
+        Args:
+            ticker (str): Símbolo del ETF que se va a procesar.
+            name (str): Nombre identificador.
+
+        Returns:
+            Dict[str, Any]: Valor de salida de tipo `Dict[str, Any]` producido por la función.
+        """
         for family in self.QUERY_FAMILIES[ticker]:
             if family["name"] == name:
                 return family
@@ -2500,6 +2839,18 @@ class AlphaVantageHistoricalNewsBackfiller:
         api_key: str,
     ) -> Tuple[pd.DataFrame, bool]:
 
+        """Consulta una ventana temporal en Alpha Vantage y transforma las noticias devueltas a un DataFrame normalizado.
+
+        Args:
+            ticker (str): Símbolo del ETF que se va a procesar.
+            family (Dict[str, Any]): Configuración de la familia de consulta.
+            start (pd.Timestamp): Fecha o índice inicial del intervalo.
+            end (pd.Timestamp): Fecha o índice final del intervalo.
+            api_key (str): Clave de acceso de la API.
+
+        Returns:
+            Tuple[pd.DataFrame, bool]: Valor de salida de tipo `Tuple[pd.DataFrame, bool]` producido por la función.
+        """
         params = {
             "function": "NEWS_SENTIMENT",
             "time_from": start.strftime("%Y%m%dT0000"),
@@ -2611,6 +2962,16 @@ class AlphaVantageHistoricalNewsBackfiller:
         start: pd.Timestamp,
         end: pd.Timestamp,
     ) -> bool:
+        """Determina si una ventana temporal debe dividirse para evitar truncación por límite de resultados.
+
+        Args:
+            articles (pd.DataFrame): Noticias obtenidas en una consulta.
+            start (pd.Timestamp): Fecha o índice inicial del intervalo.
+            end (pd.Timestamp): Fecha o índice final del intervalo.
+
+        Returns:
+            bool: Valor de salida de tipo `bool` producido por la función.
+        """
         days = int((end - start).days) + 1
 
         if days <= int(self.config.alpha_vantage_min_chunk_days):
@@ -2625,6 +2986,14 @@ class AlphaVantageHistoricalNewsBackfiller:
 
     @staticmethod
     def _split_task(task: Dict[str, str]) -> List[Dict[str, str]]:
+        """Divide una tarea temporal en dos subventanas consecutivas.
+
+        Args:
+            task (Dict[str, str]): Tarea temporal que se va a procesar.
+
+        Returns:
+            List[Dict[str, str]]: Valor de salida de tipo `List[Dict[str, str]]` producido por la función.
+        """
         start = pd.Timestamp(task["start"])
         end = pd.Timestamp(task["end"])
         midpoint = start + (end - start) / 2
@@ -2650,6 +3019,15 @@ class AlphaVantageHistoricalNewsBackfiller:
         ticker_sentiment: Any,
     ) -> float:
 
+        """Obtiene la mayor relevancia asignada por Alpha Vantage a los símbolos relacionados con el ETF.
+
+        Args:
+            ticker (str): Símbolo del ETF que se va a procesar.
+            ticker_sentiment (Any): Bloque de relevancia por ticker devuelto por la API.
+
+        Returns:
+            float: Valor de salida de tipo `float` producido por la función.
+        """
         relevant = self.RELEVANT_TICKERS[ticker]
         best = 0.0
 
@@ -2676,6 +3054,15 @@ class AlphaVantageHistoricalNewsBackfiller:
         ticker: str,
         text: str,
     ) -> float:
+        """Calcula una puntuación léxica de relevancia según las palabras clave asociadas al ETF.
+
+        Args:
+            ticker (str): Símbolo del ETF que se va a procesar.
+            text (str): Texto utilizado para calcular relevancia.
+
+        Returns:
+            float: Valor de salida de tipo `float` producido por la función.
+        """
         normalized = str(text).lower()
         keywords = self.KEYWORDS[ticker]
 
@@ -2693,6 +3080,15 @@ class AlphaVantageHistoricalNewsBackfiller:
         history: pd.DataFrame,
     ) -> pd.DataFrame:
 
+        """Calcula la puntuación final de relevancia de cada noticia histórica.
+
+        Args:
+            ticker (str): Símbolo del ETF que se va a procesar.
+            history (pd.DataFrame): Histórico de noticias o resultados.
+
+        Returns:
+            pd.DataFrame: Valor de salida de tipo `pd.DataFrame` producido por la función.
+        """
         out = history.copy()
 
         out["query_weight"] = pd.to_numeric(
@@ -2730,6 +3126,14 @@ class AlphaVantageHistoricalNewsBackfiller:
 
     @staticmethod
     def _normalize_history(df: pd.DataFrame) -> pd.DataFrame:
+        """Homogeneiza el esquema y tipos del histórico de noticias de Alpha Vantage.
+
+        Args:
+            df (pd.DataFrame): Valor de entrada `df` utilizado por la función.
+
+        Returns:
+            pd.DataFrame: Valor de salida de tipo `pd.DataFrame` producido por la función.
+        """
         columns = [
             "article_id",
             "published_at",
@@ -2799,6 +3203,14 @@ class AlphaVantageHistoricalNewsBackfiller:
         )
 
     def _load_history(self, path: str) -> pd.DataFrame:
+        """Carga y normaliza el histórico local de Alpha Vantage.
+
+        Args:
+            path (str): Ruta del fichero o directorio utilizado.
+
+        Returns:
+            pd.DataFrame: Valor de salida de tipo `pd.DataFrame` producido por la función.
+        """
         if not os.path.exists(path):
             return self._normalize_history(pd.DataFrame())
 
@@ -2815,6 +3227,14 @@ class AlphaVantageHistoricalNewsBackfiller:
         history: pd.DataFrame,
     ) -> pd.DataFrame:
 
+        """Aplica FinBERT a las noticias históricas que todavía no tienen sentimiento calculado.
+
+        Args:
+            history (pd.DataFrame): Histórico de noticias o resultados.
+
+        Returns:
+            pd.DataFrame: Valor de salida de tipo `pd.DataFrame` producido por la función.
+        """
         if history.empty:
             return history
 
@@ -2903,6 +3323,15 @@ class AlphaVantageHistoricalNewsBackfiller:
         history: pd.DataFrame,
     ):
 
+        """Agrega las noticias históricas de Alpha Vantage en una serie diaria ponderada por relevancia y confianza.
+
+        Args:
+            ticker (str): Símbolo del ETF que se va a procesar.
+            history (pd.DataFrame): Histórico de noticias o resultados.
+
+        Returns:
+            None: No devuelve ningún valor; realiza sus efectos sobre memoria, disco o consola.
+        """
         if history.empty:
             return
 
@@ -3087,11 +3516,29 @@ class GuardianHistoricalNewsBackfiller:
     KEYWORDS = AlphaVantageHistoricalNewsBackfiller.KEYWORDS
 
     def __init__(self, config: Config, sentiment_analyzer: NewsSentimentAnalyzer):
+        """Inicializa una instancia de GuardianHistoricalNewsBackfiller y almacena las dependencias necesarias para su funcionamiento.
+
+        Args:
+            config (Config): Configuración global del experimento.
+            sentiment_analyzer (NewsSentimentAnalyzer): Valor de entrada `sentiment_analyzer` utilizado por la función.
+
+        Returns:
+            None: No devuelve ningún valor; realiza sus efectos sobre memoria, disco o consola.
+        """
         self.config = config
         self.sentiment_analyzer = sentiment_analyzer
         self.total_calls_this_run = 0
 
     def update(self, ticker: str, market_dates: pd.Series) -> Optional[pd.DataFrame]:
+        """Amplía de forma reanudable el histórico de The Guardian y puntúa las noticias pendientes con FinBERT.
+
+        Args:
+            ticker (str): Símbolo del ETF que se va a procesar.
+            market_dates (pd.Series): Fechas de mercado utilizadas para alinear la información.
+
+        Returns:
+            Optional[pd.DataFrame]: Valor de salida de tipo `Optional[pd.DataFrame]` producido por la función.
+        """
         if not self.config.use_guardian_history:
             return None
 
@@ -3251,6 +3698,17 @@ class GuardianHistoricalNewsBackfiller:
         return history if not history.empty else None
 
     def _load_or_initialize_state(self, ticker, path, start, end):
+        """Carga el estado de backfill de Guardian o crea las tareas iniciales por ventana y familia.
+
+        Args:
+            ticker (Any): Símbolo del ETF que se va a procesar.
+            path (Any): Ruta del fichero o directorio utilizado.
+            start (Any): Fecha o índice inicial del intervalo.
+            end (Any): Fecha o índice final del intervalo.
+
+        Returns:
+            Any: Valor de salida de tipo `Any` producido por la función.
+        """
         if os.path.exists(path):
             try:
                 state = json.loads(Path(path).read_text(encoding="utf-8"))
@@ -3284,18 +3742,49 @@ class GuardianHistoricalNewsBackfiller:
 
     @staticmethod
     def _save_state(path, state):
+        """Guarda en JSON el estado del backfill de The Guardian.
+
+        Args:
+            path (Any): Ruta del fichero o directorio utilizado.
+            state (Any): Estado persistente del proceso reanudable.
+
+        Returns:
+            None: No devuelve ningún valor; realiza sus efectos sobre memoria, disco o consola.
+        """
         Path(path).write_text(
             json.dumps(state, indent=2, ensure_ascii=False),
             encoding="utf-8",
         )
 
     def _family(self, ticker, name):
+        """Obtiene la configuración de una familia de consulta de The Guardian.
+
+        Args:
+            ticker (Any): Símbolo del ETF que se va a procesar.
+            name (Any): Nombre identificador.
+
+        Returns:
+            Any: Valor de salida de tipo `Any` producido por la función.
+        """
         for family in self.QUERY_FAMILIES[ticker]:
             if family["name"] == name:
                 return family
         raise KeyError(name)
 
     def _fetch_page(self, ticker, family, start, end, page, api_key):
+        """Consulta una página de The Guardian y transforma los resultados en noticias normalizadas con relevancia.
+
+        Args:
+            ticker (Any): Símbolo del ETF que se va a procesar.
+            family (Any): Configuración de la familia de consulta.
+            start (Any): Fecha o índice inicial del intervalo.
+            end (Any): Fecha o índice final del intervalo.
+            page (Any): Número de página solicitado a la API.
+            api_key (Any): Clave de acceso de la API.
+
+        Returns:
+            Any: Valor de salida de tipo `Any` producido por la función.
+        """
         params = {
             "api-key": api_key,
             "format": "json",
@@ -3375,12 +3864,29 @@ class GuardianHistoricalNewsBackfiller:
         return self._normalize_history(pd.DataFrame(rows)), pages_total
 
     def _keyword_score(self, ticker, text):
+        """Calcula la relevancia léxica de un texto respecto a las palabras clave del ETF.
+
+        Args:
+            ticker (Any): Símbolo del ETF que se va a procesar.
+            text (Any): Texto utilizado para calcular relevancia.
+
+        Returns:
+            Any: Valor de salida de tipo `Any` producido por la función.
+        """
         normalized = str(text).lower()
         hits = sum(1 for kw in self.KEYWORDS[ticker] if kw.lower() in normalized)
         return float(min(hits / 4.0, 1.0))
 
     @staticmethod
     def _split_task(task):
+        """Divide una ventana de consulta de Guardian en dos subventanas.
+
+        Args:
+            task (Any): Tarea temporal que se va a procesar.
+
+        Returns:
+            Any: Valor de salida de tipo `Any` producido por la función.
+        """
         start = pd.Timestamp(task["start"])
         end = pd.Timestamp(task["end"])
         mid = start + (end - start) / 2
@@ -3402,6 +3908,14 @@ class GuardianHistoricalNewsBackfiller:
 
     @staticmethod
     def _normalize_history(df):
+        """Normaliza columnas y tipos del histórico de noticias de The Guardian.
+
+        Args:
+            df (Any): Valor de entrada `df` utilizado por la función.
+
+        Returns:
+            Any: Valor de salida de tipo `Any` producido por la función.
+        """
         columns = [
             "article_id", "dedupe_key", "published_at", "date", "title",
             "summary", "url", "publisher", "section", "query_family",
@@ -3425,6 +3939,14 @@ class GuardianHistoricalNewsBackfiller:
         return out.dropna(subset=["article_id", "published_at"])[columns].reset_index(drop=True)
 
     def _load_history(self, path):
+        """Carga de disco el histórico local de The Guardian.
+
+        Args:
+            path (Any): Ruta del fichero o directorio utilizado.
+
+        Returns:
+            Any: Valor de salida de tipo `Any` producido por la función.
+        """
         if not os.path.exists(path):
             return self._normalize_history(pd.DataFrame())
         try:
@@ -3434,6 +3956,14 @@ class GuardianHistoricalNewsBackfiller:
             return self._normalize_history(pd.DataFrame())
 
     def _score_pending(self, history):
+        """Puntúa con FinBERT las noticias de The Guardian que aún no disponen de sentimiento.
+
+        Args:
+            history (Any): Histórico de noticias o resultados.
+
+        Returns:
+            Any: Valor de salida de tipo `Any` producido por la función.
+        """
         if history.empty:
             return history
         if self.sentiment_analyzer.finbert is None:
@@ -3476,9 +4006,25 @@ class MultiSourceHistoricalSentimentBuilder:
     """Fusiona Alpha Vantage + Guardian a nivel de artículo y crea el diario."""
 
     def __init__(self, config: Config):
+        """Inicializa una instancia de MultiSourceHistoricalSentimentBuilder y almacena las dependencias necesarias para su funcionamiento.
+
+        Args:
+            config (Config): Configuración global del experimento.
+
+        Returns:
+            None: No devuelve ningún valor; realiza sus efectos sobre memoria, disco o consola.
+        """
         self.config = config
 
     def build(self, ticker: str):
+        """Fusiona noticias de Alpha Vantage y The Guardian, elimina duplicados entre fuentes y construye sentimiento diario.
+
+        Args:
+            ticker (str): Símbolo del ETF que se va a procesar.
+
+        Returns:
+            Any: Valor de salida de tipo `Any` producido por la función.
+        """
         ticker = ticker.upper()
         frames = []
 
@@ -3642,9 +4188,25 @@ class ExternalMarketDataLoader:
     ]
 
     def __init__(self, config: Config):
+        """Inicializa una instancia de ExternalMarketDataLoader y almacena las dependencias necesarias para su funcionamiento.
+
+        Args:
+            config (Config): Configuración global del experimento.
+
+        Returns:
+            None: No devuelve ningún valor; realiza sus efectos sobre memoria, disco o consola.
+        """
         self.config = config
 
     def build(self, market_dates: pd.Series) -> Optional[pd.DataFrame]:
+        """Descarga, transforma y alinea con el calendario de mercado las variables externas procedentes de FRED.
+
+        Args:
+            market_dates (pd.Series): Fechas de mercado utilizadas para alinear la información.
+
+        Returns:
+            Optional[pd.DataFrame]: Valor de salida de tipo `Optional[pd.DataFrame]` producido por la función.
+        """
         if not self.config.use_external_features:
             return None
 
@@ -3776,6 +4338,17 @@ class ExternalMarketDataLoader:
         start: pd.Timestamp,
         end: pd.Timestamp,
     ) -> pd.Series:
+        """Descarga una serie individual de FRED o utiliza la caché local si la red falla.
+
+        Args:
+            alias (str): Nombre interno asignado a la serie externa.
+            fred_id (str): Identificador de la serie en FRED.
+            start (pd.Timestamp): Fecha o índice inicial del intervalo.
+            end (pd.Timestamp): Fecha o índice final del intervalo.
+
+        Returns:
+            pd.Series: Valor de salida de tipo `pd.Series` producido por la función.
+        """
         cache_path = os.path.join(
             self.config.external_data_dir,
             f"fred_{fred_id}.csv",
@@ -3885,6 +4458,16 @@ class FeatureEngineer:
         historical_sentiment: Optional[pd.DataFrame] = None,
         external_features: Optional[pd.DataFrame] = None,
     ) -> Tuple[pd.DataFrame, List[str]]:
+        """Genera las variables técnicas del ETF e integra opcionalmente variables macroeconómicas y de sentimiento.
+
+        Args:
+            market_df (pd.DataFrame): Datos de mercado del ETF.
+            historical_sentiment (Optional[pd.DataFrame]): Variables históricas de sentimiento ya agregadas.
+            external_features (Optional[pd.DataFrame]): Variables externas de mercado y macroeconomía.
+
+        Returns:
+            Tuple[pd.DataFrame, List[str]]: Dataset enriquecido y lista de variables predictoras generadas.
+        """
         df = market_df.copy().sort_values("date").reset_index(drop=True)
 
         for p in [1, 2, 3] + FeatureEngineer.TECHNICAL_WINDOWS:
@@ -3979,6 +4562,15 @@ class FeatureEngineer:
 
     @staticmethod
     def add_target(df: pd.DataFrame, horizon: int) -> pd.DataFrame:
+        """Añade el precio futuro, retorno futuro y etiqueta binaria de subida para un horizonte dado.
+
+        Args:
+            df (pd.DataFrame): Valor de entrada `df` utilizado por la función.
+            horizon (int): Horizonte temporal expresado en sesiones.
+
+        Returns:
+            pd.DataFrame: Copia del dataset con las columnas objetivo del horizonte solicitado.
+        """
         out = df.copy()
         out[f"future_close_{horizon}d"] = out["Close"].shift(-horizon)
         out[f"future_return_{horizon}d"] = out[f"future_close_{horizon}d"] / out["Close"] - 1
@@ -3988,6 +4580,15 @@ class FeatureEngineer:
 
     @staticmethod
     def _rsi(series: pd.Series, window: int) -> pd.Series:
+        """Calcula el Relative Strength Index mediante medias exponenciales de ganancias y pérdidas.
+
+        Args:
+            series (pd.Series): Serie de datos que se va a transformar.
+            window (int): Valor de entrada `window` utilizado por la función.
+
+        Returns:
+            pd.Series: Valor de salida de tipo `pd.Series` producido por la función.
+        """
         delta = series.diff()
         gain = delta.clip(lower=0)
         loss = -delta.clip(upper=0)
@@ -3998,6 +4599,14 @@ class FeatureEngineer:
 
     @staticmethod
     def _macd(series: pd.Series) -> Tuple[pd.Series, pd.Series]:
+        """Calcula la línea MACD y su línea de señal a partir de medias móviles exponenciales.
+
+        Args:
+            series (pd.Series): Serie de datos que se va a transformar.
+
+        Returns:
+            Tuple[pd.Series, pd.Series]: Valor de salida de tipo `Tuple[pd.Series, pd.Series]` producido por la función.
+        """
         ema12 = series.ewm(span=12, adjust=False).mean()
         ema26 = series.ewm(span=26, adjust=False).mean()
         macd = ema12 - ema26
@@ -4012,6 +4621,16 @@ class FeatureEngineer:
 class Metrics:
     @staticmethod
     def classification(y_true, y_pred, y_prob) -> Dict[str, float]:
+        """Calcula el conjunto de métricas de clasificación utilizadas para evaluar cada modelo.
+
+        Args:
+            y_true (Any): Etiquetas reales.
+            y_pred (Any): Clases predichas.
+            y_prob (Any): Probabilidades predichas para la clase positiva.
+
+        Returns:
+            Dict[str, float]: Diccionario con Accuracy, Balanced Accuracy, Precision, Recall, F1, AUC, Log Loss, Brier y tasa positiva.
+        """
         try:
             auc = roc_auc_score(y_true, y_prob)
         except Exception:
@@ -4040,6 +4659,14 @@ class Metrics:
     @staticmethod
     def model_weight_score(metrics: Dict[str, float]) -> float:
         # AUC por debajo de 0.5 no aporta score positivo; F1 pesa menos.
+        """Convierte las métricas de validación de un modelo en una puntuación para ponderar el ensemble.
+
+        Args:
+            metrics (Dict[str, float]): Valor de entrada `metrics` utilizado por la función.
+
+        Returns:
+            float: Valor de salida de tipo `float` producido por la función.
+        """
         auc_component = max(float(metrics.get("roc_auc", 0.5)) - 0.5, 0.0)
         bal_component = max(float(metrics.get("balanced_accuracy", 0.5)) - 0.5, 0.0)
         f1_component = max(float(metrics.get("f1", 0.0)), 0.0)
@@ -4048,11 +4675,28 @@ class Metrics:
 
 class ClassicalModelTrainer:
     def __init__(self, config: Config):
+        """Inicializa una instancia de ClassicalModelTrainer y almacena las dependencias necesarias para su funcionamiento.
+
+        Args:
+            config (Config): Configuración global del experimento.
+
+        Returns:
+            None: No devuelve ningún valor; realiza sus efectos sobre memoria, disco o consola.
+        """
         self.config = config
 
     @staticmethod
     def _prepare_for_fit(name: str, model, y_train: pd.Series):
-        """Ajusta parámetros dependientes del fold sin mirar validación/test."""
+        """Ajusta parámetros dependientes del conjunto de entrenamiento antes de entrenar un modelo.
+
+        Args:
+            name (str): Nombre identificador.
+            model (Any): Modelo que se va a entrenar o utilizar.
+            y_train (pd.Series): Objetivo del conjunto de entrenamiento.
+
+        Returns:
+            Any: Valor de salida de tipo `Any` producido por la función.
+        """
         if name == "XGBoost":
             positives = int((y_train == 1).sum())
             negatives = int((y_train == 0).sum())
@@ -4061,6 +4705,11 @@ class ClassicalModelTrainer:
         return model
 
     def build_models(self) -> Dict[str, object]:
+        """Construye los modelos clásicos de clasificación configurados para el experimento.
+
+        Returns:
+            Dict[str, object]: Valor de salida de tipo `Dict[str, object]` producido por la función.
+        """
         models: Dict[str, object] = {
             "LogisticRegression": Pipeline([
                 ("scaler", StandardScaler()),
@@ -4105,6 +4754,16 @@ class ClassicalModelTrainer:
         y: pd.Series,
         horizon: int,
     ) -> Tuple[pd.DataFrame, Dict[str, float]]:
+        """Ejecuta validación cruzada temporal de los clasificadores y calcula los pesos del ensemble sin usar el holdout.
+
+        Args:
+            X (pd.DataFrame): Matriz de variables predictoras.
+            y (pd.Series): Variable objetivo.
+            horizon (int): Horizonte temporal expresado en sesiones.
+
+        Returns:
+            Tuple[pd.DataFrame, Dict[str, float]]: Tabla de métricas medias de validación y pesos normalizados del ensemble.
+        """
         models = self.build_models()
         n_splits = min(self.config.cv_splits, max(2, len(X) // 150))
         splitter = TimeSeriesSplit(n_splits=n_splits, gap=horizon)
@@ -4168,6 +4827,14 @@ class ClassicalModelTrainer:
 
     @staticmethod
     def normalize_weights(raw: Dict[str, float]) -> Dict[str, float]:
+        """Normaliza puntuaciones no negativas para convertirlas en pesos cuya suma es uno.
+
+        Args:
+            raw (Dict[str, float]): Valor de entrada `raw` utilizado por la función.
+
+        Returns:
+            Dict[str, float]: Valor de salida de tipo `Dict[str, float]` producido por la función.
+        """
         if not raw:
             return {}
         total = sum(max(v, 0.0) for v in raw.values())
@@ -4176,6 +4843,15 @@ class ClassicalModelTrainer:
         return {k: max(v, 0.0) / total for k, v in raw.items()}
 
     def fit_final(self, X_train: pd.DataFrame, y_train: pd.Series) -> Dict[str, object]:
+        """Entrena los clasificadores finales utilizando todo el conjunto de entrenamiento disponible.
+
+        Args:
+            X_train (pd.DataFrame): Variables predictoras del conjunto de entrenamiento.
+            y_train (pd.Series): Objetivo del conjunto de entrenamiento.
+
+        Returns:
+            Dict[str, object]: Valor de salida de tipo `Dict[str, object]` producido por la función.
+        """
         fitted = {}
         for name, model in self.build_models().items():
             print(f"Entrenando modelo final: {name}")
@@ -4206,6 +4882,16 @@ class RegressionMetrics:
         predicted_price: np.ndarray,
         current_price: Optional[np.ndarray] = None,
     ) -> Dict[str, float]:
+        """Calcula métricas de regresión en unidades de precio y, opcionalmente, exactitud direccional.
+
+        Args:
+            actual_price (np.ndarray): Precios futuros reales.
+            predicted_price (np.ndarray): Precios futuros estimados.
+            current_price (Optional[np.ndarray]): Precios actuales asociados a cada observación.
+
+        Returns:
+            Dict[str, float]: Valor de salida de tipo `Dict[str, float]` producido por la función.
+        """
         actual = np.asarray(actual_price, dtype=float)
         predicted = np.asarray(predicted_price, dtype=float)
 
@@ -4271,9 +4957,22 @@ class PriceRegressionTrainer:
     """
 
     def __init__(self, config: Config):
+        """Inicializa una instancia de PriceRegressionTrainer y almacena las dependencias necesarias para su funcionamiento.
+
+        Args:
+            config (Config): Configuración global del experimento.
+
+        Returns:
+            None: No devuelve ningún valor; realiza sus efectos sobre memoria, disco o consola.
+        """
         self.config = config
 
     def build_models(self) -> Dict[str, object]:
+        """Construye los modelos de regresión configurados para estimar el retorno logarítmico futuro.
+
+        Returns:
+            Dict[str, object]: Valor de salida de tipo `Dict[str, object]` producido por la función.
+        """
         models: Dict[str, object] = {}
 
         if "Ridge" in self.config.regression_models:
@@ -4316,12 +5015,30 @@ class PriceRegressionTrainer:
 
     @staticmethod
     def _log_return_target(df: pd.DataFrame, horizon: int) -> pd.Series:
+        """Calcula el retorno logarítmico futuro usado como variable objetivo de regresión.
+
+        Args:
+            df (pd.DataFrame): Valor de entrada `df` utilizado por la función.
+            horizon (int): Horizonte temporal expresado en sesiones.
+
+        Returns:
+            pd.Series: Valor de salida de tipo `pd.Series` producido por la función.
+        """
         future = pd.to_numeric(df[f"future_close_{horizon}d"], errors="coerce")
         current = pd.to_numeric(df["Close"], errors="coerce")
         return np.log(future / current)
 
     @staticmethod
     def _prices_from_log_return(current_price, predicted_log_return):
+        """Reconstruye precios futuros a partir del precio actual y retornos logarítmicos predichos.
+
+        Args:
+            current_price (Any): Precios actuales asociados a cada observación.
+            predicted_log_return (Any): Retornos logarítmicos predichos.
+
+        Returns:
+            Any: Valor de salida de tipo `Any` producido por la función.
+        """
         current = np.asarray(current_price, dtype=float)
         pred_ret = np.asarray(predicted_log_return, dtype=float)
         # Protección frente a extrapolaciones patológicas.
@@ -4330,6 +5047,14 @@ class PriceRegressionTrainer:
 
     @staticmethod
     def normalize_inverse_rmse(rmses: Dict[str, float]) -> Dict[str, float]:
+        """Transforma los RMSE de los regresores en pesos inversamente proporcionales al error.
+
+        Args:
+            rmses (Dict[str, float]): RMSE obtenidos por los distintos regresores.
+
+        Returns:
+            Dict[str, float]: Valor de salida de tipo `Dict[str, float]` producido por la función.
+        """
         raw = {}
         for name, rmse in rmses.items():
             if rmse is not None and np.isfinite(rmse) and rmse > 0:
@@ -4348,16 +5073,17 @@ class PriceRegressionTrainer:
         future_price: pd.Series,
         horizon: int,
     ) -> Tuple[pd.DataFrame, Dict[str, float]]:
-        """
-        Validación temporal de los regresores y del ensemble.
+        """Valida temporalmente los regresores y calcula pesos del ensemble de regresión sin utilizar el holdout.
 
-        El ensemble se evalúa de forma OOF por fold: para evaluar un fold,
-        sus pesos se calculan usando exclusivamente los RMSE de los OTROS
-        folds. Así el RMSE CV del ensemble no utiliza el resultado del propio
-        fold para decidir sus pesos.
+        Args:
+            X (pd.DataFrame): Matriz de variables predictoras.
+            y_log_return (pd.Series): Retornos logarítmicos futuros usados como objetivo.
+            current_price (pd.Series): Precios actuales asociados a cada observación.
+            future_price (pd.Series): Precios futuros reales para evaluar la regresión.
+            horizon (int): Horizonte temporal expresado en sesiones.
 
-        Los pesos finales que después se aplican al holdout sí se estiman con
-        todos los folds de train, pero nunca con el holdout.
+        Returns:
+            Tuple[pd.DataFrame, Dict[str, float]]: Tabla de métricas CV de regresión y pesos finales calculados con el train.
         """
         models = self.build_models()
         n_splits = min(self.config.cv_splits, max(2, len(X) // 150))
@@ -4484,6 +5210,20 @@ class PriceRegressionTrainer:
         latest_df: pd.DataFrame,
         horizon_dir: str,
     ) -> Dict[str, Any]:
+        """Ejecuta el problema completo de regresión: CV, holdout, selección del modelo, predicción e intervalos.
+
+        Args:
+            ticker (str): Símbolo del ETF que se va a procesar.
+            horizon (int): Horizonte temporal expresado en sesiones.
+            train_df (pd.DataFrame): Datos del tramo de entrenamiento.
+            test_df (pd.DataFrame): Datos del holdout temporal.
+            feature_cols (List[str]): Lista de columnas usadas como variables predictoras.
+            latest_df (pd.DataFrame): Valor de entrada `latest_df` utilizado por la función.
+            horizon_dir (str): Directorio de resultados del horizonte actual.
+
+        Returns:
+            Dict[str, Any]: Diccionario con métricas, modelos seleccionados, pesos y última predicción de precio.
+        """
         if not self.config.use_price_regression:
             return {}
 
@@ -4845,13 +5585,36 @@ class LSTMTrainer:
     """LSTM temporal con validación interna, early stopping y balance de clases."""
 
     def __init__(self, config: Config):
+        """Inicializa una instancia de LSTMTrainer y almacena las dependencias necesarias para su funcionamiento.
+
+        Args:
+            config (Config): Configuración global del experimento.
+
+        Returns:
+            None: No devuelve ningún valor; realiza sus efectos sobre memoria, disco o consola.
+        """
         self.config = config
 
     def enabled(self) -> bool:
+        """Indica si la LSTM puede utilizarse según la configuración y disponibilidad de TensorFlow.
+
+        Returns:
+            bool: Valor de salida de tipo `bool` producido por la función.
+        """
         return self.config.use_lstm and TENSORFLOW_AVAILABLE
 
     @staticmethod
     def _make_sequences(X_scaled: np.ndarray, y: np.ndarray, lookback: int):
+        """Convierte una matriz temporal en secuencias de longitud fija para entrenar la LSTM.
+
+        Args:
+            X_scaled (np.ndarray): Matriz de variables previamente escalada.
+            y (np.ndarray): Variable objetivo.
+            lookback (int): Número de observaciones anteriores incluidas en cada secuencia.
+
+        Returns:
+            Any: Valor de salida de tipo `Any` producido por la función.
+        """
         xs, ys = [], []
         for i in range(lookback, len(X_scaled)):
             xs.append(X_scaled[i - lookback:i])
@@ -4860,6 +5623,14 @@ class LSTMTrainer:
 
     @staticmethod
     def _class_weights(y: np.ndarray) -> Dict[int, float]:
+        """Calcula pesos balanceados para las clases binarias de la LSTM.
+
+        Args:
+            y (np.ndarray): Variable objetivo.
+
+        Returns:
+            Dict[int, float]: Valor de salida de tipo `Dict[int, float]` producido por la función.
+        """
         y = np.asarray(y).astype(int)
         n0 = int((y == 0).sum())
         n1 = int((y == 1).sum())
@@ -4873,6 +5644,15 @@ class LSTMTrainer:
 
     def _build_model(self, input_shape: Tuple[int, int], seed: int):
         # Limpiamos grafo y restauramos la semilla ANTES de crear pesos y Dropout.
+        """Construye y compila la arquitectura LSTM usada en clasificación.
+
+        Args:
+            input_shape (Tuple[int, int]): Dimensiones de entrada esperadas por la red LSTM.
+            seed (int): Semilla aleatoria usada para reproducibilidad.
+
+        Returns:
+            Any: Valor de salida de tipo `Any` producido por la función.
+        """
         try:
             K.clear_session()
         except Exception:
@@ -4906,6 +5686,17 @@ class LSTMTrainer:
         X_test: pd.DataFrame,
         y_test: pd.Series,
     ):
+        """Entrena la LSTM con validación temporal interna, reentrena con todo el train y evalúa el holdout.
+
+        Args:
+            X_train (pd.DataFrame): Variables predictoras del conjunto de entrenamiento.
+            y_train (pd.Series): Objetivo del conjunto de entrenamiento.
+            X_test (pd.DataFrame): Variables predictoras del conjunto de prueba/holdout.
+            y_test (pd.Series): Objetivo del conjunto de prueba/holdout.
+
+        Returns:
+            Any: Modelo final, escalador, métricas de validación, métricas de holdout y probabilidades del holdout.
+        """
         if not self.enabled():
             return None, None, None, None, None
 
@@ -5044,6 +5835,16 @@ class LSTMTrainer:
         return final_model, scaler_final, val_metrics, test_metrics, test_prob
 
     def predict_latest(self, model, scaler, X_all: pd.DataFrame) -> Optional[float]:
+        """Calcula la probabilidad de subida para la secuencia más reciente disponible.
+
+        Args:
+            model (Any): Modelo que se va a entrenar o utilizar.
+            scaler (Any): Escalador entrenado para transformar las variables.
+            X_all (pd.DataFrame): Serie completa de variables predictoras ordenadas temporalmente.
+
+        Returns:
+            Optional[float]: Valor de salida de tipo `Optional[float]` producido por la función.
+        """
         if model is None or scaler is None or len(X_all) < self.config.lstm_lookback:
             return None
         x = scaler.transform(X_all.iloc[-self.config.lstm_lookback:])
@@ -5058,6 +5859,15 @@ class LSTMTrainer:
 class EnsemblePredictor:
     @staticmethod
     def combine_scalar(probabilities: Dict[str, float], weights: Dict[str, float]):
+        """Combina probabilidades escalares de varios modelos mediante pesos normalizados.
+
+        Args:
+            probabilities (Dict[str, float]): Probabilidades generadas por los modelos.
+            weights (Dict[str, float]): Pesos asignados a los modelos del ensemble.
+
+        Returns:
+            Any: Valor de salida de tipo `Any` producido por la función.
+        """
         valid = {k: v for k, v in probabilities.items() if v is not None and np.isfinite(v)}
         if not valid:
             return 0.5, {}
@@ -5074,6 +5884,15 @@ class EnsemblePredictor:
 
     @staticmethod
     def combine_arrays(probabilities: Dict[str, np.ndarray], weights: Dict[str, float]) -> np.ndarray:
+        """Combina vectores de probabilidades de varios modelos mediante pesos normalizados.
+
+        Args:
+            probabilities (Dict[str, np.ndarray]): Probabilidades generadas por los modelos.
+            weights (Dict[str, float]): Pesos asignados a los modelos del ensemble.
+
+        Returns:
+            np.ndarray: Valor de salida de tipo `np.ndarray` producido por la función.
+        """
         valid = {k: v for k, v in probabilities.items() if v is not None}
         if not valid:
             raise ValueError("No hay probabilidades para construir el ensemble.")
@@ -5118,6 +5937,14 @@ class OverlappingTargetValidator:
     """
 
     def __init__(self, config: Config):
+        """Inicializa una instancia de OverlappingTargetValidator y almacena las dependencias necesarias para su funcionamiento.
+
+        Args:
+            config (Config): Configuración global del experimento.
+
+        Returns:
+            None: No devuelve ningún valor; realiza sus efectos sobre memoria, disco o consola.
+        """
         self.config = config
 
     def evaluate(
@@ -5129,6 +5956,18 @@ class OverlappingTargetValidator:
         label: str = "ENSEMBLE",
     ) -> Dict[str, Any]:
 
+        """Evalúa la robustez de targets solapados mediante fases no solapadas y bootstrap por bloques.
+
+        Args:
+            y_true (pd.Series): Etiquetas reales.
+            y_prob (np.ndarray): Probabilidades predichas para la clase positiva.
+            horizon (int): Horizonte temporal expresado en sesiones.
+            output_dir (str): Directorio donde se guardan los resultados.
+            label (str): Etiqueta usada para identificar el experimento o resultado.
+
+        Returns:
+            Dict[str, Any]: Valor de salida de tipo `Dict[str, Any]` producido por la función.
+        """
         if not self.config.validate_overlapping_targets:
             return {}
 
@@ -5250,6 +6089,16 @@ class OverlappingTargetValidator:
         horizon: int,
     ) -> Dict[str, float]:
 
+        """Estima un intervalo de confianza del AUC mediante bootstrap móvil por bloques.
+
+        Args:
+            y (np.ndarray): Variable objetivo.
+            p (np.ndarray): Valor de entrada `p` utilizado por la función.
+            horizon (int): Horizonte temporal expresado en sesiones.
+
+        Returns:
+            Dict[str, float]: Valor de salida de tipo `Dict[str, float]` producido por la función.
+        """
         if len(y) < 20:
             return {}
 
@@ -5326,9 +6175,26 @@ class OverlappingTargetValidator:
 
 class Backtester:
     def __init__(self, config: Config):
+        """Inicializa una instancia de Backtester y almacena las dependencias necesarias para su funcionamiento.
+
+        Args:
+            config (Config): Configuración global del experimento.
+
+        Returns:
+            None: No devuelve ningún valor; realiza sus efectos sobre memoria, disco o consola.
+        """
         self.config = config
 
     def run(self, test_df: pd.DataFrame, ensemble_prob: np.ndarray) -> pd.DataFrame:
+        """Convierte probabilidades del ensemble en posiciones, aplica costes y calcula la evolución de capital.
+
+        Args:
+            test_df (pd.DataFrame): Datos del holdout temporal.
+            ensemble_prob (np.ndarray): Vector de probabilidades generado por el ensemble.
+
+        Returns:
+            pd.DataFrame: DataFrame con posiciones, retornos y curvas de capital de estrategia y Buy & Hold.
+        """
         df = test_df.copy().reset_index(drop=True)
         if len(df) != len(ensemble_prob):
             raise ValueError("Longitud de probabilidades incompatible con el holdout.")
@@ -5367,10 +6233,26 @@ class Backtester:
 
     @staticmethod
     def metrics(df: pd.DataFrame) -> Dict[str, float]:
+        """Calcula métricas financieras de la estrategia y de Buy & Hold a partir del backtest.
+
+        Args:
+            df (pd.DataFrame): Valor de entrada `df` utilizado por la función.
+
+        Returns:
+            Dict[str, float]: Diccionario con las métricas financieras calculadas.
+        """
         strategy = df["strategy_return"].dropna()
         market = df["market_return"].dropna()
 
         def ann_return(r):
+            """Ejecuta la operación interna `ann_return` de Backtester.
+
+            Args:
+                r (Any): Valor de entrada `r` utilizado por la función.
+
+            Returns:
+                Any: Valor de salida de tipo `Any` producido por la función.
+            """
             if len(r) == 0:
                 return 0.0
             total = float((1 + r).prod())
@@ -5380,15 +6262,39 @@ class Backtester:
             return total ** (1 / years) - 1
 
         def ann_vol(r):
+            """Ejecuta la operación interna `ann_vol` de Backtester.
+
+            Args:
+                r (Any): Valor de entrada `r` utilizado por la función.
+
+            Returns:
+                Any: Valor de salida de tipo `Any` producido por la función.
+            """
             return float(r.std() * np.sqrt(252)) if len(r) > 1 else 0.0
 
         def sharpe(r):
+            """Ejecuta la operación interna `sharpe` de Backtester.
+
+            Args:
+                r (Any): Valor de entrada `r` utilizado por la función.
+
+            Returns:
+                Any: Valor de salida de tipo `Any` producido por la función.
+            """
             sd = r.std()
             if len(r) < 2 or sd == 0 or pd.isna(sd):
                 return 0.0
             return float(np.sqrt(252) * r.mean() / sd)
 
         def sortino(r):
+            """Ejecuta la operación interna `sortino` de Backtester.
+
+            Args:
+                r (Any): Valor de entrada `r` utilizado por la función.
+
+            Returns:
+                Any: Valor de salida de tipo `Any` producido por la función.
+            """
             downside = r[r < 0]
             sd = downside.std()
             if len(downside) < 2 or sd == 0 or pd.isna(sd):
@@ -5396,6 +6302,14 @@ class Backtester:
             return float(np.sqrt(252) * r.mean() / sd)
 
         def max_drawdown(equity):
+            """Ejecuta la operación interna `max_drawdown` de Backtester.
+
+            Args:
+                equity (Any): Valor de entrada `equity` utilizado por la función.
+
+            Returns:
+                Any: Valor de salida de tipo `Any` producido por la función.
+            """
             peak = equity.cummax()
             return float((equity / peak - 1).min())
 
@@ -5429,10 +6343,27 @@ class Backtester:
 
 class PredictionJournal:
     def __init__(self, config: Config):
+        """Inicializa una instancia de PredictionJournal y almacena las dependencias necesarias para su funcionamiento.
+
+        Args:
+            config (Config): Configuración global del experimento.
+
+        Returns:
+            None: No devuelve ningún valor; realiza sus efectos sobre memoria, disco o consola.
+        """
         self.config = config
         self.path = config.prediction_log
 
     def update_realized_results(self, ticker: str, market_df: pd.DataFrame):
+        """Actualiza predicciones históricas cuando ya existe suficiente información para conocer su resultado real.
+
+        Args:
+            ticker (str): Símbolo del ETF que se va a procesar.
+            market_df (pd.DataFrame): Datos de mercado del ETF.
+
+        Returns:
+            None: No devuelve ningún valor; realiza sus efectos sobre memoria, disco o consola.
+        """
         if not os.path.exists(self.path):
             return
 
@@ -5478,6 +6409,21 @@ class PredictionJournal:
         sentiment_context: float,
         model_probabilities: Dict[str, float],
     ):
+        """Añade o reemplaza en el diario persistente una predicción correspondiente a una fecha y horizonte.
+
+        Args:
+            ticker (str): Símbolo del ETF que se va a procesar.
+            horizon (int): Horizonte temporal expresado en sesiones.
+            prediction_date (pd.Timestamp): Fecha asociada a la predicción.
+            probability_up (float): Probabilidad estimada de subida.
+            signal (str): Señal categórica asociada a la predicción.
+            confidence (str): Nivel de confianza de la señal.
+            sentiment_context (float): Puntuación agregada de sentimiento usada como contexto.
+            model_probabilities (Dict[str, float]): Probabilidades individuales generadas por cada modelo.
+
+        Returns:
+            None: No devuelve ningún valor; realiza sus efectos sobre memoria, disco o consola.
+        """
         row = {
             "created_at": datetime.now().isoformat(timespec="seconds"),
             "ticker": ticker.upper(),
@@ -5517,6 +6463,16 @@ class PredictionJournal:
 class Visualizer:
     @staticmethod
     def plot_equity(backtest_df: pd.DataFrame, title: str, path: str):
+        """Genera y guarda la curva de capital de la estrategia ML frente a Buy & Hold.
+
+        Args:
+            backtest_df (pd.DataFrame): Resultado tabular del backtesting.
+            title (str): Título que se mostrará en la visualización.
+            path (str): Ruta del fichero o directorio utilizado.
+
+        Returns:
+            None: No devuelve ningún valor; realiza sus efectos sobre memoria, disco o consola.
+        """
         plt.figure(figsize=(12, 6))
         plt.plot(backtest_df["date"], backtest_df["buy_hold_equity"], label="Buy & Hold")
         plt.plot(backtest_df["date"], backtest_df["strategy_equity"], label="Ensemble ML")
@@ -5531,6 +6487,17 @@ class Visualizer:
 
     @staticmethod
     def plot_probability(backtest_df: pd.DataFrame, title: str, path: str, config: Config):
+        """Genera y guarda la evolución temporal de la probabilidad de subida y sus umbrales de señal.
+
+        Args:
+            backtest_df (pd.DataFrame): Resultado tabular del backtesting.
+            title (str): Título que se mostrará en la visualización.
+            path (str): Ruta del fichero o directorio utilizado.
+            config (Config): Configuración global del experimento.
+
+        Returns:
+            None: No devuelve ningún valor; realiza sus efectos sobre memoria, disco o consola.
+        """
         plt.figure(figsize=(12, 5))
         plt.plot(backtest_df["date"], backtest_df["ensemble_probability"], label="P(SUBIDA)")
         plt.axhline(config.buy_threshold, linestyle="--", label="Umbral alcista")
@@ -5548,6 +6515,16 @@ class Visualizer:
 
     @staticmethod
     def plot_clean_price(market_df: pd.DataFrame, ticker: str, path: str):
+        """Genera y guarda la serie de precios de cierre después del preprocesamiento.
+
+        Args:
+            market_df (pd.DataFrame): Datos de mercado del ETF.
+            ticker (str): Símbolo del ETF que se va a procesar.
+            path (str): Ruta del fichero o directorio utilizado.
+
+        Returns:
+            None: No devuelve ningún valor; realiza sus efectos sobre memoria, disco o consola.
+        """
         plt.figure(figsize=(12, 5))
         plt.plot(market_df["date"], market_df["Close"])
         plt.title(f"{ticker} - Precio de cierre después del preprocesamiento")
@@ -5564,6 +6541,16 @@ class Visualizer:
 # =============================================================================
 
 def probability_to_signal(prob: float, buy_threshold: float, sell_threshold: float) -> str:
+    """Convierte una probabilidad de subida en una señal alcista, bajista o neutral según los umbrales.
+
+    Args:
+        prob (float): Probabilidad de subida estimada.
+        buy_threshold (float): Umbral mínimo para generar señal alcista.
+        sell_threshold (float): Umbral máximo para generar señal bajista.
+
+    Returns:
+        str: Texto descriptivo de la señal obtenida.
+    """
     if prob >= buy_threshold:
         return "SUBIDA / ALCISTA"
     if prob <= sell_threshold:
@@ -5572,6 +6559,14 @@ def probability_to_signal(prob: float, buy_threshold: float, sell_threshold: flo
 
 
 def confidence_label(prob: float) -> str:
+    """Clasifica el nivel de confianza de una probabilidad según su distancia respecto a 0,5.
+
+    Args:
+        prob (float): Probabilidad de subida estimada.
+
+    Returns:
+        str: Etiqueta de confianza: ALTA, MODERADA o BAJA.
+    """
     distance = abs(prob - 0.5)
     if distance >= 0.25:
         return "ALTA"
@@ -5601,6 +6596,16 @@ class SentimentAblationStudy:
     """
 
     def __init__(self, config, classical, lstm):
+        """Inicializa una instancia de SentimentAblationStudy y almacena las dependencias necesarias para su funcionamiento.
+
+        Args:
+            config (Any): Configuración global del experimento.
+            classical (Any): Valor de entrada `classical` utilizado por la función.
+            lstm (Any): Valor de entrada `lstm` utilizado por la función.
+
+        Returns:
+            None: No devuelve ningún valor; realiza sus efectos sobre memoria, disco o consola.
+        """
         self.config = config
         self.classical = classical
         self.lstm = lstm
@@ -5615,6 +6620,20 @@ class SentimentAblationStudy:
         full_feature_cols,
         horizon_dir,
     ):
+        """Compara modelos con y sin variables de sentimiento manteniendo exactamente las mismas fechas de evaluación.
+
+        Args:
+            ticker (Any): Símbolo del ETF que se va a procesar.
+            horizon (Any): Horizonte temporal expresado en sesiones.
+            train_df (Any): Datos del tramo de entrenamiento.
+            test_df (Any): Datos del holdout temporal.
+            target_col (Any): Nombre de la columna objetivo.
+            full_feature_cols (Any): Lista completa de variables predictoras disponibles.
+            horizon_dir (Any): Directorio de resultados del horizonte actual.
+
+        Returns:
+            Any: Valor de salida de tipo `Any` producido por la función.
+        """
         status_path = os.path.join(
             horizon_dir, "sentiment_ablation_status.txt"
         )
@@ -5864,6 +6883,14 @@ class ExplainabilityAnalyzer:
     """
 
     def __init__(self, config):
+        """Inicializa una instancia de ExplainabilityAnalyzer y almacena las dependencias necesarias para su funcionamiento.
+
+        Args:
+            config (Any): Configuración global del experimento.
+
+        Returns:
+            None: No devuelve ningún valor; realiza sus efectos sobre memoria, disco o consola.
+        """
         self.config = config
 
     def run(
@@ -5875,6 +6902,19 @@ class ExplainabilityAnalyzer:
         X_test,
         horizon_dir,
     ):
+        """Genera resultados de interpretabilidad de los modelos y ejecuta SHAP sobre XGBoost cuando está disponible.
+
+        Args:
+            ticker (Any): Símbolo del ETF que se va a procesar.
+            horizon (Any): Horizonte temporal expresado en sesiones.
+            models (Any): Colección de modelos entrenados o configurados.
+            X_train (Any): Variables predictoras del conjunto de entrenamiento.
+            X_test (Any): Variables predictoras del conjunto de prueba/holdout.
+            horizon_dir (Any): Directorio de resultados del horizonte actual.
+
+        Returns:
+            Any: Valor de salida de tipo `Any` producido por la función.
+        """
         out_dir = os.path.join(horizon_dir, "explainability")
         os.makedirs(out_dir, exist_ok=True)
 
@@ -6049,6 +7089,16 @@ class ExplainabilityAnalyzer:
 
     @staticmethod
     def _random_forest(models, feature_cols, out_dir):
+        """Exporta la importancia de variables proporcionada por el modelo Random Forest.
+
+        Args:
+            models (Any): Colección de modelos entrenados o configurados.
+            feature_cols (Any): Lista de columnas usadas como variables predictoras.
+            out_dir (Any): Valor de entrada `out_dir` utilizado por la función.
+
+        Returns:
+            None: No devuelve ningún valor; realiza sus efectos sobre memoria, disco o consola.
+        """
         model = models.get("RandomForest")
         if model is None or not hasattr(
             model, "feature_importances_"
@@ -6070,6 +7120,16 @@ class ExplainabilityAnalyzer:
 
     @staticmethod
     def _logistic(models, feature_cols, out_dir):
+        """Exporta los coeficientes de la Regresión Logística y su dirección sobre la probabilidad de subida.
+
+        Args:
+            models (Any): Colección de modelos entrenados o configurados.
+            feature_cols (Any): Lista de columnas usadas como variables predictoras.
+            out_dir (Any): Valor de entrada `out_dir` utilizado por la función.
+
+        Returns:
+            None: No devuelve ningún valor; realiza sus efectos sobre memoria, disco o consola.
+        """
         pipeline = models.get("LogisticRegression")
         if pipeline is None:
             return
@@ -6102,6 +7162,16 @@ class ExplainabilityAnalyzer:
 
     @staticmethod
     def _xgb_builtin(models, feature_cols, out_dir):
+        """Exporta la importancia de variables interna del modelo XGBoost.
+
+        Args:
+            models (Any): Colección de modelos entrenados o configurados.
+            feature_cols (Any): Lista de columnas usadas como variables predictoras.
+            out_dir (Any): Valor de entrada `out_dir` utilizado por la función.
+
+        Returns:
+            None: No devuelve ningún valor; realiza sus efectos sobre memoria, disco o consola.
+        """
         model = models.get("XGBoost")
         if model is None or not hasattr(
             model, "feature_importances_"
@@ -6160,6 +7230,16 @@ class FinalExperimentSuite:
         classical: ClassicalModelTrainer,
         backtester: Backtester,
     ):
+        """Inicializa una instancia de FinalExperimentSuite y almacena las dependencias necesarias para su funcionamiento.
+
+        Args:
+            config (Config): Configuración global del experimento.
+            classical (ClassicalModelTrainer): Valor de entrada `classical` utilizado por la función.
+            backtester (Backtester): Valor de entrada `backtester` utilizado por la función.
+
+        Returns:
+            None: No devuelve ningún valor; realiza sus efectos sobre memoria, disco o consola.
+        """
         self.config = config
         self.classical = classical
         self.backtester = backtester
@@ -6173,6 +7253,19 @@ class FinalExperimentSuite:
         horizon: int,
         label: str,
     ) -> Dict[str, Any]:
+        """Entrena y evalúa un conjunto concreto de variables con el ensemble clásico y backtesting.
+
+        Args:
+            train_df (pd.DataFrame): Datos del tramo de entrenamiento.
+            test_df (pd.DataFrame): Datos del holdout temporal.
+            target_col (str): Nombre de la columna objetivo.
+            feature_cols (List[str]): Lista de columnas usadas como variables predictoras.
+            horizon (int): Horizonte temporal expresado en sesiones.
+            label (str): Etiqueta usada para identificar el experimento o resultado.
+
+        Returns:
+            Dict[str, Any]: Valor de salida de tipo `Dict[str, Any]` producido por la función.
+        """
         cols = [c for c in feature_cols if c in train_df.columns]
         if not cols:
             raise ValueError(f"{label}: no hay features disponibles.")
@@ -6232,6 +7325,20 @@ class FinalExperimentSuite:
         full_feature_cols: List[str],
         horizon_dir: str,
     ) -> Dict[str, Any]:
+        """Ejecuta las ablaciones finales, la prueba de robustez de tipos y el baseline MA50/MA200.
+
+        Args:
+            ticker (str): Símbolo del ETF que se va a procesar.
+            horizon (int): Horizonte temporal expresado en sesiones.
+            train_df (pd.DataFrame): Datos del tramo de entrenamiento.
+            test_df (pd.DataFrame): Datos del holdout temporal.
+            target_col (str): Nombre de la columna objetivo.
+            full_feature_cols (List[str]): Lista completa de variables predictoras disponibles.
+            horizon_dir (str): Directorio de resultados del horizonte actual.
+
+        Returns:
+            Dict[str, Any]: Valor de salida de tipo `Dict[str, Any]` producido por la función.
+        """
         if (
             not self.config.run_final_experiments
             or horizon not in self.config.final_experiment_horizons
@@ -6385,6 +7492,14 @@ class FinalExperimentSuite:
 
 class AdvancedETFPipeline:
     def __init__(self, config: Config):
+        """Inicializa una instancia de AdvancedETFPipeline y almacena las dependencias necesarias para su funcionamiento.
+
+        Args:
+            config (Config): Configuración global del experimento.
+
+        Returns:
+            None: No devuelve ningún valor; realiza sus efectos sobre memoria, disco o consola.
+        """
         self.config = config
         self.preprocessor = DataPreprocessor(config)
         self.sentiment_history = HistoricalSentimentLoader(config)
@@ -6414,6 +7529,14 @@ class AdvancedETFPipeline:
         self.explainability = ExplainabilityAnalyzer(config)
 
     def run_ticker(self, ticker: str) -> Dict[int, Dict[str, Any]]:
+        """Ejecuta el pipeline completo para un ETF a través de todos los horizontes configurados.
+
+        Args:
+            ticker (str): Símbolo del ETF que se va a procesar.
+
+        Returns:
+            Dict[int, Dict[str, Any]]: Resultados indexados por horizonte para el ETF procesado.
+        """
         ticker = ticker.upper()
         print("\n" + "=" * 118)
         print(f"ANÁLISIS AVANZADO: {ticker}")
@@ -6540,6 +7663,20 @@ class AdvancedETFPipeline:
         sentiment_in_model: bool,
         ticker_dir: str,
     ) -> Dict[str, Any]:
+        """Ejecuta clasificación, regresión, backtesting, ablaciones y explicabilidad para un ETF y horizonte.
+
+        Args:
+            ticker (str): Símbolo del ETF que se va a procesar.
+            features (pd.DataFrame): Valor de entrada `features` utilizado por la función.
+            feature_cols (List[str]): Lista de columnas usadas como variables predictoras.
+            horizon (int): Horizonte temporal expresado en sesiones.
+            current_sentiment (Dict[str, float]): Resumen del sentimiento de noticias recientes.
+            sentiment_in_model (bool): Indica si el sentimiento histórico forma parte de las variables del modelo.
+            ticker_dir (str): Directorio raíz de resultados del ETF.
+
+        Returns:
+            Dict[str, Any]: Valor de salida de tipo `Dict[str, Any]` producido por la función.
+        """
         print("\n" + "-" * 118)
         print(f"{ticker} - HORIZONTE {horizon} SESIÓN/SESIONES")
         print("-" * 118)
@@ -6943,6 +8080,11 @@ class AdvancedETFPipeline:
         }
 
     def run_all(self) -> Dict[str, Dict[int, Dict[str, Any]]]:
+        """Ejecuta el pipeline para todos los ETFs configurados y genera el resumen consolidado.
+
+        Returns:
+            Dict[str, Dict[int, Dict[str, Any]]]: Resultados de todos los ETFs y horizontes configurados.
+        """
         outputs = {}
         for ticker in self.config.tickers:
             outputs[ticker.upper()] = self.run_ticker(ticker)
@@ -6950,6 +8092,14 @@ class AdvancedETFPipeline:
         return outputs
 
     def _print_final_summary(self, outputs):
+        """Construye, muestra y guarda el resumen y ranking final de todos los experimentos.
+
+        Args:
+            outputs (Any): Resultados agregados de todos los experimentos.
+
+        Returns:
+            None: No devuelve ningún valor; realiza sus efectos sobre memoria, disco o consola.
+        """
         print("\n" + "#" * 118)
         print("RESUMEN FINAL DE PREDICCIONES")
         print("#" * 118)
